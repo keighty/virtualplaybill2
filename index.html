@@ -1,17 +1,16 @@
 <html>
 <head>
   <title>Virtual Playbill</title>
+  <link rel="stylesheet" href="stylesheets/css/bootstrap.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <div ng-app="playbillApp">
+  <div class="container" ng-app="playbillApp">
     <div ng-controller="PlaybillController">
       <input type="text" ng-model="search">
-      <table>
-        <tr ng-repeat="playbill in playbills | filter:search">
-          <td>{{playbill.title}}</td>
-          <td>{{playbill.company}}</td>
-        </tr>
-      </table>
+      <div class="row" ng-repeat="rows in playbillRows">
+        <div class="col-xs-4" ng-repeat="playbill in rows">{{playbill.title}}</div>
+      </div>
     </div>
   </div>
 

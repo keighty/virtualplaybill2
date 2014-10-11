@@ -4,12 +4,38 @@
   <link rel="stylesheet" href="stylesheets/css/bootstrap.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
-  <div class="container" ng-app="playbillApp">
+<body ng-app="playbillApp">
+  <nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Virtual Playbill</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#">Add post</a></li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" ng-model="search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
     <div ng-controller="PlaybillController">
-      <input type="text" ng-model="search">
       <div class="row" ng-repeat="rows in playbillRows">
-        <div class="col-xs-4" ng-repeat="playbill in rows">{{playbill.title}}</div>
+        <div class="col-xs-4" ng-repeat="playbill in rows | filter:search">{{playbill.title}}</div>
       </div>
     </div>
   </div>

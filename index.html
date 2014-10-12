@@ -3,6 +3,7 @@
   <title>Virtual Playbill</title>
   <link rel="stylesheet" href="stylesheets/css/bootstrap.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="stylesheets/styles.css">
 </head>
 <body ng-app="playbillApp">
   <nav class="navbar navbar-default" role="navigation">
@@ -34,7 +35,13 @@
   <div class="container">
     <div ng-controller="PlaybillController">
       <div class="row" ng-repeat="rows in playbillRows">
-        <div class="col-xs-4" ng-repeat="playbill in rows | filter:search">{{playbill.title}}</div>
+        <div class="col-xs-4" ng-repeat="playbill in rows | filter:search">
+          <h4 class="playbill-header">Virtual Playbill</h4>
+          <div class="playbill-body">
+            <h4>{{playbill.title}}</h4>
+            <p>{{playbill.company}}</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

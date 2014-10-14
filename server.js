@@ -24,7 +24,7 @@ var app = express();
 app.use(cors());
 app.get('/playbills', function(req, res) {
   // res.send("hello");
-  Post.find(function(err, doc) {
+  Post.find().sort("-submitted").exec(function(err, doc) {
     res.send(doc);
   });
 });

@@ -30,4 +30,8 @@ app.get('/playbills', function(req, res) {
       });
 });
 
+app.get('/add_post', function(req, res) {
+  res.send("hi from the server");
+});
+
 app.listen(3030);

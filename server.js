@@ -23,10 +23,11 @@ var Post = mongoose.model('Post', postSchema, 'posts');
 var app = express();
 app.use(cors());
 app.get('/playbills', function(req, res) {
-  // res.send("hello");
-  Post.find().sort("-submitted").exec(function(err, doc) {
-    res.send(doc);
-  });
+  Post.find()
+      .sort("-submitted")
+      .exec(function(err, doc) {
+        res.send(doc);
+      });
 });
 
 app.listen(3030);

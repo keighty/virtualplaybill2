@@ -19,3 +19,9 @@ function PlaybillController($scope, $http) {
     return rows;
   }
 }
+
+function NewPlaybillController($scope, $http) {
+  $scope.addPlaybill = function() {
+    console.log("hello");
+  };
+}

@@ -1,0 +1,9 @@
+{
+  "name": "virtual_playbill",
+  "dependencies": {
+    "express" : "latest",
+    "mongoose": "latest",
+    "cors"    : "latest",
+    "body-parser" : "latest"
+  }
+}

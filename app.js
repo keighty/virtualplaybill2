@@ -20,8 +20,12 @@ function PlaybillController($scope, $http) {
   }
 }
 
-function NewPlaybillController($scope, $http) {
-  $scope.addPlaybill = function() {
-    console.log("hello");
-  };
-}
+playbills.controller('NewPlaybillController', ['$scope', '$http', function($scope, $http) {
+    $scope.addPlaybill = function(show) {
+      var addPlaybillUrl = 'http://localhost:3030/new_post';
+      $http.post(addPlaybillUrl, show)
+           .success(function() {
+           });
+    };
+  }
+]);

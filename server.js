@@ -1,30 +1,31 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var cors = require('cors');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+var _ = require('underscore');
 
 mongoose.connect('mongodb://localhost/virtual_playbill');
 
-var postSchema = {
+var postSchema = mongoose.Schema({
   "url" : String,
   "title" : String,
   "company" : String,
   "author" : String,
   "music" : String,
+  "choreographer" : String,
   "showDate" : String,
+  "image": String,
   "userId" : String,
   "postAuthor" : String,
   "submitted" : Number,
-  "commentsCount" : Number,
-  "_id" : String,
-};
+  "commentsCount" : Number
+});
 
 var Post = mongoose.model('Post', postSchema, 'posts');
 
 var app = express();
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
 
 app.get('/playbills', function(req, res) {
   Post.find()
@@ -39,8 +40,23 @@ app.get('/add_post', function(req, res) {
 });
 
 app.post('/new_post', function(req, res, next) {
-  console.log("hello", req.statusCode, req.body);
-  res.send("made it!");
+  var postAttributes = req.body;
+  var post = _.extend(_.pick(postAttributes, 'url', 'title', 'company', 'author', 'music', 'showDate', 'image'), {
+      // userId: user._id,
+      // postAuthor: user.username,
+      submitted: new Date().getTime(),
+      commentsCount: 0
+    });
+
+
+  var newPost = new Post(post);
+  newPost.save(function(err, doc){
+    if(err) {
+      res.send(err);
+    } else {
+      res.send(doc);
+    }
+  });
 });
 
 app.listen(3030);

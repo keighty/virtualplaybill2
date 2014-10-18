@@ -24,7 +24,8 @@ playbills.controller('NewPlaybillController', ['$scope', '$http', function($scop
     $scope.addPlaybill = function(show) {
       var addPlaybillUrl = 'http://localhost:3030/new_post';
       $http.post(addPlaybillUrl, show)
-           .success(function() {
+           .success(function(err, res) {
+            console.log(res);
            });
     };
   }

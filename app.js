@@ -19,3 +19,14 @@ function PlaybillController($scope, $http) {
     return rows;
   }
 }
+
+playbills.controller('NewPlaybillController', ['$scope', '$http', function($scope, $http) {
+    $scope.addPlaybill = function(show) {
+      var addPlaybillUrl = 'http://localhost:3030/new_post';
+      $http.post(addPlaybillUrl, show)
+           .success(function(err, res) {
+            console.log(res);
+           });
+    };
+  }
+]);

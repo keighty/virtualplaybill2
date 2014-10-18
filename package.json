@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "express" : "latest",
+    "mongoose": "latest",
+    "cors"    : "latest",
+    "body-parser" : "latest",
+    "underscore"  : "latest"
+  }
+}

@@ -1,4 +1,17 @@
+var express = require('express');
+var bodyParser = require('body-parser');
+var _ = require('underscore');
+var Post = require('./models/posts_model.js');
+
 module.exports = function(app) {
+  app.use('/static', express.static('./static'));
+  app.use('/lib', express.static('../lib'));
+  app.use(bodyParser.json());
+
+  app.get('/', function(req, res) {
+    res.render('index');
+  });
+
   app.get('/playbills', function(req, res) {
     Post.find()
         .sort("-submitted")

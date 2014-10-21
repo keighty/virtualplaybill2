@@ -3,25 +3,9 @@ var mongoose = require('mongoose');
 var cors = require('cors');
 var bodyParser = require('body-parser');
 var _ = require('underscore');
+var Post = require('./models/posts_model.js');
 
 mongoose.connect('mongodb://localhost/virtual_playbill');
-
-var postSchema = mongoose.Schema({
-  "url" : String,
-  "title" : String,
-  "company" : String,
-  "author" : String,
-  "music" : String,
-  "choreographer" : String,
-  "showDate" : String,
-  "image": String,
-  "userId" : String,
-  "postAuthor" : String,
-  "submitted" : Number,
-  "commentsCount" : Number
-});
-
-var Post = mongoose.model('Post', postSchema, 'posts');
 
 var app = express();
 app.use(cors());

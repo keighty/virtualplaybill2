@@ -8,6 +8,7 @@
     "body-parser" : "latest",
     "cookie-parser": "latest",
     "underscore"  : "latest",
-    "ejs": "latest"
+    "ejs": "latest",
+    "crypto": "latest"
   }
 }

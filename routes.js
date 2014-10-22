@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var _ = require('underscore');
 var Post = require('./models/posts_model.js');
+var User = require('./models/users_model.js');
 
 module.exports = function(app) {
   app.use('/static', express.static('./static'));

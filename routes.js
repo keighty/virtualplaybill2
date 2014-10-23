@@ -8,7 +8,7 @@ module.exports = function(app) {
   var users = require('./controllers/users_controller.js');
 
   app.use('/static', express.static('./static'));
-  app.use('/lib', express.static('../lib'));
+  app.use('/lib', express.static('./lib'));
   app.use(bodyParser.json());
 
   app.get('/', function(req, res) {

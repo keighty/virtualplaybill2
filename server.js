@@ -1,62 +1,29 @@
 var express = require('express');
-var mongoose = require('mongoose');
-var cors = require('cors');
 var bodyParser = require('body-parser');
-var _ = require('underscore');
+var cookieParser = require('cookie-parser');
+var expressSession = require('express-session');
+var mongoose = require('mongoose');
+var mongoStore = require('connect-mongo')({session: expressSession});
+var cors = require('cors');
 
-mongoose.connect('mongodb://localhost/virtual_playbill');
-
-var postSchema = mongoose.Schema({
-  "url" : String,
-  "title" : String,
-  "company" : String,
-  "author" : String,
-  "music" : String,
-  "choreographer" : String,
-  "showDate" : String,
-  "image": String,
-  "userId" : String,
-  "postAuthor" : String,
-  "submitted" : Number,
-  "commentsCount" : Number
-});
-
-var Post = mongoose.model('Post', postSchema, 'posts');
+var User = require('./models/users_model.js');
+var conn = mongoose.connect('mongodb://localhost/virtual_playbill');
 
 var app = express();
+app.engine('.html', require('ejs').__express);
+app.set('views', __dirname + '/views');
+app.set('view engine', 'html');
 app.use(cors());
-app.use(bodyParser.json());
+app.use(bodyParser());
+app.use(cookieParser());
+app.use(expressSession({
+  secret: 'SECRET',
+  cookie: {maxAge: 60*60*1000},
+  store: new mongoStore({
+    db: mongoose.connection.db,
+    collection: 'sessions'
+  })
+}));
 
-app.get('/playbills', function(req, res) {
-  Post.find()
-      .sort("-submitted")
-      .exec(function(err, doc) {
-        res.send(doc);
-      });
-});
-
-app.get('/add_post', function(req, res) {
-  res.send("hi from the server");
-});
-
-app.post('/new_post', function(req, res, next) {
-  var postAttributes = req.body;
-  var post = _.extend(_.pick(postAttributes, 'url', 'title', 'company', 'author', 'music', 'showDate', 'image'), {
-      // userId: user._id,
-      // postAuthor: user.username,
-      submitted: new Date().getTime(),
-      commentsCount: 0
-    });
-
-
-  var newPost = new Post(post);
-  newPost.save(function(err, doc){
-    if(err) {
-      res.send(err);
-    } else {
-      res.send(doc);
-    }
-  });
-});
-
+require('./routes.js')(app);
 app.listen(3030);

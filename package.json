@@ -1,9 +1,14 @@
 {
   "dependencies": {
     "express" : "latest",
+    "express-session": "latest",
     "mongoose": "latest",
+    "connect-mongo": "latest",
     "cors"    : "latest",
     "body-parser" : "latest",
-    "underscore"  : "latest"
+    "cookie-parser": "latest",
+    "underscore"  : "latest",
+    "ejs": "latest",
+    "crypto": "latest"
   }
 }

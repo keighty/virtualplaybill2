@@ -27,7 +27,6 @@ function createSession(req, user) {
   req.session.user = user.id;
   req.session.username = user.username;
   req.session.msg = "Welcome " + user.username;
-  // this may not modify the request in place as it is intended
 }
 
 exports.login = function(req, res) {

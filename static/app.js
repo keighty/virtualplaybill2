@@ -2,15 +2,12 @@ var playbills = angular.module("playbillApp", []);
 
 playbills.controller('PlaybillController', ['$scope', '$http',
   function($scope, $http) {
-    (function getPlaybills() {
-      var playbillUrl = 'http://localhost:3030/playbills';
-      $http.get(playbillUrl).success(function(data) {
-        $scope.playbills = data;
-        $scope.playbillRows = partition(data, 3);
-      }).error(function(response) {
-        console.log(response);
-      });
-    })();
+    $http.get('/playbills').success(function(data) {
+      $scope.playbills = data;
+      $scope.playbillRows = partition(data, 3);
+    }).error(function(res) {
+      console.log(res);
+    });
 
     function partition(input, size) {
       var rows = [];

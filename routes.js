@@ -5,7 +5,7 @@ var _ = require('underscore');
 
 module.exports = function(app) {
   var Post = require('./models/posts_model.js');
-  var User = require('./models/users_model.js');
+  var users = require('./controllers/users_controller.js');
 
   app.use('/static', express.static('./static'));
   app.use('/lib', express.static('../lib'));
@@ -52,10 +52,10 @@ module.exports = function(app) {
   });
 
   app.post('/signup', users.signup);
-  app.post('/user/update', users.updateUser);
-  app.post('/user/delete', users.deleteUser);
+  // app.post('/user/update', users.updateUser);
+  // app.post('/user/delete', users.deleteUser);
   app.post('/login', users.login);
-  app.get('/user/profile', users.getUserProfile);
+  // app.get('/user/profile', users.getUserProfile);
 
   app.get('/playbills', function(req, res) {
     Post.find()

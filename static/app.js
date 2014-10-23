@@ -30,3 +30,15 @@ playbills.controller('NewPlaybillController', ['$scope', '$http',
     };
   }
 ]);
+
+playbills.controller('UserController', ['$scope', '$http',
+  function($scope, $http) {
+    $http.get('/user/profile').success(function(data) {
+      $scope.user = data;
+      $scope.error = "";
+    }).error(function(data) {
+      $scope.user = {};
+      $scope.error = data;
+    });
+  }
+]);

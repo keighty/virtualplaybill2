@@ -1,9 +1,10 @@
 var express = require('express');
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
 var mongoose = require('mongoose');
 var mongoStore = require('connect-mongo')({session: expressSession});
+var partials = require('express-partials');
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 var cors = require('cors');
 
 var User = require('./models/users_model.js');

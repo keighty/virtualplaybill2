@@ -1,12 +1,10 @@
-<div class="container">
-  <div ng-controller="PlaybillController">
-    <div class="row" ng-repeat="rows in playbillRows">
-      <div class="col-xs-4" ng-repeat="playbill in rows | filter:search">
-        <h4 class="playbill-header">Virtual Playbill</h4>
-        <div class="playbill-body">
-          <h4 class="playbill-title">{{playbill.title}}</h4>
-          <img class="playbill-image" src="">
-        </div>
+<div ng-controller="PlaybillController">
+  <div class="row" ng-repeat="rows in playbillRows">
+    <div class="col-xs-4" ng-repeat="playbill in rows | filter:search">
+      <h4 class="playbill-header">Virtual Playbill</h4>
+      <div class="playbill-body">
+        <h4 class="playbill-title">{{playbill.title}}</h4>
+        <img class="playbill-image" src="">
       </div>
     </div>
   </div>

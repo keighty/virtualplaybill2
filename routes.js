@@ -1,5 +1,6 @@
 var crypto = require('crypto');
 var express = require('express');
+var partials = require('express-partials');
 var bodyParser = require('body-parser');
 var _ = require('underscore');
 
@@ -9,6 +10,7 @@ module.exports = function(app) {
 
   app.use('/static', express.static('./static'));
   app.use('/lib', express.static('./lib'));
+  app.use(partials());
   app.use(bodyParser.json());
 
   app.get('/', function(req, res) {
@@ -16,7 +18,7 @@ module.exports = function(app) {
       res.render('index', {username: req.session.user});
     } else {
       req.session.msg = 'Access denied';
-      res.redirect('/login');
+      res.redirect('/signin');
     }
   });
 
@@ -25,7 +27,7 @@ module.exports = function(app) {
       res.render('user', {msg: req.session.msg});
     } else {
       req.session.msg = "Access denied";
-      res.redirect('/login');
+      res.redirect('/signin');
     }
   });
 
@@ -37,24 +39,24 @@ module.exports = function(app) {
     }
   });
 
-  app.get('/login', function(req, res) {
+  app.get('/signin', function(req, res) {
     if(req.session.user) {
       res.redirect('/');
     } else {
-      res.render('login', {msg: req.session.msg});
+      res.render('signin', {msg: req.session.msg});
     }
   });
 
   app.get('/logout', function(req, res) {
     req.session.destroy(function() {
-      res.redirect('/login');
+      res.redirect('/signin');
     });
   });
 
   app.post('/signup', users.signup);
   // app.post('/user/update', users.updateUser);
   // app.post('/user/delete', users.deleteUser);
-  app.post('/login', users.login);
+  app.post('/signin', users.signin);
   app.get('/user/profile', users.profile);
 
   app.get('/playbills', function(req, res) {
@@ -66,7 +68,7 @@ module.exports = function(app) {
   });
 
   app.get('/add_post', function(req, res) {
-    res.send("hi from the server");
+    res.render('add_post', {username: req.session.user});
   });
 
   app.post('/new_post', function(req, res, next) {

@@ -9,6 +9,7 @@
     "cookie-parser": "latest",
     "underscore"  : "latest",
     "ejs": "latest",
-    "crypto": "latest"
+    "crypto": "latest",
+    "express-partials": "latest"
   }
 }

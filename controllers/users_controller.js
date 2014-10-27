@@ -29,7 +29,7 @@ function createSession(req, user) {
   req.session.msg = "Welcome " + user.username;
 }
 
-exports.login = function(req, res) {
+exports.signin = function(req, res) {
   User.findOne({
     username: req.body.username
   }).exec(function(err, user) {
@@ -48,7 +48,7 @@ exports.login = function(req, res) {
       if(err) {
         req.session.regenerate(function() {
           req.session.msg = err;
-          res.redirect('/login');
+          res.redirect('/signin');
         });
       }
     }

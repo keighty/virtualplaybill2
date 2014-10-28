@@ -5,11 +5,9 @@ var bodyParser = require('body-parser');
 var _ = require('underscore');
 
 module.exports = function(app) {
-  var Post = require('./models/posts_model.js');
-  var users = require('./controllers/users_controller.js');
+  var Post = require('./controllers/posts_controller');
+  var User = require('./controllers/users_controller.js');
 
-  app.use('/static', express.static('./static'));
-  app.use('/lib', express.static('./lib'));
   app.use(partials());
   app.use(bodyParser.json());
 
@@ -18,7 +16,16 @@ module.exports = function(app) {
       res.render('index', {username: req.session.user});
     } else {
       req.session.msg = 'Access denied';
-      res.redirect('/signin');
+      res.redirect('signin');
+    }
+  });
+
+  app.get('/post/:postId', function(req, res) {
+    if(req.session.user) {
+      res.render('post');
+    } else {
+      req.session.msg = 'Access denied';
+      res.redirect('signin');
     }
   });
 
@@ -27,7 +34,7 @@ module.exports = function(app) {
       res.render('user', {msg: req.session.msg});
     } else {
       req.session.msg = "Access denied";
-      res.redirect('/signin');
+      res.redirect('signin');
     }
   });
 
@@ -53,19 +60,12 @@ module.exports = function(app) {
     });
   });
 
-  app.post('/signup', users.signup);
-  // app.post('/user/update', users.updateUser);
-  // app.post('/user/delete', users.deleteUser);
-  app.post('/signin', users.signin);
-  app.get('/user/profile', users.profile);
+  app.post('/signup', User.signup);
+  app.post('/signin', User.signin);
+  app.get('/user/profile', User.profile);
 
-  app.get('/playbills', function(req, res) {
-    Post.find()
-        .sort("-submitted")
-        .exec(function(err, doc) {
-          res.send(doc);
-        });
-  });
+  app.get('/playbills', Post.posts);
+  app.get('/post/playbill/:id', Post.post);
 
   app.get('/add_post', function(req, res) {
     res.render('add_post', {username: req.session.user});

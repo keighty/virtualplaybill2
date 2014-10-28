@@ -1,7 +1,25 @@
-var playbills = angular.module("playbillApp", []);
+var playbills = angular.module("playbillApp", ['ngRoute']);
 
-playbills.controller('PlaybillController', ['$scope', '$http',
-  function($scope, $http) {
+playbills.config(['$routeProvider', '$locationProvider',
+  function($routeProvider, $locationProvider) {
+    $locationProvider.html5Mode({
+      enabled: true,
+      requireBase: false
+    });
+    $routeProvider.
+      when('/post/:postId', {
+        templateUrl: '/views/post.html',
+        controller: 'PostController'
+      }).
+      when('/', {
+        templateUrl: 'views/index.html',
+        controller: 'PlaybillController'
+      });
+  }
+]);
+
+playbills.controller('PlaybillController', ['$scope', '$http', '$location',
+  function($scope, $http, $location) {
     $http.get('/playbills').success(function(data) {
       $scope.playbills = data;
       $scope.playbillRows = partition(data, 3);
@@ -42,3 +60,11 @@ playbills.controller('UserController', ['$scope', '$http',
     });
   }
 ]);
+
+playbills.controller('PostController', ['$scope', '$routeParams', '$http',
+  function($scope, $routeParams, $http) {
+    $http.get('playbill/' + $routeParams.postId).success(function(data) {
+      $scope.post = data[0];
+      $scope.post.showDate = Date.parse(data[0].showDate);
+    });
+  }]);

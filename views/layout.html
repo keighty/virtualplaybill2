@@ -45,12 +45,13 @@
 </nav>
 
 <div class="container">
-<%-body %>
+  <div ng-view></div>
 </div>
 
 <script src="../lib/angular.min.js"></script>
+<script src="../lib/angular-route.min.js"></script>
 <script src="../lib/jquery-1.11.1.min.js"></script>
 <script src="../lib/bootstrap.min.js"></script>
-<script src="../static/app.js"></script>
+<script src="../apps/app.js"></script>
 </body>
 </html>

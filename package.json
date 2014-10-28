@@ -1,4 +1,9 @@
 {
+  "name": "virtual-playbill",
+  "description": "A project for tracking theatre",
+  "version": "0.0.1",
+  "repository": "https://github.com/keighty/virtualplaybill2",
+  "license": "MIT",
   "dependencies": {
     "express" : "latest",
     "express-session": "latest",
@@ -10,6 +15,7 @@
     "underscore"  : "latest",
     "ejs": "latest",
     "crypto": "latest",
-    "express-partials": "latest"
+    "express-partials": "latest",
+    "angular-route": "latest"
   }
 }

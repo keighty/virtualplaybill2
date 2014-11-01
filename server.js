@@ -26,5 +26,11 @@ app.use(expressSession({
   })
 }));
 
+app.use('/apps', express.static('./apps'));
+app.use('/views', express.static('./views'));
+app.use('/static', express.static('./static'));
+app.use('/lib', express.static('./lib'));
+
 require('./routes.js')(app);
 app.listen(3030);
+console.log('Express server listening on port 3030');

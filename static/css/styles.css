@@ -5,6 +5,20 @@
 .brownblack { color: #272300}
 .yellow-green { color: #c0b000}
 
+.playbill-unit {
+  position: relative;
+}
+
+span.nav-overlay {
+  position:absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  left: 0;
+  z-index: 1;
+  background-image: url('empty.gif');
+}
+
 .playbill-header {
   text-align: center;
   background-color: #ffea00;
@@ -14,11 +28,13 @@
   letter-spacing: 1px;
   font-size: 1.5em;
   border: 3px solid black;
+  cursor: pointer;
 }
 
 .playbill-body {
   border: 2px solid black;
   margin-top: -12px;
+  cursor: pointer;
 }
 
 .playbill-title {

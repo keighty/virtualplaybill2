@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-xs-4">
+    <h4 class="playbill-header">Virtual Playbill</h4>
+    <div class="playbill-body">
+      <h4 class="playbill-title">{{post.title}}</h4>
+      <img class="playbill-image" src="">
+    </div>
+  </div>
+  <div class="col-xs-4">
+    <p ng-show="post.company">Company: {{post.company}}</p>
+    <p ng-show="post.author">Author: {{post.author}}</p>
+    <p ng-show="post.music">Music: {{post.music}}</p>
+    <p ng-show="post.choreography">Choreography: {{post.choreography}}</p>
+    <p ng-show="post.showDate">Ticket date: {{post.showDate | date:'mediumDate'}}</p>
+  </div>
+</div>

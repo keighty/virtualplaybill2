@@ -11,6 +11,20 @@ playbills.config(['$routeProvider', '$locationProvider',
         templateUrl: '/views/post.html',
         controller: 'PostController'
       }).
+      when('/signin', {
+        templateUrl: '/views/signin.html',
+        controller: 'UserController'
+      }).
+      when('/signup', {
+        templateUrl: '/views/signup.html',
+        controller: 'UserController'
+      }).
+      when('/logout', {
+        templateUrl: '/views/signin.html',
+        controller: function() {
+          window.location.reload();
+        }
+      }).
       when('/', {
         templateUrl: 'views/index.html',
         controller: 'PlaybillController'

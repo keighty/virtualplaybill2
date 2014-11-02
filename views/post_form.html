@@ -49,7 +49,8 @@
   </div>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-8">
-      <button type="submit" class="btn btn-primary" ng-click="addPlaybill(show)">Add show</button>
+      <button ng-if="!editing" type="submit" class="btn btn-primary" ng-click="addPlaybill(show)">Add show</button>
+      <button ng-if="editing" type="submit" class="btn btn-primary" ng-click="editPlaybill(show)">Edit show</button>
     </div>
   </div>
 </form>

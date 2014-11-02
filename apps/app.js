@@ -84,8 +84,8 @@ playbills.controller('UserController', ['$scope', '$http',
 playbills.controller('PostController', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {
     $scope.templates =
-      [ { name: 'post_show.html', url: '/views/post_show.html'},
-        { name: 'post_edit.html', url: '/views/post_form.html'} ];
+      [ { name: 'post_show.html', url: '/views/post_show.html' },
+        { name: 'post_edit.html', url: '/views/post_form.html' } ];
 
     // retrieve the post
     $http.get('playbill/' + $routeParams.postId).success(function(data) {
@@ -96,8 +96,17 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http',
 
     // edit the post
     $scope.showForm = function() {
-      // show the form
+      $scope.editing = true;
       $scope.template = $scope.templates[1];
-      // populate the form
+    };
+
+    $scope.editPlaybill = function(show) {
+      var editUrl = 'http://localhost:3030/edit_post';
+      $http.post(editUrl, show)
+        .success(function(err, res) {
+          $scope.editing = false;
+          $scope.template = $scope.templates[0];
+        });
+
     };
   }]);

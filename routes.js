@@ -32,4 +32,5 @@ module.exports = function(app) {
   app.get('/add_post', Post.postForm);
 
   app.post('/new_post',  Post.newPost);
+  app.post('/edit_post',  Post.editPost);
 };

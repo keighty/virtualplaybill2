@@ -49,6 +49,20 @@ exports.newPost = function(req, res, next) {
   });
 };
 
+exports.editPost = function(req, res) {
+  var postAttributes = req.body,
+      conditions = { _id: postAttributes._id },
+      update = postAttributes;
+
+  delete postAttributes._id;
+  postAttributes.submitted = new Date().getTime();
+
+  Post.update(conditions, update, function(err, numAffected) {
+    if(err) { res.send(err); }
+    else { res.json(numAffected); }
+  });
+};
+
 exports.postForm = function(req, res) {
   res.render('post_form', {username: req.session.user});
 };

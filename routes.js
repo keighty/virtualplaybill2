@@ -33,4 +33,5 @@ module.exports = function(app) {
 
   app.post('/new_post',  Post.newPost);
   app.post('/edit_post',  Post.editPost);
+  app.post('/delete_post',  Post.deletePost);
 };

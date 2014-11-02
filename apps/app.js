@@ -81,8 +81,8 @@ playbills.controller('UserController', ['$scope', '$http',
   }
 ]);
 
-playbills.controller('PostController', ['$scope', '$routeParams', '$http',
-  function($scope, $routeParams, $http) {
+playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$location',
+  function($scope, $routeParams, $http, $location) {
     $scope.templates =
       [ { name: 'post_show.html', url: '/views/post_show.html' },
         { name: 'post_edit.html', url: '/views/post_form.html' } ];
@@ -95,7 +95,7 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http',
     });
 
     // edit the post
-    $scope.showForm = function() {
+    $scope.editShow = function() {
       $scope.editing = true;
       $scope.template = $scope.templates[1];
     };
@@ -107,6 +107,15 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http',
           $scope.editing = false;
           $scope.template = $scope.templates[0];
         });
-
     };
+
+    // delete the post
+    $scope.deleteShow = function(show) {
+      var deleteUrl = 'http://localhost:3030/delete_post';
+      $http.post(deleteUrl, show)
+        .success(function(err, res) {
+          $scope.editing = false;
+          $location.path('/');
+        });
+      }
   }]);

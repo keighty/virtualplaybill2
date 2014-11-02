@@ -63,6 +63,14 @@ exports.editPost = function(req, res) {
   });
 };
 
+exports.deletePost = function(req, res) {
+  var post = req.body;
+  Post.find({ _id: post._id }).remove( function(err, numAffected) {
+    if(err) { res.send(err); }
+    else { res.json(numAffected); }
+  });
+};
+
 exports.postForm = function(req, res) {
   res.render('post_form', {username: req.session.user});
 };

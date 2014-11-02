@@ -2,10 +2,9 @@ var crypto = require('crypto');
 var express = require('express');
 var partials = require('express-partials');
 var bodyParser = require('body-parser');
-var _ = require('underscore');
 
 module.exports = function(app) {
-  var Post = require('./controllers/posts_controller');
+  var Post = require('./controllers/posts_controller.js');
   var User = require('./controllers/users_controller.js');
 
   app.use(partials());
@@ -71,17 +70,5 @@ module.exports = function(app) {
     res.render('add_post', {username: req.session.user});
   });
 
-  app.post('/new_post', function(req, res, next) {
-    var postAttributes = req.body;
-    var post = _.extend(_.pick(postAttributes, 'url', 'title', 'company', 'author', 'music', 'showDate', 'image'), {
-        submitted: new Date().getTime(),
-        commentsCount: 0
-      });
-
-    var newPost = new Post(post);
-    newPost.save(function(err, doc){
-      if(err) { res.send(err); }
-      else { res.send(doc); }
-    });
-  });
+  app.post('/new_post',  Post.newPost);
 };

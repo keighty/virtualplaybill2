@@ -11,6 +11,10 @@ playbills.config(['$routeProvider', '$locationProvider',
         templateUrl: '/views/post.html',
         controller: 'PostController'
       }).
+      when('/add_post', {
+        templateUrl: '/views/add_post.html',
+        controller: 'NewPlaybillController'
+      }).
       when('/signin', {
         templateUrl: '/views/signin.html',
         controller: 'UserController'
@@ -51,14 +55,14 @@ playbills.controller('PlaybillController', ['$scope', '$http', '$location',
   }
 ]);
 
-playbills.controller('NewPlaybillController', ['$scope', '$http',
-  function($scope, $http) {
+playbills.controller('NewPlaybillController', ['$scope', '$http', '$location',
+  function($scope, $http, $location) {
     $scope.addPlaybill = function(show) {
       var addPlaybillUrl = 'http://localhost:3030/new_post';
       $http.post(addPlaybillUrl, show)
-           .success(function(err, res) {
-            console.log(res);
-           });
+        .success(function(err, res) {
+          $location.path('/');
+        });
     };
   }
 ]);

@@ -12,7 +12,7 @@ playbills.config(['$routeProvider', '$locationProvider',
         controller: 'PostController'
       }).
       when('/add_post', {
-        templateUrl: '/views/add_post.html',
+        templateUrl: '/views/post_form.html',
         controller: 'NewPlaybillController'
       }).
       when('/signin', {
@@ -62,6 +62,8 @@ playbills.controller('NewPlaybillController', ['$scope', '$http', '$location',
       $http.post(addPlaybillUrl, show)
         .success(function(err, res) {
           $location.path('/');
+          // TODO always redirect to index
+          // TODO handle errors
         });
     };
   }

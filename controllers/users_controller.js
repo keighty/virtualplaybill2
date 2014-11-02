@@ -6,6 +6,15 @@ function encryptPw(pw) {
   return crypto.createHash('sha256').update(pw).digest('base64').toString();
 }
 
+exports.getUser = function(req, res) {
+  if(req.session.user) {
+    res.render('user', {msg: req.session.msg});
+  } else {
+    req.session.msg = "Access denied";
+    res.redirect('signin');
+  }
+};
+
 exports.signup = function(req, res) {
   var user = new User({
     username: req.body.username,
@@ -22,6 +31,15 @@ exports.signup = function(req, res) {
     }
   });
 };
+
+exports.renderSignup = function(req, res) {
+  if(req.session.user) {
+    res.redirect('/');
+  } else {
+    res.render('signup', {msg: req.session.msg});
+  }
+};
+
 
 function createSession(req, user) {
   req.session.user = user.id;
@@ -52,6 +70,20 @@ exports.signin = function(req, res) {
         });
       }
     }
+  });
+};
+
+exports.renderSignin = function(req, res) {
+  if(req.session.user) {
+    res.redirect('/');
+  } else {
+    res.render('signin', {msg: req.session.msg});
+  }
+};
+
+exports.logout = function(req, res) {
+  req.session.destroy(function() {
+    res.redirect('/signin');
   });
 };
 

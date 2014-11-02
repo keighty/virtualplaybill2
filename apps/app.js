@@ -12,7 +12,7 @@ playbills.config(['$routeProvider', '$locationProvider',
         controller: 'PostController'
       }).
       when('/add_post', {
-        templateUrl: '/views/add_post.html',
+        templateUrl: '/views/post_form.html',
         controller: 'NewPlaybillController'
       }).
       when('/signin', {
@@ -62,6 +62,8 @@ playbills.controller('NewPlaybillController', ['$scope', '$http', '$location',
       $http.post(addPlaybillUrl, show)
         .success(function(err, res) {
           $location.path('/');
+          // TODO always redirect to index
+          // TODO handle errors
         });
     };
   }
@@ -79,10 +81,41 @@ playbills.controller('UserController', ['$scope', '$http',
   }
 ]);
 
-playbills.controller('PostController', ['$scope', '$routeParams', '$http',
-  function($scope, $routeParams, $http) {
+playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$location',
+  function($scope, $routeParams, $http, $location) {
+    $scope.templates =
+      [ { name: 'post_show.html', url: '/views/post_show.html' },
+        { name: 'post_edit.html', url: '/views/post_form.html' } ];
+
+    // retrieve the post
     $http.get('playbill/' + $routeParams.postId).success(function(data) {
-      $scope.post = data[0];
-      $scope.post.showDate = Date.parse(data[0].showDate);
+      $scope.show = data[0];
+      $scope.show.showDate = Date.parse(data[0].showDate);
+      $scope.template = $scope.templates[0];
     });
+
+    // edit the post
+    $scope.editShow = function() {
+      $scope.editing = true;
+      $scope.template = $scope.templates[1];
+    };
+
+    $scope.editPlaybill = function(show) {
+      var editUrl = 'http://localhost:3030/edit_post';
+      $http.post(editUrl, show)
+        .success(function(err, res) {
+          $scope.editing = false;
+          $scope.template = $scope.templates[0];
+        });
+    };
+
+    // delete the post
+    $scope.deleteShow = function(show) {
+      var deleteUrl = 'http://localhost:3030/delete_post';
+      $http.post(deleteUrl, show)
+        .success(function(err, res) {
+          $scope.editing = false;
+          $location.path('/');
+        });
+      }
   }]);

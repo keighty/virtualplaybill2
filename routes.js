@@ -10,65 +10,28 @@ module.exports = function(app) {
   app.use(partials());
   app.use(bodyParser.json());
 
-  app.get('/', function(req, res) {
-    if(req.session.user) {
-      res.render('index', {username: req.session.user});
-    } else {
-      req.session.msg = 'Access denied';
-      res.redirect('signin');
-    }
-  });
-
-  app.get('/post/:postId', function(req, res) {
-    if(req.session.user) {
-      res.render('post');
-    } else {
-      req.session.msg = 'Access denied';
-      res.redirect('signin');
-    }
-  });
-
-  app.get('/user', function(req, res) {
-    if(req.session.user) {
-      res.render('user', {msg: req.session.msg});
-    } else {
-      req.session.msg = "Access denied";
-      res.redirect('signin');
-    }
-  });
-
-  app.get('/signup', function(req, res) {
-    if(req.session.user) {
-      res.redirect('/');
-    } else {
-      res.render('signup', {msg: req.session.msg});
-    }
-  });
-
-  app.get('/signin', function(req, res) {
-    if(req.session.user) {
-      res.redirect('/');
-    } else {
-      res.render('signin', {msg: req.session.msg});
-    }
-  });
-
-  app.get('/logout', function(req, res) {
-    req.session.destroy(function() {
-      res.redirect('/signin');
-    });
-  });
+  /*************
+    User Routes
+  *************/
+  app.get('/user', User.getUser);
+  app.get('/signup', User.renderSignup);
+  app.get('/signin', User.renderSignin);
+  app.get('/logout', User.logout);
+  app.get('/user/profile', User.profile);
 
   app.post('/signup', User.signup);
   app.post('/signin', User.signin);
-  app.get('/user/profile', User.profile);
 
+  /*************
+    Playbill Routes
+  *************/
+  app.get('/', Post.index);
   app.get('/playbills', Post.posts);
   app.get('/post/playbill/:id', Post.post);
-
-  app.get('/add_post', function(req, res) {
-    res.render('add_post', {username: req.session.user});
-  });
+  app.get('/post/:postId', Post.renderPost);
+  app.get('/add_post', Post.postForm);
 
   app.post('/new_post',  Post.newPost);
+  app.post('/edit_post',  Post.editPost);
+  app.post('/delete_post',  Post.deletePost);
 };

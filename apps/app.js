@@ -1,4 +1,4 @@
-var playbills = angular.module("playbillApp", ['ngRoute']);
+var playbills = angular.module("playbillApp", ['ngRoute', 'ui.bootstrap']);
 
 playbills.config(['$routeProvider', '$locationProvider',
   function($routeProvider, $locationProvider) {
@@ -117,5 +117,5 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
           $scope.editing = false;
           $location.path('/');
         });
-      }
+      };
   }]);

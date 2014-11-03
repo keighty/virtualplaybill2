@@ -48,3 +48,22 @@ span.nav-overlay {
   height: 300px;
   padding-bottom: 15px;
 }
+
+.calendar-date {
+    position: relative;
+}
+
+/* style icon */
+.calendar-date .glyphicon-calendar {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* align icon */
+.left-addon .glyphicon-calendar  { left:  0px; margin-left: 15px;}
+.right-addon .glyphicon-calendar { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }

@@ -13,7 +13,7 @@ exports.index = function(req, res) {
 
 exports.posts = function(req, res) {
   Post.find()
-      .sort("-submitted")
+      .sort("-showDate")
       .exec(function(err, doc) {
         res.json(doc);
       });

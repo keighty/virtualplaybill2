@@ -39,7 +39,7 @@
     <label for="showDate" class="col-sm-2 control-label">Show date</label>
     <div class="col-sm-8 calendar-date left-addon">
       <i class="glyphicon glyphicon-calendar"></i></button>
-      <input type="text" placeholder="Show date" class="form-control" datepicker-popup="{{format}}" ng-model="show.showDate" is-open="opened" show-weeks="false" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+      <input type="text" placeholder="Show date" class="form-control" datepicker-popup="{{'mediumDate'}}" ng-model="show.showDate" is-open="opened" show-weeks="false" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
     </div>
   </div>
   <div class="form-group">
@@ -55,4 +55,4 @@
     </div>
   </div>
 </form>
-<div> <pre>form = {{show | json}}</pre> </div>
+<!-- <div> <pre>form = {{show | json}}</pre> </div> -->

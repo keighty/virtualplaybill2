@@ -90,7 +90,6 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
     // retrieve the post
     $http.get('playbill/' + $routeParams.postId).success(function(data) {
       $scope.show = data[0];
-      $scope.show.showDate = Date.parse(data[0].showDate);
       $scope.template = $scope.templates[0];
     });
 

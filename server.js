@@ -8,7 +8,11 @@ var cookieParser = require('cookie-parser');
 var cors = require('cors');
 
 var User = require('./models/users_model.js');
-var conn = mongoose.connect('mongodb://localhost/virtual_playbill');
+// var conn = mongoose.connect('mongodb://localhost/virtual_playbill');
+var mongoUri = process.env.MONGOLAB_URI ||
+  process.env.MONGOHQ_URL ||
+  'mongodb://localhost/virtual_playbill';
+var conn = mongoose.connect(mongoUri);
 
 var app = express();
 app.engine('.html', require('ejs').__express);

@@ -1,9 +1,19 @@
 {
   "name": "virtual-playbill",
   "description": "A project for tracking theatre",
-  "version": "0.0.1",
-  "repository": "https://github.com/keighty/virtualplaybill2",
+  "version": "0.2.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/keighty/virtualplaybill2"
+    },
   "license": "MIT",
+  "engines": {
+    "node": "latest"
+  },
   "dependencies": {
     "express" : "latest",
     "express-session": "latest",

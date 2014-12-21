@@ -3,11 +3,14 @@
 *************/
 var express = require('express');
 var expressSession = require('express-session');
+
 var partials = require('express-partials');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var cors = require('cors');
+
 var mongoose = require('mongoose');
+var uriUtil = require('mongodb-uri');
 
 /*********************
 ** Database connection

@@ -18,6 +18,7 @@
     "express" : "latest",
     "express-session": "latest",
     "mongoose": "latest",
+    "mongodb-uri": "latest",
     "connect-mongo": "latest",
     "cors"    : "latest",
     "body-parser" : "latest",

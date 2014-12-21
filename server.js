@@ -19,7 +19,21 @@ var mongoStore = require('connect-mongo')({session: expressSession});
 var mongoUri = process.env.MONGOLAB_URI ||
   process.env.MONGOHQ_URL ||
   'mongodb://localhost/virtual_playbill';
-var conn = mongoose.connect(mongoUri);
+// var conn = mongoose.connect(mongoUri);
+
+//////////////////////////
+var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } },
+                replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };
+
+console.info("MongoURI", mongoUri);
+var mongooseUri = uriUtil.formatMongoose(mongoUri);
+
+mongoose.connect(mongooseUri, options);
+var conn = mongoose.connection;
+conn.on('error', console.error.bind(console, 'connection error:'));
+
+////////////////////
+
 
 /********
 ** Models
@@ -61,6 +75,12 @@ require('./routes.js')(app);
 /************
 ** App server
 *************/
-var port = process.env.PORT || 3030;
-app.listen(port);
-console.log('Express server listening on port ' + port);
+// var port = process.env.PORT || 3030;
+// app.listen(port);
+// console.log('Express server listening on port ' + port);
+
+conn.once('open', function() {
+  var port = process.env.PORT || 3030;
+  app.listen(port);
+  console.log('Express server listening on port ' + port);
+});

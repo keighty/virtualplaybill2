@@ -15,7 +15,7 @@ app.engine('.html', require('ejs').__express);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'html');
 app.use(cors());
-app.use(bodyParser());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(expressSession({
   secret: 'SECRET',
@@ -23,7 +23,9 @@ app.use(expressSession({
   store: new mongoStore({
     db: mongoose.connection.db,
     collection: 'sessions'
-  })
+  }),
+  resave: true,
+  saveUninitialized: true
 }));
 
 app.use('/apps', express.static('./apps'));

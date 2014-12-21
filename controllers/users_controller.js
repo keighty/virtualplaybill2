@@ -91,9 +91,9 @@ exports.profile = function(req, res) {
   var profileUser = User.findOne({_id: req.session.user});
   profileUser.exec(function(err, user) {
     if(!user) {
-      res.json(404, {err: "User not found."});
+      res.status(404).json({err: "User not found."});
     } else {
-      res.json(user);
+      res.status(200).json(user);
     }
   });
 };

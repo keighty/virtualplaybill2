@@ -38,5 +38,6 @@ app.use('/static', express.static('./static'));
 app.use('/lib', express.static('./lib'));
 
 require('./routes.js')(app);
-app.listen(3030);
+// app.listen(3030);
+app.listen(process.env.PORT || 3030);
 console.log('Express server listening on port 3030');

@@ -58,7 +58,7 @@ playbills.controller('PlaybillController', ['$scope', '$http', '$location',
 playbills.controller('NewPlaybillController', ['$scope', '$http', '$location',
   function($scope, $http, $location) {
     $scope.addPlaybill = function(show) {
-      var addPlaybillUrl = 'http://localhost:3030/new_post';
+      var addPlaybillUrl = '/new_post';
       $http.post(addPlaybillUrl, show)
         .success(function(err, res) {
           $location.path('/');
@@ -100,7 +100,7 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
     };
 
     $scope.editPlaybill = function(show) {
-      var editUrl = 'http://localhost:3030/edit_post';
+      var editUrl = '/edit_post';
       $http.post(editUrl, show)
         .success(function(err, res) {
           $scope.editing = false;
@@ -110,7 +110,7 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
 
     // delete the post
     $scope.deleteShow = function(show) {
-      var deleteUrl = 'http://localhost:3030/delete_post';
+      var deleteUrl = '/delete_post';
       $http.post(deleteUrl, show)
         .success(function(err, res) {
           $scope.editing = false;

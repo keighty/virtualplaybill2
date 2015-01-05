@@ -39,6 +39,8 @@ span.nav-overlay {
 
 .playbill-title {
   text-align: center;
+  padding: 5px;
+  margin-bottom: 0px;
 }
 
 .playbill-image {
@@ -47,6 +49,10 @@ span.nav-overlay {
   width: 250px;
   height: 300px;
   padding-bottom: 15px;
+}
+
+.playbill-date {
+  text-align: center;
 }
 
 .calendar-date {

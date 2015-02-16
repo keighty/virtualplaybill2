@@ -60,6 +60,7 @@ app.use(expressSession({
 app.use('/apps', express.static('./apps'));
 app.use('/views', express.static('./views'));
 app.use('/static', express.static('./static'));
+app.use('/images', express.static('./static/images'));
 app.use('/lib', express.static('./lib'));
 
 /*************

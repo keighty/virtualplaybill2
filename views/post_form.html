@@ -47,6 +47,8 @@
     <div class="col-sm-8">
       <input type="hidden" id="image_url" name="image_url" value="images/theater.jpg" />
       <input type="file" class="form-control btn" id="image" ng-model="show.image">
+
+      <p id="status"></p>
       <div style="border:1px solid gray;width:300px;"  id="preview"><img src="images/theater.jpg" style="width:300px;" /></div>
     </div>
   </div>
@@ -58,3 +60,33 @@
   </div>
 </form>
 <!-- <div> <pre>form = {{show | json}}</pre> </div> -->
+
+<script type="text/javascript">
+function s3_upload(){
+    var status_elem = document.getElementById("status");
+    var url_elem = document.getElementById("image_url");
+    var preview_elem = document.getElementById("preview");
+    var s3upload = new S3Upload({
+        file_dom_selector: 'files',
+        s3_sign_put_url: '/sign_s3',
+        onProgress: function(percent, message) {
+            status_elem.innerHTML = 'Upload progress: ' + percent + '% ' + message;
+        },
+        onFinishS3Put: function(public_url) {
+            status_elem.innerHTML = 'Upload completed. Uploaded to: '+ public_url;
+            url_elem.value = public_url;
+            preview_elem.innerHTML = '<img src="'+public_url+'" style="width:300px;" />';
+        },
+        onError: function(status) {
+            status_elem.innerHTML = 'Upload error: ' + status;
+        }
+    });
+}
+/*
+* Listen for file selection:
+*/
+(function() {
+    var input_element = document.getElementById("files");
+    input_element.onchange = s3_upload;
+})();
+</script>

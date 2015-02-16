@@ -66,6 +66,27 @@ playbills.controller('NewPlaybillController', ['$scope', '$http', '$location',
           // TODO handle errors
         });
     };
+
+    $scope.s3_upload = function(stuff){
+      var status_elem = document.getElementById("status");
+      var url_elem = document.getElementById("image_url");
+      var preview_elem = document.getElementById("preview");
+      var s3upload = new S3Upload({
+          file_dom_selector: 'image',
+          s3_sign_put_url: '/sign_s3',
+          onProgress: function(percent, message) {
+              status_elem.innerHTML = 'Upload progress: ' + percent + '% ' + message;
+          },
+          onFinishS3Put: function(public_url) {
+              status_elem.innerHTML = 'Upload completed. Uploaded to: '+ public_url;
+              url_elem.value = public_url;
+              preview_elem.innerHTML = '<img src="'+public_url+'" style="width:300px;" />';
+          },
+          onError: function(status) {
+              status_elem.innerHTML = 'Upload error: ' + status;
+          }
+      });
+    };
   }
 ]);
 

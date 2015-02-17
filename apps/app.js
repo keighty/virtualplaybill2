@@ -13,7 +13,7 @@ playbills.config(['$routeProvider', '$locationProvider',
       }).
       when('/add_post', {
         templateUrl: '/views/post_form.html',
-        controller: 'NewPlaybillController'
+        controller: 'PlaybillFormController'
       }).
       when('/signin', {
         templateUrl: '/views/signin.html',
@@ -55,8 +55,41 @@ playbills.controller('PlaybillController', ['$scope', '$http', '$location',
   }
 ]);
 
-playbills.controller('NewPlaybillController', ['$scope', '$http', '$location',
-  function($scope, $http, $location) {
+playbills.controller('UserController', ['$scope', '$http',
+  function($scope, $http) {
+    $http.get('/user/profile').success(function(data) {
+      $scope.user = data;
+      $scope.error = "";
+    }).error(function(data) {
+      $scope.user = {};
+      $scope.error = data;
+    });
+  }
+]);
+
+playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$location',
+  function($scope, $routeParams, $http, $location) {
+    $scope.templates =
+      [ { name: 'post_show.html', url: '/views/post_show.html' },
+        { name: 'post_edit.html', url: '/views/post_form.html' } ];
+
+    // retrieve the post
+    $http.get('playbill/' + $routeParams.postId).success(function(data) {
+      $scope.show = data[0];
+      $scope.template = $scope.templates[0];
+    });
+
+    // edit the post
+    $scope.editShow = function() {
+      $scope.editing = true;
+      $scope.template = $scope.templates[1];
+    };
+  }
+]);
+
+playbills.controller('PlaybillFormController', ['$scope', '$routeParams', '$http', '$location',
+  function($scope, $routeParams, $http, $location) {
+  // function($scope, $http, $location) {
     $scope.addPlaybill = function(show) {
       var addPlaybillUrl = '/new_post';
       $http.post(addPlaybillUrl, show)
@@ -87,45 +120,13 @@ playbills.controller('NewPlaybillController', ['$scope', '$http', '$location',
           }
       });
     };
-  }
-]);
-
-playbills.controller('UserController', ['$scope', '$http',
-  function($scope, $http) {
-    $http.get('/user/profile').success(function(data) {
-      $scope.user = data;
-      $scope.error = "";
-    }).error(function(data) {
-      $scope.user = {};
-      $scope.error = data;
-    });
-  }
-]);
-
-playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$location',
-  function($scope, $routeParams, $http, $location) {
-    $scope.templates =
-      [ { name: 'post_show.html', url: '/views/post_show.html' },
-        { name: 'post_edit.html', url: '/views/post_form.html' } ];
-
-    // retrieve the post
-    $http.get('playbill/' + $routeParams.postId).success(function(data) {
-      $scope.show = data[0];
-      $scope.template = $scope.templates[0];
-    });
-
-    // edit the post
-    $scope.editShow = function() {
-      $scope.editing = true;
-      $scope.template = $scope.templates[1];
-    };
 
     $scope.editPlaybill = function(show) {
       var editUrl = '/edit_post';
       $http.post(editUrl, show)
         .success(function(err, res) {
           $scope.editing = false;
-          $scope.template = $scope.templates[0];
+          $scope.template = { name: 'post_show.html', url: '/views/post_show.html' };
         });
     };
 
@@ -137,5 +138,6 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
           $scope.editing = false;
           $location.path('/');
         });
-      };
-  }]);
+    };
+  }
+]);

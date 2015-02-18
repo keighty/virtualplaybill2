@@ -86,8 +86,7 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
     };
 
     $scope.addPlaybill = function(show) {
-      var addPlaybillUrl = '/new_post';
-      $http.post(addPlaybillUrl, show)
+      $http.post('/new_post', show)
         .success(function(err, res) {
           $location.path('/');
           // TODO always redirect to index

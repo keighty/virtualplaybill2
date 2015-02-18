@@ -5,6 +5,9 @@ require('newrelic');
 var express = require('express');
 var expressSession = require('express-session');
 
+var http = require('http');
+var path = require('path');
+
 var partials = require('express-partials');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');

@@ -45,7 +45,7 @@
   <div class="form-group">
     <label for="image" class="col-sm-2 control-label">Upload image</label>
     <div class="col-sm-8">
-      <input type="hidden" id="image_url" name="image_url" value="/images/theater.jpg" ng-model="show.image_url" />
+      <input type="hidden" class="form-control" id="image_url" ng-model="show.image_url" />
       <input type="file" class="form-control btn" id="image" onchange="angular.element(this).scope().s3Upload(this)">
 
       <p id="status"></p>

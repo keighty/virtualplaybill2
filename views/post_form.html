@@ -43,9 +43,9 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="image" class="col-sm-2 control-label">Upload image</label>
+    <label for="image" class="col-sm-2 control-label">Image</label>
     <div class="col-sm-8">
-      <input type="text" class="form-control" id="imageUrl" ng-model="show.imageUrl" />
+      <input type="text" class="form-control" id="imageUrl" placeholder="Image url" ng-model="show.imageUrl" />
       <input type="file" class="form-control btn" id="image" onchange="angular.element(this).scope().s3Upload(this)">
 
       <p id="status"></p>
@@ -54,8 +54,8 @@
   </div>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-8">
-      <button ng-if="!editing" type="submit" class="btn btn-primary" ng-click="addPlaybill(show)">Add show</button>
-      <button ng-if="editing" type="submit" class="btn btn-primary" ng-click="editPlaybill(show)">Edit show</button>
+      <button ng-if="!editing" type="submit" class="btn btn-primary" ng-click="addPlaybill(show)">Save show</button>
+      <button ng-if="editing" type="submit" class="btn btn-primary" ng-click="editPlaybill(show)">Save changes</button>
     </div>
   </div>
 </form>

@@ -5,6 +5,9 @@ require('newrelic');
 var express = require('express');
 var expressSession = require('express-session');
 
+var http = require('http');
+var path = require('path');
+
 var partials = require('express-partials');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
@@ -60,6 +63,7 @@ app.use(expressSession({
 app.use('/apps', express.static('./apps'));
 app.use('/views', express.static('./views'));
 app.use('/static', express.static('./static'));
+app.use('/images', express.static('./static/images'));
 app.use('/lib', express.static('./lib'));
 
 /*************

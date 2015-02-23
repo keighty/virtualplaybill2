@@ -34,4 +34,6 @@ module.exports = function(app) {
   app.post('/new_post',  Post.newPost);
   app.post('/edit_post',  Post.editPost);
   app.post('/delete_post',  Post.deletePost);
+
+  app.get('/sign_s3', Post.signS3);
 };

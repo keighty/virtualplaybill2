@@ -8,7 +8,7 @@ var postSchema = mongoose.Schema({
   music : String,
   choreographer : String,
   showDate : { type: Date, default: Date.now },
-  image: String,
+  imageUrl: String,
   userId : String,
   postAuthor : String,
   submitted : Number,

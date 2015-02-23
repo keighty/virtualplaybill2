@@ -13,7 +13,7 @@ playbills.config(['$routeProvider', '$locationProvider',
       }).
       when('/add_post', {
         templateUrl: '/views/post_form.html',
-        controller: 'NewPlaybillController'
+        controller: 'PostController'
       }).
       when('/signin', {
         templateUrl: '/views/signin.html',
@@ -55,20 +55,6 @@ playbills.controller('PlaybillController', ['$scope', '$http', '$location',
   }
 ]);
 
-playbills.controller('NewPlaybillController', ['$scope', '$http', '$location',
-  function($scope, $http, $location) {
-    $scope.addPlaybill = function(show) {
-      var addPlaybillUrl = '/new_post';
-      $http.post(addPlaybillUrl, show)
-        .success(function(err, res) {
-          $location.path('/');
-          // TODO always redirect to index
-          // TODO handle errors
-        });
-    };
-  }
-]);
-
 playbills.controller('UserController', ['$scope', '$http',
   function($scope, $http) {
     $http.get('/user/profile').success(function(data) {
@@ -99,12 +85,50 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
       $scope.template = $scope.templates[1];
     };
 
+    $scope.addPlaybill = function(show) {
+      $http.post('/new_post', show)
+        .success(function(err, res) {
+          $location.path('/');
+          // TODO always redirect to index
+          // TODO handle errors
+        });
+    };
+
+    $scope.s3Upload = function(stuff){
+      var status_elem = document.getElementById("status");
+      var url_elem = document.getElementById("imageUrl");
+      var preview_elem = document.getElementById("preview");
+      var s3upload = new S3Upload({
+          s3_object_name: showImageIdentifier(),
+          file_dom_selector: 'image',
+          s3_sign_put_url: '/sign_s3',
+          onProgress: function(percent, message) {
+            status_elem.innerHTML = 'Upload progress: ' + percent + '% ' + message;
+          },
+          onFinishS3Put: function(public_url) {
+            $scope.show.imageUrl = public_url;
+            status_elem.innerHTML = 'Upload completed. Uploaded to: '+ public_url;
+            url_elem.value = public_url;
+            preview_elem.innerHTML = '<img src="'+ public_url +'" style="width:300px;" />';
+          },
+          onError: function(status) {
+            status_elem.innerHTML = 'Upload error: ' + status;
+          }
+      });
+    };
+
+    function showImageIdentifier() {
+      var title = $scope.show.title.split(' ').join('_');
+      var dateId = Date.now().toString();
+      return [dateId, title].join('_');
+    }
+
     $scope.editPlaybill = function(show) {
       var editUrl = '/edit_post';
       $http.post(editUrl, show)
         .success(function(err, res) {
           $scope.editing = false;
-          $scope.template = $scope.templates[0];
+          $scope.template = { name: 'post_show.html', url: '/views/post_show.html' };
         });
     };
 
@@ -116,5 +140,6 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
           $scope.editing = false;
           $location.path('/');
         });
-      };
-  }]);
+    };
+  }
+]);

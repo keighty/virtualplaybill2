@@ -2,6 +2,11 @@ var mongoose = require('mongoose');
 var _ = require('underscore');
 var Post = require('../models/posts_model.js');
 
+var aws = require('aws-sdk');
+var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;
+var AWS_SECRET_KEY = process.env.AWS_SECRET_KEY;
+var S3_BUCKET = process.env.S3_BUCKET;
+
 exports.index = function(req, res) {
   if(req.session.user) {
     res.render('index', {username: req.session.user});
@@ -37,7 +42,7 @@ exports.renderPost = function(req, res) {
 
 exports.newPost = function(req, res, next) {
   var postAttributes = req.body;
-  var post = _.extend(_.pick(postAttributes, 'url', 'title', 'company', 'author', 'music', 'showDate', 'image'), {
+  var post = _.extend(_.pick(postAttributes, 'url', 'title', 'company', 'author', 'music', 'choreographer','showDate', 'imageUrl'), {
       submitted: new Date().getTime(),
       commentsCount: 0
     });
@@ -51,13 +56,12 @@ exports.newPost = function(req, res, next) {
 
 exports.editPost = function(req, res) {
   var postAttributes = req.body,
-      conditions = { _id: postAttributes._id },
-      update = postAttributes;
+      conditions = { _id: postAttributes._id };
 
   delete postAttributes._id;
   postAttributes.submitted = new Date().getTime();
 
-  Post.update(conditions, update, function(err, numAffected) {
+  Post.update(conditions, postAttributes, function(err, numAffected) {
     if(err) { res.send(err); }
     else { res.json(numAffected); }
   });
@@ -73,4 +77,29 @@ exports.deletePost = function(req, res) {
 
 exports.postForm = function(req, res) {
   res.render('post_form', {username: req.session.user});
+};
+
+exports.signS3 = function(req, res) {
+  aws.config.update({accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_KEY});
+  var s3 = new aws.S3();
+  var s3_params = {
+      Bucket: S3_BUCKET,
+      Key: req.query.s3_object_name,
+      Expires: 60,
+      ContentType: req.query.s3_object_type,
+      ACL: 'public-read'
+  };
+  s3.getSignedUrl('putObject', s3_params, function(err, data){
+      if(err){
+          console.log(err);
+      }
+      else{
+          var return_data = {
+              signed_request: data,
+              url: 'https://'+S3_BUCKET+'.s3.amazonaws.com/'+req.query.s3_object_name
+          };
+          res.write(JSON.stringify(return_data));
+          res.end();
+      }
+  });
 };

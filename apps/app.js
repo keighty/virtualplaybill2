@@ -96,17 +96,17 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
 
     $scope.s3Upload = function(stuff){
       var status_elem = document.getElementById("status");
-      var url_elem = document.getElementById("image_url");
+      var url_elem = document.getElementById("imageUrl");
       var preview_elem = document.getElementById("preview");
       var s3upload = new S3Upload({
-          s3_object_name: showTitleUrl(),
+          s3_object_name: showImageIdentifier(),
           file_dom_selector: 'image',
           s3_sign_put_url: '/sign_s3',
           onProgress: function(percent, message) {
             status_elem.innerHTML = 'Upload progress: ' + percent + '% ' + message;
           },
           onFinishS3Put: function(public_url) {
-            $scope.show.image_url = public_url;
+            $scope.show.imageUrl = public_url;
             status_elem.innerHTML = 'Upload completed. Uploaded to: '+ public_url;
             url_elem.value = public_url;
             preview_elem.innerHTML = '<img src="'+ public_url +'" style="width:300px;" />';
@@ -117,10 +117,10 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
       });
     };
 
-    function showTitleUrl() {
+    function showImageIdentifier() {
       var title = $scope.show.title.split(' ').join('_');
       var dateId = Date.now().toString();
-      return dateId + title;
+      return [dateId, title].join('_');
     }
 
     $scope.editPlaybill = function(show) {

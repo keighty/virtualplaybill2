@@ -42,7 +42,7 @@ exports.renderPost = function(req, res) {
 
 exports.newPost = function(req, res, next) {
   var postAttributes = req.body;
-  var post = _.extend(_.pick(postAttributes, 'url', 'title', 'company', 'author', 'music', 'showDate', 'image'), {
+  var post = _.extend(_.pick(postAttributes, 'url', 'title', 'company', 'author', 'music', 'choreographer','showDate', 'imageUrl'), {
       submitted: new Date().getTime(),
       commentsCount: 0
     });
@@ -56,13 +56,12 @@ exports.newPost = function(req, res, next) {
 
 exports.editPost = function(req, res) {
   var postAttributes = req.body,
-      conditions = { _id: postAttributes._id },
-      update = postAttributes;
+      conditions = { _id: postAttributes._id };
 
   delete postAttributes._id;
   postAttributes.submitted = new Date().getTime();
 
-  Post.update(conditions, update, function(err, numAffected) {
+  Post.update(conditions, postAttributes, function(err, numAffected) {
     if(err) { res.send(err); }
     else { res.json(numAffected); }
   });

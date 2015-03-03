@@ -109,7 +109,7 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
             $scope.show.imageUrl = public_url;
             status_elem.innerHTML = 'Upload completed. Uploaded to: '+ public_url;
             url_elem.value = public_url;
-            preview_elem.innerHTML = '<img src="'+ public_url +'" style="width:300px;" />';
+            preview_elem.innerHTML = '<img class="playbill-image" src="'+ public_url +'" />';
           },
           onError: function(status) {
             status_elem.innerHTML = 'Upload error: ' + status;

@@ -4,7 +4,7 @@
     <div class="playbill-body">
       <h4 class="playbill-title">{{show.title}}</h4>
       <p class="playbill-date">{{show.showDate  | date:'mediumDate'}}</p>
-      <img class="playbill-image" src="{{show.imageUrl}}">
+      <div id="preview"><img class="playbill-image" ng-src="{{show.imageUrl || '/images/theater.jpg'}}" /></div>
     </div>
   </div>
   <div class="col-xs-8">

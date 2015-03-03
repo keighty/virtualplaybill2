@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 
 var postSchema = mongoose.Schema({
-  url : String,
   title : String,
   company : String,
   author : String,

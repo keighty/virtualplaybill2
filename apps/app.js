@@ -96,7 +96,6 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
 
     $scope.s3Upload = function(stuff){
       var status_elem = document.getElementById("status");
-      var url_elem = document.getElementById("imageUrl");
       var preview_elem = document.getElementById("preview");
       var s3upload = new S3Upload({
           s3_object_name: showImageIdentifier(),
@@ -108,7 +107,6 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
           onFinishS3Put: function(public_url) {
             $scope.show.imageUrl = public_url;
             status_elem.innerHTML = 'Upload completed. Uploaded to: '+ public_url;
-            url_elem.value = public_url;
             preview_elem.innerHTML = '<img class="playbill-image" src="'+ public_url +'" />';
           },
           onError: function(status) {

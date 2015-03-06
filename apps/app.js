@@ -76,6 +76,11 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
     // retrieve the post
     $http.get('playbill/' + $routeParams.postId).success(function(data) {
       $scope.show = data[0];
+
+      if(!$scope.show.cast) {
+        $scope.show.cast = [{name: ''}];
+      }
+      console.log($scope.show);
       $scope.template = $scope.templates[0];
     });
 
@@ -138,6 +143,15 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
           $scope.editing = false;
           $location.path('/');
         });
+    };
+
+    $scope.addNewActor = function() {
+      var newItemNo = $scope.show.cast.length+1;
+      $scope.show.cast.push({'id': newItemNo });
+    };
+
+    $scope.showAddActor = function(actor) {
+      return actor.name === $scope.show.cast[$scope.show.cast.length-1].name;
     };
   }
 ]);

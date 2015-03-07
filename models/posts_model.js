@@ -12,7 +12,7 @@ var postSchema = mongoose.Schema({
   postAuthor : String,
   submitted : Number,
   commentsCount : Number,
-  cast : { type : Array , "default" : [] }
+  cast : { type : Object , "default" : {} }
 });
 
 var Post = mongoose.model('Post', postSchema, 'posts');

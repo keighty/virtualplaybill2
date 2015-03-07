@@ -83,9 +83,6 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
 
     // edit the post
     $scope.editShow = function() {
-      if(!$scope.show.cast) {
-        $scope.show.cast = [{name: ''}];
-      }
       $scope.editing = true;
       $scope.template = $scope.templates[1];
     };
@@ -135,15 +132,6 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
           $location.path('/');
         });
     };
-
-    $scope.addNewActor = function() {
-      var newItemNo = $scope.show.cast.length+1;
-      $scope.show.cast.push({'id': newItemNo });
-    };
-
-    $scope.showAddActor = function(actor) {
-      return actor.name === $scope.show.cast[$scope.show.cast.length-1].name;
-    };
   }
 ]);
 
@@ -156,6 +144,22 @@ playbills.controller('NewPostController', ['$scope', '$routeParams', '$http', '$
           // TODO always redirect to index
           // TODO handle errors
         });
+    };
+  }
+]);
+
+playbills.controller('AddCastMember', ['$scope',
+  function($scope){
+    if(!$scope.show)      { $scope.show = {};                }
+    if(!$scope.show.cast) { $scope.show.cast = [{name: ''}]; }
+
+    $scope.addNewActor = function() {
+      var newItemNo = $scope.show.cast.length+1;
+      $scope.show.cast.push({'id': newItemNo });
+    };
+
+    $scope.showAddActor = function(actor) {
+      return actor.name === $scope.show.cast[$scope.show.cast.length-1].name;
     };
   }
 ]);

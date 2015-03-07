@@ -5,6 +5,7 @@ var postSchema = mongoose.Schema({
   company : String,
   author : String,
   music : String,
+  director: String,
   choreographer : String,
   showDate : { type: Date, default: Date.now },
   imageUrl: String,

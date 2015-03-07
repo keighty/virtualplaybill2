@@ -17,6 +17,6 @@
   <legend>Cast Details</legend>
   <p ng-if='emptyCast()' class='empty-cast'>No Cast list available.</p>
   <div ng-repeat="actor in show.cast">
-    <p>{{actor.name}}</p>
+    <p>{{actor.name}} <span class='note-text'>{{actor.character}}<span></p>
   </div>
 </fieldset>

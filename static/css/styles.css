@@ -79,3 +79,8 @@ span.note-text {
   font-size: 0.8em;
   font-weight: 200;
 }
+
+p.empty-cast {
+  font-style: italic;
+  font-weight: 200;
+}

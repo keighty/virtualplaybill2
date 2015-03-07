@@ -148,7 +148,7 @@ playbills.controller('NewPostController', ['$scope', '$routeParams', '$http', '$
   }
 ]);
 
-playbills.controller('AddCastMember', ['$scope',
+playbills.controller('CastController', ['$scope',
   function($scope){
     if(!$scope.show)      { $scope.show = {};                }
     if(!$scope.show.cast) { $scope.show.cast = [{name: ''}]; }
@@ -160,6 +160,10 @@ playbills.controller('AddCastMember', ['$scope',
 
     $scope.showAddActor = function(actor) {
       return actor.name === $scope.show.cast[$scope.show.cast.length-1].name;
+    };
+
+    $scope.emptyCast = function() {
+      return $scope.show.cast[0].name === '';
     };
   }
 ]);

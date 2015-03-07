@@ -1,12 +1,22 @@
+<fieldset class='col-sm-7 form-horizontal'>
+  <legend>Show Details</legend>
 <p ng-show="show.company">Company: {{show.company}}</p>
 <p ng-show="show.author">Author: {{show.author}}</p>
 <p ng-show="show.music">Music: {{show.music}}</p>
 <p ng-show="show.choreographer">Choreographer: {{show.choreographer}}</p>
 <p ng-show="show.showDate">Ticket date: {{show.showDate | date:'mediumDate'}}</p>
-
 <div ng-controller="UserController">
   <div ng-if=user.admin>
     <button class="btn btn-primary" ng-click="editShow()">Edit</button>
     <button class="btn btn-danger" ng-click="deleteShow(show)">Delete</button>
   </div>
 </div>
+</fieldset>
+
+<fieldset class='col-sm-5' ng-controller='CastController'>
+  <legend>Cast Details</legend>
+  <p ng-if='emptyCast()' class='empty-cast'>No Cast list available.</p>
+  <div ng-repeat="actor in show.cast">
+    <p>{{actor.name}}</p>
+  </div>
+</fieldset>

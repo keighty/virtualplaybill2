@@ -13,7 +13,7 @@ playbills.config(['$routeProvider', '$locationProvider',
       }).
       when('/add_post', {
         templateUrl: '/views/post_form.html',
-        controller: 'PostController'
+        controller: 'NewPostController'
       }).
       when('/signin', {
         templateUrl: '/views/signin.html',
@@ -76,6 +76,7 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
     // retrieve the post
     $http.get('playbill/' + $routeParams.postId).success(function(data) {
       $scope.show = data[0];
+
       $scope.template = $scope.templates[0];
     });
 
@@ -83,15 +84,6 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
     $scope.editShow = function() {
       $scope.editing = true;
       $scope.template = $scope.templates[1];
-    };
-
-    $scope.addPlaybill = function(show) {
-      $http.post('/new_post', show)
-        .success(function(err, res) {
-          $location.path('/');
-          // TODO always redirect to index
-          // TODO handle errors
-        });
     };
 
     $scope.s3Upload = function(stuff){
@@ -116,7 +108,7 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
     };
 
     function showImageIdentifier() {
-      var title = $scope.show.title.split(' ').join('_');
+      var title = $scope.show.title.replace(/[^\w\s]|_/g, " ") .replace(/\s+/g, "_");
       var dateId = Date.now().toString();
       return [dateId, title].join('_');
     }
@@ -138,6 +130,35 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
           $scope.editing = false;
           $location.path('/');
         });
+    };
+  }
+]);
+
+playbills.controller('NewPostController', ['$scope', '$routeParams', '$http', '$location',
+  function($scope, $routeParams, $http, $location) {
+    $scope.addPlaybill = function(show) {
+      $http.post('/new_post', show)
+        .success(function(err, res) {
+          $location.path('/');
+          // TODO always redirect to index
+          // TODO handle errors
+        });
+    };
+  }
+]);
+
+playbills.controller('CastController', ['$scope',
+  function($scope){
+    if(!$scope.show)      { $scope.show = {};                }
+    if(!$scope.show.cast) { $scope.show.cast = [{name: ''}]; }
+
+    $scope.addNewActor = function() {
+      var newItemNo = $scope.show.cast.length+1;
+      $scope.show.cast.push({'name': '' });
+    };
+
+    $scope.emptyCast = function() {
+      return $scope.show.cast[0].name === '';
     };
   }
 ]);

@@ -73,3 +73,14 @@ span.nav-overlay {
 /* add padding  */
 .left-addon input  { padding-left:  30px; }
 .right-addon input { padding-right: 30px; }
+
+span.note-text {
+  font-style: italic;
+  font-size: 0.8em;
+  font-weight: 200;
+}
+
+p.empty-cast {
+  font-style: italic;
+  font-weight: 200;
+}

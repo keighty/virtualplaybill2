@@ -1,48 +1,61 @@
-<form class="form-horizontal" role="form">
+<form role="form">
+
+<fieldset class='col-sm-7 form-horizontal'>
+  <legend>Show Details</legend>
   <div class="form-group">
-    <label for="title" class="col-sm-2 control-label">Title</label>
+    <label for="title" class="col-sm-3 control-label">Title</label>
     <div class="col-sm-8">
       <input type="text" class="form-control" id="title" ng-model="show.title" placeholder="Title">
     </div>
   </div>
   <div class="form-group">
-    <label for="company" class="col-sm-2 control-label">Company</label>
+    <label for="company" class="col-sm-3 control-label">Company</label>
     <div class="col-sm-8">
       <input type="text" class="form-control" id="company" placeholder="Company"  ng-model="show.company">
     </div>
   </div>
   <div class="form-group">
-    <label for="author" class="col-sm-2 control-label">Author</label>
+    <label for="author" class="col-sm-3 control-label">Author</label>
     <div class="col-sm-8">
       <input type="text" class="form-control" id="author" placeholder="Author" ng-model="show.author">
     </div>
   </div>
   <div class="form-group">
-    <label for="choreographer" class="col-sm-2 control-label">Choreographer</label>
+    <label for="choreographer" class="col-sm-3 control-label">Choreographer</label>
     <div class="col-sm-8">
       <input type="text" class="form-control" id="choreographer" placeholder="Choreographer" ng-model="show.choreographer">
     </div>
   </div>
   <div class="form-group">
-    <label for="music" class="col-sm-2 control-label">Music</label>
+    <label for="music" class="col-sm-3 control-label">Music</label>
     <div class="col-sm-8">
       <input type="text" class="form-control" id="music" placeholder="Music" ng-model="show.music">
     </div>
   </div>
   <div class="form-group">
-    <label for="showDate" class="col-sm-2 control-label">Show date</label>
+    <label for="showDate" class="col-sm-3 control-label">Show date</label>
     <div class="col-sm-8 calendar-date left-addon">
-      <i class="glyphicon glyphicon-calendar"></i></button>
+      <i class="glyphicon glyphicon-calendar"></i>
       <input type="text" placeholder="Show date" class="form-control" datepicker-popup="{{'mediumDate'}}" ng-model="show.showDate" is-open="opened" show-weeks="false" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
     </div>
   </div>
   <div class="form-group">
-    <label for="image" class="col-sm-2 control-label">Image</label>
+    <label for="image" class="col-sm-3 control-label">Image<br /><span class="note-text">250p x 300p</span></label>
     <div class="col-sm-8">
       <input type="file" class="form-control btn" id="image" onchange="angular.element(this).scope().s3Upload(this)">
       <p id="status"></p>
     </div>
   </div>
+</fieldset>
+
+<fieldset class='col-sm-5' ng-controller='CastController'>
+  <legend>Cast Details</legend>
+  <div class="form-group" data-ng-repeat="actor in show.cast">
+    <input type="text" ng-model="actor.name" name="" placeholder="Name">
+  </div>
+  <button class="btn btn-success" ng-click="addNewActor()"><i class="glyphicon glyphicon-plus"></i></button>
+</fieldset>
+
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-8">
       <button ng-if="!editing" type="submit" class="btn btn-primary" ng-click="addPlaybill(show)">Save show</button>

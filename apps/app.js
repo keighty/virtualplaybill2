@@ -155,11 +155,7 @@ playbills.controller('CastController', ['$scope',
 
     $scope.addNewActor = function() {
       var newItemNo = $scope.show.cast.length+1;
-      $scope.show.cast.push({'id': newItemNo });
-    };
-
-    $scope.showAddActor = function(actor) {
-      return actor.name === $scope.show.cast[$scope.show.cast.length-1].name;
+      $scope.show.cast.push({'name': '' });
     };
 
     $scope.emptyCast = function() {

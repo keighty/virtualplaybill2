@@ -150,15 +150,19 @@ playbills.controller('NewPostController', ['$scope', '$routeParams', '$http', '$
 playbills.controller('CastController', ['$scope',
   function($scope){
     if(!$scope.show)      { $scope.show = {};                }
-    if(!$scope.show.cast) { $scope.show.cast = [{name: ''}]; }
+    if(!$scope.show.cast) { $scope.show.cast = []; }
 
     $scope.addNewActor = function() {
-      var newItemNo = $scope.show.cast.length+1;
-      $scope.show.cast.push({'name': '' });
+      var itemNo = $scope.show.cast.length;
+      $scope.show.cast.push({'name': '' , 'index': itemNo});
+    };
+
+    $scope.removeActor = function(index) {
+      $scope.show.cast.splice(index, 1);
     };
 
     $scope.emptyCast = function() {
-      return $scope.show.cast[0].name === '';
+      return $scope.show.cast.length === 0;
     };
   }
 ]);

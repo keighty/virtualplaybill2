@@ -52,6 +52,7 @@
   <legend>Cast Details</legend>
   <div class="form-group" data-ng-repeat="actor in show.cast">
     <input type="text" ng-model="actor.name" name="" placeholder="Name">
+    <button ng-if="actor" class="btn btn-danger" ng-click="removeActor(actor.index)"><i class="glyphicon glyphicon-minus"></i></button>
   </div>
   <button class="btn btn-success" ng-click="addNewActor()"><i class="glyphicon glyphicon-plus"></i></button>
 </fieldset>

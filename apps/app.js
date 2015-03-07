@@ -109,7 +109,7 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
     };
 
     function showImageIdentifier() {
-      var title = $scope.show.title.split(' ').join('_');
+      var title = $scope.show.title.replace(/[^\w\s]|_/g, " ") .replace(/\s+/g, "_");
       var dateId = Date.now().toString();
       return [dateId, title].join('_');
     }

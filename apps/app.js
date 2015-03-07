@@ -13,7 +13,7 @@ playbills.config(['$routeProvider', '$locationProvider',
       }).
       when('/add_post', {
         templateUrl: '/views/post_form.html',
-        controller: 'NewPostController'
+        controller: 'PostController'
       }).
       when('/signin', {
         templateUrl: '/views/signin.html',
@@ -74,11 +74,14 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
         { name: 'post_edit.html', url: '/views/post_form.html' } ];
 
     // retrieve the post
-    $http.get('playbill/' + $routeParams.postId).success(function(data) {
-      $scope.show = data[0];
-
-      $scope.template = $scope.templates[0];
-    });
+    $http.get('playbill/' + $routeParams.postId).
+      success(function(data) {
+        $scope.show = data[0];
+        $scope.template = $scope.templates[0];
+      }).
+      error(function(data, status, headers, config) {
+        $scope.show = {};
+      });
 
     // edit the post
     $scope.editShow = function() {
@@ -108,10 +111,22 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
     };
 
     function showImageIdentifier() {
-      var title = $scope.show.title.replace(/[^\w\s]|_/g, " ") .replace(/\s+/g, "_");
+      var showTitle = $scope.show.title;
+      if(showTitle) {
+        showTitle = showTitle.replace(/[^\w\s]|_/g, " ") .replace(/\s+/g, "_");
+      }
       var dateId = Date.now().toString();
-      return [dateId, title].join('_');
+      return [dateId, showTitle].join('_');
     }
+
+    $scope.addPlaybill = function(show) {
+      $http.post('/new_post', show)
+        .success(function(err, res) {
+          $location.path('/');
+          // TODO always redirect to index
+          // TODO handle errors
+        });
+    };
 
     $scope.editPlaybill = function(show) {
       var editUrl = '/edit_post';
@@ -129,19 +144,6 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
         .success(function(err, res) {
           $scope.editing = false;
           $location.path('/');
-        });
-    };
-  }
-]);
-
-playbills.controller('NewPostController', ['$scope', '$routeParams', '$http', '$location',
-  function($scope, $routeParams, $http, $location) {
-    $scope.addPlaybill = function(show) {
-      $http.post('/new_post', show)
-        .success(function(err, res) {
-          $location.path('/');
-          // TODO always redirect to index
-          // TODO handle errors
         });
     };
   }

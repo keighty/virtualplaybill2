@@ -84,3 +84,7 @@ p.empty-cast {
   font-style: italic;
   font-weight: 200;
 }
+
+legend.new-post-image {
+  padding-top: 15px;
+}

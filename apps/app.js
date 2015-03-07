@@ -77,7 +77,6 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
     $http.get('playbill/' + $routeParams.postId).success(function(data) {
       $scope.show = data[0];
 
-      console.log($scope.show);
       $scope.template = $scope.templates[0];
     });
 

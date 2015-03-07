@@ -13,7 +13,7 @@ playbills.config(['$routeProvider', '$locationProvider',
       }).
       when('/add_post', {
         templateUrl: '/views/post_form.html',
-        controller: 'PostController'
+        controller: 'NewPostController'
       }).
       when('/signin', {
         templateUrl: '/views/signin.html',
@@ -77,26 +77,17 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
     $http.get('playbill/' + $routeParams.postId).success(function(data) {
       $scope.show = data[0];
 
-      if(!$scope.show.cast) {
-        $scope.show.cast = [{name: ''}];
-      }
       console.log($scope.show);
       $scope.template = $scope.templates[0];
     });
 
     // edit the post
     $scope.editShow = function() {
+      if(!$scope.show.cast) {
+        $scope.show.cast = [{name: ''}];
+      }
       $scope.editing = true;
       $scope.template = $scope.templates[1];
-    };
-
-    $scope.addPlaybill = function(show) {
-      $http.post('/new_post', show)
-        .success(function(err, res) {
-          $location.path('/');
-          // TODO always redirect to index
-          // TODO handle errors
-        });
     };
 
     $scope.s3Upload = function(stuff){
@@ -152,6 +143,19 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
 
     $scope.showAddActor = function(actor) {
       return actor.name === $scope.show.cast[$scope.show.cast.length-1].name;
+    };
+  }
+]);
+
+playbills.controller('NewPostController', ['$scope', '$routeParams', '$http', '$location',
+  function($scope, $routeParams, $http, $location) {
+    $scope.addPlaybill = function(show) {
+      $http.post('/new_post', show)
+        .success(function(err, res) {
+          $location.path('/');
+          // TODO always redirect to index
+          // TODO handle errors
+        });
     };
   }
 ]);

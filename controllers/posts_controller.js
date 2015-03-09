@@ -42,7 +42,7 @@ exports.renderPost = function(req, res) {
 
 exports.newPost = function(req, res, next) {
   var postAttributes = req.body;
-  var post = _.extend(_.pick(postAttributes, 'url', 'title', 'company', 'author', 'director', 'music', 'choreographer','showDate', 'imageUrl', 'cast'), {
+  var post = _.extend(_.pick(postAttributes, 'url', 'title', 'company', 'author', 'synopsis', 'director', 'music', 'choreographer','showDate', 'imageUrl', 'cast'), {
       submitted: new Date().getTime(),
       commentsCount: 0
     });

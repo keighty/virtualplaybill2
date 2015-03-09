@@ -19,27 +19,31 @@
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="navbar-collapse-1" ng-controller="UserController">
-      <ul ng-if=user.admin class="nav navbar-nav">
-        <li><a href="/add_post">Add post</a></li>
-      </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search shows" ng-model="search.title">
-        </div>
-      </form>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="http://kristagarver.wordpress.com/">Blog</a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            {{user.username}} <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="/logout">Logout</a></li>
-            <li><a href="/user">Profile</a></li>
-          </ul>
-        </li>
-      </ul>
+    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+      <div ng-controller="PlaybillController">
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search shows" ng-model="search.title">
+          </div>
+        </form>
+      </div>
+      <div ng-controller="UserController">
+        <ul ng-if=user.admin class="nav navbar-nav">
+          <li><a href="/add_post">Add post</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="http://kristagarver.wordpress.com/">Blog</a></li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              {{user.username}} <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="/logout">Logout</a></li>
+              <li><a href="/user">Profile</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

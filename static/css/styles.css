@@ -88,3 +88,8 @@ p.empty-cast {
 legend.new-post-image {
   padding-top: 15px;
 }
+
+p.synopsis {
+  border: 2px solid grey;
+  padding: 8px;
+}

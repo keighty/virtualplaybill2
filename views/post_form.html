@@ -58,6 +58,12 @@
       <p id="status"></p>
     </div>
   </div>
+  <div class="form-group">
+    <div class="col-sm-8">
+      <button ng-if="!editing" type="submit" class="btn btn-primary" ng-click="addPlaybill(show)">Save show</button>
+      <button ng-if="editing" type="submit" class="btn btn-primary" ng-click="editPlaybill(show)">Save changes</button>
+    </div>
+  </div>
 </fieldset>
 
 <fieldset class='col-sm-5' ng-controller='CastController'>
@@ -75,11 +81,5 @@
   <div id="preview"><img class="playbill-image" ng-src="{{show.imageUrl || '/images/theater.jpg'}}" /></div>
 </fieldset>
 
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-8">
-      <button ng-if="!editing" type="submit" class="btn btn-primary" ng-click="addPlaybill(show)">Save show</button>
-      <button ng-if="editing" type="submit" class="btn btn-primary" ng-click="editPlaybill(show)">Save changes</button>
-    </div>
-  </div>
 </form>
 <!-- <div> <pre>form = {{show | json}}</pre> </div> -->

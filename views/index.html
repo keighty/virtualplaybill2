@@ -1,5 +1,6 @@
-  <div class="row" ng-repeat="rows in playbillRows">
-    <div class="col-xs-4 playbill-unit" ng-repeat="playbill in rows | filter:search">
+  <div ng-repeat="playbill in playbills | filter:search">
+    <div ng-if="$index % 3 == 0" class="clearfix"></div>
+    <div class="col-xs-4 playbill-unit">
       <h4 class="playbill-header">Virtual Playbill</h4>
       <div class="playbill-body">
         <a href="/post/{{playbill._id}}"><span class="nav-overlay"></span></a>

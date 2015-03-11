@@ -40,18 +40,10 @@ playbills.controller('PlaybillController', ['$scope', '$http', '$location',
   function($scope, $http, $location) {
     $http.get('/playbills').success(function(data) {
       $scope.playbills = data;
-      $scope.playbillRows = partition(data, 3);
     }).error(function(res) {
       console.log(res);
     });
 
-    function partition(input, size) {
-      var rows = [];
-      for (var i=0; i < input.length; i+=size) {
-        rows.push(input.slice(i, i+size));
-      }
-      return rows;
-    }
   }
 ]);
 

@@ -25,6 +25,7 @@
           <div class="form-group">
             <input type="text" class="form-control" placeholder="Search shows" ng-model="search.title">
           </div>
+          <span class="label label-info playbill-count" ng-controller='PlaybillController'>{{playbills.length}} shows</span>
         </form>
       </div>
       <div ng-controller="UserController">

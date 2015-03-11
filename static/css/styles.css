@@ -19,6 +19,10 @@ span.nav-overlay {
   background-image: url('empty.gif');
 }
 
+.playbill-count{
+  font-size: 1.25em;
+}
+
 .playbill-header {
   text-align: center;
   background-color: #ffea00;

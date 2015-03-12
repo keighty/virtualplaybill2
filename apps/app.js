@@ -72,7 +72,7 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
         $scope.template = $scope.templates[0];
       }).
       error(function(data, status, headers, config) {
-        $scope.show = {};
+        $scope.show = { cast: [] };
       });
 
     // edit the post
@@ -143,9 +143,6 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
 
 playbills.controller('CastController', ['$scope',
   function($scope){
-    if(!$scope.show)      { $scope.show = {};                }
-    if(!$scope.show.cast) { $scope.show.cast = []; }
-
     $scope.addNewActor = function() {
       var itemNo = $scope.show.cast.length;
       $scope.show.cast.push({'name': '' , 'index': itemNo});

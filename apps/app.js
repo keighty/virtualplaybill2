@@ -1,5 +1,9 @@
 var playbills = angular.module("playbillApp", ['ngRoute', 'ui.bootstrap']);
 
+playbills.run(function($rootScope) {
+  $rootScope.user = {};
+});
+
 playbills.config(['$routeProvider', '$locationProvider',
   function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode({
@@ -47,13 +51,13 @@ playbills.controller('PlaybillController', ['$scope', '$http', '$location',
   }
 ]);
 
-playbills.controller('UserController', ['$scope', '$http',
-  function($scope, $http) {
+playbills.controller('UserController', ['$rootScope', '$scope', '$http',
+  function($rootScope, $scope, $http) {
     $http.get('/user/profile').success(function(data) {
-      $scope.user = data;
+      $rootScope.user = data;
       $scope.error = "";
     }).error(function(data) {
-      $scope.user = {};
+      // $scope.user = {};
       $scope.error = data;
     });
   }

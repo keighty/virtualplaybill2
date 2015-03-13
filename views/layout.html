@@ -21,7 +21,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-collapse-1">
       <div>
-        <form class="navbar-form navbar-left" role="search">
+        <form  ng-if="user.username" class="navbar-form navbar-left" role="search">
           <div class="form-group">
             <input type="text" class="form-control" placeholder="Search shows" ng-model="search.title">
           </div>
@@ -29,13 +29,13 @@
         </form>
       </div>
       <div ng-controller="UserController">
-        <ul ng-if=user.admin class="nav navbar-nav">
+        <ul ng-if="user.admin" class="nav navbar-nav">
           <li><a href="/add_post">Add post</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="http://kristagarver.wordpress.com/">Blog</a></li>
           <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <a ng-if="user.username" class="dropdown-toggle" data-toggle="dropdown" href="#">
               {{user.username}} <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">

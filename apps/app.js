@@ -161,3 +161,9 @@ playbills.controller('CastController', ['$scope',
     };
   }
 ]);
+
+playbills.controller('CommentsController', ['$scope',
+  function($scope) {
+
+  }
+]);

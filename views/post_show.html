@@ -1,23 +1,38 @@
-<div  class='col-sm-7'>
-  <legend>Show Details</legend>
-  <p ng-show="show.synopsis" class="synopsis">{{show.synopsis}}</p>
-  <p ng-show="show.company">Company: {{show.company}}</p>
-  <p ng-show="show.author">Author: {{show.author}}</p>
-  <p ng-show="show.director">Director: {{show.director}}</p>
-  <p ng-show="show.music">Music: {{show.music}}</p>
-  <p ng-show="show.choreographer">Choreographer: {{show.choreographer}}</p>
-  <div ng-controller="UserController">
-    <div ng-if=user.admin>
-      <button class="btn btn-primary" ng-click="editShow()">Edit</button>
-      <button class="btn btn-danger" ng-click="deleteShow(show)">Delete</button>
+<div class='row'>
+  <div  class='col-sm-7'>
+    <legend>Show Details</legend>
+    <p ng-show="show.synopsis" class="synopsis">{{show.synopsis}}</p>
+    <p ng-show="show.company">Company: {{show.company}}</p>
+    <p ng-show="show.author">Author: {{show.author}}</p>
+    <p ng-show="show.director">Director: {{show.director}}</p>
+    <p ng-show="show.music">Music: {{show.music}}</p>
+    <p ng-show="show.choreographer">Choreographer: {{show.choreographer}}</p>
+    <div>
+      <div ng-if="user.admin">
+        <button class="btn btn-primary" ng-click="editShow()">Edit</button>
+        <button class="btn btn-danger" ng-click="deleteShow(show)">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <div class='col-sm-5' ng-controller='CastController'>
+    <legend>Cast Details</legend>
+    <p ng-if='emptyCast()' class='empty-cast'>No Cast list available.</p>
+    <div ng-repeat="actor in show.cast">
+      <p>{{actor.name}} <span class='note-text'>{{actor.character}}<span></p>
     </div>
   </div>
 </div>
 
-<div class='col-sm-5' ng-controller='CastController'>
-  <legend>Cast Details</legend>
-  <p ng-if='emptyCast()' class='empty-cast'>No Cast list available.</p>
-  <div ng-repeat="actor in show.cast">
-    <p>{{actor.name}} <span class='note-text'>{{actor.character}}<span></p>
-  </div>
+<hr/>
+<div class="row" ng-controller="CommentsController">
+  <div ng-include="'/views/comments_form.html'">hello</div>
 </div>
+<!-- <div class="slide-animate-container">
+  <div class="slide-animate" ng-include="'comments_form.html'"></div>
+</div> -->
+<!-- <ng-include
+  src="'comments_form.html'"
+  [onload=""]
+  [autoscroll=""]>
+</ng-include> -->

@@ -163,8 +163,23 @@ playbills.controller('CastController', ['$scope',
   }
 ]);
 
-playbills.controller('CommentsController', ['$scope',
-  function($scope) {
+playbills.controller('CommentsController', ['$rootScope', '$scope', '$http',
+  function($rootScope, $scope, $http){
+    $scope.addComment = function(text) {
+      var postId = $rootScope.show._id,
+          comment = {
+            postId: postId,
+            content: text,
+            userId: $rootScope.user._id,
+          };
+
+      var commentUrl = '/post/' + postId + "/new_comment";
+      $http.post(commentUrl, comment)
+        .success(function(err, res) {
+          console.log("success!");
+        });
+    };
 
   }
+
 ]);

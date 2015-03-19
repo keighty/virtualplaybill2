@@ -2,6 +2,7 @@ var playbills = angular.module("playbillApp", ['ngRoute', 'ui.bootstrap']);
 
 playbills.run(function($rootScope) {
   $rootScope.user = {};
+  $rootScope.show = {};
 });
 
 playbills.config(['$routeProvider', '$locationProvider',
@@ -63,8 +64,8 @@ playbills.controller('UserController', ['$rootScope', '$scope', '$http',
   }
 ]);
 
-playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$location',
-  function($scope, $routeParams, $http, $location) {
+playbills.controller('PostController', ['$rootScope', '$scope', '$routeParams', '$http', '$location',
+  function($rootScope, $scope, $routeParams, $http, $location) {
     $scope.templates =
       [ { name: 'post_show.html', url: '/views/post_show.html' },
         { name: 'post_edit.html', url: '/views/post_form.html' } ];
@@ -72,7 +73,7 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
     // retrieve the post
     $http.get('playbill/' + $routeParams.postId).
       success(function(data) {
-        $scope.show = data[0];
+        $rootScope.show = data[0];
         $scope.template = $scope.templates[0];
       }).
       error(function(data, status, headers, config) {
@@ -157,7 +158,7 @@ playbills.controller('CastController', ['$scope',
     };
 
     $scope.emptyCast = function() {
-      return $scope.show.cast.length === 0;
+      return $scope.show.cast && $scope.show.cast.length === 0;
     };
   }
 ]);

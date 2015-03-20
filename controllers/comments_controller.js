@@ -6,8 +6,18 @@ exports.postComments = function(req, res) {
   console.log("postComments");
 };
 
-exports.newComment = function(req, res) {
-  console.log("newComment");
+exports.newComment = function(req, res, next) {
+  var commentAttributes = req.body;
+  var comment = _.extend(_.pick(commentAttributes, 'postId','userId', 'content', 'responseTo'), {
+    submitted: new Date().getTime()
+  });
+
+  var newComment = new Comment(comment);
+  newComment.save(function(err, doc) {
+    if(err) { res.send(err); }
+    else { res.json(doc); }
+  });
+
 };
 
 exports.replyComment = function(req, res) {

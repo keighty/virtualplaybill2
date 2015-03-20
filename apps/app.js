@@ -163,8 +163,18 @@ playbills.controller('CastController', ['$scope',
   }
 ]);
 
-playbills.controller('CommentsController', ['$rootScope', '$scope', '$http',
-  function($rootScope, $scope, $http){
+playbills.controller('CommentsController', ['$rootScope', '$scope', '$http', '$routeParams',
+  function($rootScope, $scope, $http, $routeParams){
+
+    var commentsUrl = '/post_comments/' + $routeParams.postId;
+    $http.get(commentsUrl).
+      success(function(data) {
+        $scope.comments = data;
+      }).
+      error(function(data, status, headers, config) {
+        $scope.comments = {};
+      });
+
     $scope.addComment = function(text) {
       var postId = $rootScope.show._id,
           comment = {
@@ -176,7 +186,7 @@ playbills.controller('CommentsController', ['$rootScope', '$scope', '$http',
       var commentUrl = '/post/' + postId + "/new_comment";
       $http.post(commentUrl, comment)
         .success(function(err, res) {
-          console.log("success!");
+          $scope.comments.push(comment);
         });
     };
 

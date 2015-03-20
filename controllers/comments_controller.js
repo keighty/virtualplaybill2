@@ -3,7 +3,10 @@ var _ = require('underscore');
 var Comment = require('../models/comments_model.js');
 
 exports.postComments = function(req, res) {
-  console.log("postComments");
+  Comment.find({postId: req.params.postId})
+    .exec(function(err, doc) {
+      res.json(doc);
+    });
 };
 
 exports.newComment = function(req, res, next) {

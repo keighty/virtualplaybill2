@@ -1,9 +1,17 @@
 var app = angular.module("playbillApp");
 
-app.directive("cast", function() {
+app.directive("castshow", function() {
   return {
     restrict: "E",
     templateUrl: "/views/cast_show.html",
+    controller: "CastController"
+  };
+});
+
+app.directive("castform", function() {
+  return {
+    restrict: "E",
+    templateUrl: "/views/cast_form.html",
     controller: "CastController"
   };
 });

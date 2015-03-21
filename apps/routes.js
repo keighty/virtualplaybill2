@@ -31,7 +31,7 @@ app.config(['$routeProvider', '$locationProvider',
       }).
       when('/', {
         templateUrl: 'views/index.html',
-        controller: 'PlaybillController'
+        controller: 'AllPlaybillsController'
       });
   }
 ]);

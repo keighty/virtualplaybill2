@@ -15,24 +15,7 @@
     </div>
   </div>
 
-  <div class='col-sm-5' ng-controller='CastController'>
-    <legend>Cast Details</legend>
-    <p ng-if='emptyCast()' class='empty-cast'>No Cast list available.</p>
-    <div ng-repeat="actor in show.cast">
-      <p>{{actor.name}} <span class='note-text'>{{actor.character}}<span></p>
-    </div>
-  </div>
+  <cast></cast>
 </div>
 
-<hr/>
-<div class="row" ng-controller="CommentsController">
-  <div ng-include="'/views/comments_form.html'">hello</div>
-</div>
-<!-- <div class="slide-animate-container">
-  <div class="slide-animate" ng-include="'comments_form.html'"></div>
-</div> -->
-<!-- <ng-include
-  src="'comments_form.html'"
-  [onload=""]
-  [autoscroll=""]>
-</ng-include> -->
+<comments></comments>

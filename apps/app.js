@@ -177,7 +177,7 @@ playbills.controller('CommentsController', ['$rootScope', '$scope', '$http', '$r
 
     $scope.addComment = function(text) {
       var postId = $rootScope.show._id,
-          comment = {
+          postComment = {
             postId: postId,
             content: text,
             userId: $rootScope.user._id,
@@ -186,9 +186,9 @@ playbills.controller('CommentsController', ['$rootScope', '$scope', '$http', '$r
           };
 
       var commentUrl = '/post/' + postId + "/new_comment";
-      $http.post(commentUrl, comment)
+      $http.post(commentUrl, postComment)
         .success(function(err, res) {
-          $scope.comments.push(comment);
+          $scope.comments.push(postComment);
         });
     };
 

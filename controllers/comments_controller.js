@@ -11,7 +11,7 @@ exports.postComments = function(req, res) {
 
 exports.newComment = function(req, res, next) {
   var commentAttributes = req.body;
-  var comment = _.extend(_.pick(commentAttributes, 'postId','userId', 'content', 'responseTo'), {
+  var comment = _.extend(_.pick(commentAttributes, 'postId','userId', 'username', 'content', 'responseTo'), {
     submitted: new Date().getTime()
   });
 

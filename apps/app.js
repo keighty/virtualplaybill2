@@ -16,18 +16,6 @@ playbills.controller('PlaybillController', ['$scope', '$http', '$location',
   }
 ]);
 
-playbills.controller('UserController', ['$rootScope', '$scope', '$http',
-  function($rootScope, $scope, $http) {
-    $http.get('/user/profile').success(function(data) {
-      $rootScope.user = data;
-      $scope.error = "";
-    }).error(function(data) {
-      // $scope.user = {};
-      $scope.error = data;
-    });
-  }
-]);
-
 playbills.controller('PostController', ['$rootScope', '$scope', '$routeParams', '$http', '$location',
   function($rootScope, $scope, $routeParams, $http, $location) {
     $scope.templates =

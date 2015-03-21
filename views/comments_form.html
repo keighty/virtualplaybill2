@@ -12,11 +12,13 @@
 </fieldset>
 </form>
 
-  <div ng-repeat="comment in comments">
-    <p>{{comment.content}}</p>
+<div class='comment col-sm-7' ng-repeat="comment in comments">
+  <div class='col-sm-9'>
+    <p class="comment-content">{{comment.content}}</p>
+    <a href="#">Reply</a>
   </div>
-
-
-<div class='row'>
-<pre>form: {{comment}}</pre>
+  <div class='comment-side col-sm-3'>
+    <p class='comment-date'>{{comment.submitted | date:'h:mm a'}}<br>{{comment.submitted | date:'dd MMM yy'}}</p>
+    <p class="comment-by">{{comment.userId}}</p>
+  </div>
 </div>

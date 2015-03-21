@@ -110,3 +110,7 @@ div.comment-side {
   font-size: 0.75em;
   text-align: right;
 }
+
+p.comment-by {
+  font-weight: bold;
+}

@@ -181,7 +181,8 @@ playbills.controller('CommentsController', ['$rootScope', '$scope', '$http', '$r
             postId: postId,
             content: text,
             userId: $rootScope.user._id,
-            username: $rootScope.user.username
+            username: $rootScope.user.username,
+            submitted: new Date().getTime()
           };
 
       var commentUrl = '/post/' + postId + "/new_comment";

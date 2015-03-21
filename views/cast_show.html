@@ -1,0 +1,7 @@
+<div class='col-sm-5' ng-controller='CastController'>
+  <legend>Cast Details</legend>
+  <p ng-if='emptyCast()' class='empty-cast'>No Cast list available.</p>
+  <div ng-repeat="actor in show.cast">
+    <p>{{actor.name}} <span class='note-text'>{{actor.character}}<span></p>
+  </div>
+</div>

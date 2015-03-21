@@ -1,0 +1,14 @@
+<fieldset class='col-sm-5' ng-controller='CastController'>
+  <legend>Cast Details</legend>
+  <div class="form-group" data-ng-repeat="actor in show.cast">
+    <input type="text" ng-model="actor.name" name="" placeholder="Name">
+    <input type="text" ng-model="actor.character" name="" placeholder="Character">
+    <button ng-if="actor" class="btn btn-danger" ng-click="removeActor(actor.index)"><i class="glyphicon glyphicon-minus"></i></button>
+  </div>
+  <button class="btn btn-success" ng-click="addNewActor()"><i class="glyphicon glyphicon-plus"></i></button>
+</fieldset>
+
+<fieldset ng-if="!editing" class='col-sm-5'>
+  <legend class="new-post-image">Image preview</legend>
+  <div id="preview"><img class="playbill-image" ng-src="{{show.imageUrl || '/images/theater.jpg'}}" /></div>
+</fieldset>

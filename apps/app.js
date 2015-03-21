@@ -1,5 +1,10 @@
 var playbills = angular.module("playbillApp", ['ngRoute', 'ui.bootstrap']);
 
+playbills.run(function($rootScope) {
+  $rootScope.user = {};
+  $rootScope.show = {};
+});
+
 playbills.config(['$routeProvider', '$locationProvider',
   function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode({
@@ -47,20 +52,20 @@ playbills.controller('PlaybillController', ['$scope', '$http', '$location',
   }
 ]);
 
-playbills.controller('UserController', ['$scope', '$http',
-  function($scope, $http) {
+playbills.controller('UserController', ['$rootScope', '$scope', '$http',
+  function($rootScope, $scope, $http) {
     $http.get('/user/profile').success(function(data) {
-      $scope.user = data;
+      $rootScope.user = data;
       $scope.error = "";
     }).error(function(data) {
-      $scope.user = {};
+      // $scope.user = {};
       $scope.error = data;
     });
   }
 ]);
 
-playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$location',
-  function($scope, $routeParams, $http, $location) {
+playbills.controller('PostController', ['$rootScope', '$scope', '$routeParams', '$http', '$location',
+  function($rootScope, $scope, $routeParams, $http, $location) {
     $scope.templates =
       [ { name: 'post_show.html', url: '/views/post_show.html' },
         { name: 'post_edit.html', url: '/views/post_form.html' } ];
@@ -68,7 +73,7 @@ playbills.controller('PostController', ['$scope', '$routeParams', '$http', '$loc
     // retrieve the post
     $http.get('playbill/' + $routeParams.postId).
       success(function(data) {
-        $scope.show = data[0];
+        $rootScope.show = data[0];
         $scope.template = $scope.templates[0];
       }).
       error(function(data, status, headers, config) {
@@ -153,7 +158,40 @@ playbills.controller('CastController', ['$scope',
     };
 
     $scope.emptyCast = function() {
-      return $scope.show.cast.length === 0;
+      return $scope.show.cast && $scope.show.cast.length === 0;
     };
   }
+]);
+
+playbills.controller('CommentsController', ['$rootScope', '$scope', '$http', '$routeParams',
+  function($rootScope, $scope, $http, $routeParams){
+
+    var commentsUrl = '/post_comments/' + $routeParams.postId;
+    $http.get(commentsUrl).
+      success(function(data) {
+        $scope.comments = data;
+      }).
+      error(function(data, status, headers, config) {
+        $scope.comments = {};
+      });
+
+    $scope.addComment = function(text) {
+      var postId = $rootScope.show._id,
+          postComment = {
+            postId: postId,
+            content: text,
+            userId: $rootScope.user._id,
+            username: $rootScope.user.username,
+            submitted: new Date().getTime()
+          };
+
+      var commentUrl = '/post/' + postId + "/new_comment";
+      $http.post(commentUrl, postComment)
+        .success(function(err, res) {
+          $scope.comments.push(postComment);
+        });
+    };
+
+  }
+
 ]);

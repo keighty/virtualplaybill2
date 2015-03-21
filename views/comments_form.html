@@ -1,0 +1,24 @@
+<form class='row' role="form" >
+
+  <fieldset class='col-sm-7 form-horizontal'>
+  <legend>Comments</legend>
+
+  <div class="form-group">
+    <div class="col-sm-12">
+      <textarea class="form-control" id="comment" placeholder="{{ comments.length ? 'Join' : 'Start'}} the discussion"  ng-model="comment"></textarea>
+      <button ng-if='comment' type="submit" class="btn btn-primary" ng-click="addComment(comment)">Post comment</button>
+    </div>
+  </div>
+</fieldset>
+</form>
+
+<div class='comment col-sm-7' ng-repeat="comment in comments">
+  <div class='col-sm-9'>
+    <p class="comment-content">{{comment.content}}</p>
+    <!-- <a href="#">Reply</a> -->
+  </div>
+  <div class='comment-side col-sm-3'>
+    <p class='comment-date'>{{comment.submitted | date:'h:mm a'}}<br>{{comment.submitted | date:'dd MMM yy'}}</p>
+    <p class="comment-by">{{comment.username}}</p>
+  </div>
+</div>

@@ -1,7 +1,15 @@
-<div class="row">
-  <postunit></postunit>
-  <postdetails class="col-md-5"></postdetails>
-  <castshow class="col-md-3"></castshow>
+<div class="row clearfix">
+  <div class="col-lg-3 col-md-6 col-xs-12 playbill-unit"> <postunit></postunit> </div>
+
+  <div ng-hide="editing">
+    <div class="col-lg-4 col-md-6"> <postdetails></postdetails> </div>
+    <div class="col-lg-4 col-md-6"> <castshow></castshow> </div>
+  </div>
+
+  <div ng-show="editing">
+    <div class="col-lg-4 col-md-8"> <postform></postform> </div>
+    <div class="col-lg-4 col-md-4"> <castform></castform> </div>
+  </div>
 </div>
 
-<comments></comments>
+<comments ng-hide="editing"></comments>

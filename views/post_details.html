@@ -1,13 +1,14 @@
-<legend>Show Details</legend>
+<legend>Show Details
+<div class="btn-group btn-group-xs edit-control" role="group" ng-if="user.admin">
+<!-- <div class="edit-control" ng-if="user.admin"> -->
+  <button class="btn btn-small btn-primary edit-buttons" ng-click="toggleEditing()">Edit</button>
+  <button class="btn btn-small btn-danger edit-buttons" ng-click="deleteShow(show)">Delete</button>
+</div>
+</legend>
+
 <p ng-show="show.synopsis" class="synopsis">{{show.synopsis}}</p>
 <p ng-show="show.company">Company: {{show.company}}</p>
 <p ng-show="show.author">Author: {{show.author}}</p>
 <p ng-show="show.director">Director: {{show.director}}</p>
 <p ng-show="show.music">Music: {{show.music}}</p>
 <p ng-show="show.choreographer">Choreographer: {{show.choreographer}}</p>
-<div>
-  <div ng-if="user.admin">
-    <button class="btn btn-primary" ng-click="editShow()">Edit</button>
-    <button class="btn btn-danger" ng-click="deleteShow(show)">Delete</button>
-  </div>
-</div>

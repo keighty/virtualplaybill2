@@ -117,8 +117,21 @@ div.comment-side {
   text-align: right;
 }
 
+.input-group-addon {
+  min-width: 120px;
+  text-align:left;
+}
+
 p.comment-by {
   font-weight: bold;
+}
+
+.edit-control {
+  float: right;
+}
+
+.edit-buttons {
+  width: 50px
 }
 
 form.comments-form {
@@ -130,9 +143,3 @@ form.comments-form {
     width: 1500px;
   }
 }
-
-/*@media (min-width: 1000px)
-.container {
-  width: 900px;
-}
-*/

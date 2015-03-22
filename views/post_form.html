@@ -1,72 +1,49 @@
-<form role="form">
 
-<fieldset class='col-md-7 form-horizontal'>
-  <legend>Show Details</legend>
-  <div class="form-group">
-    <label for="title" class="col-md-3 control-label">Title</label>
-    <div class="col-md-8">
-      <input type="text" class="form-control" id="title" ng-model="show.title" placeholder="Title">
+<fieldset class='form-horizontal'>
+  <legend>Show Details
+    <div class="btn-group-xs edit-control">
+      <button ng-hide="editing" type="submit" class="btn btn-primary" ng-click="addPlaybill(show)">Save show</button>
+      <button ng-show="editing" type="submit" class="btn btn-primary" ng-click="editPlaybill(show)">Save changes</button>
     </div>
+  </legend>
+  <div class="input-group">
+    <span class="input-group-addon">Title</span>
+    <input type="text" class="form-control" ng-model="show.title">
   </div>
-  <div class="form-group">
-    <label for="company" class="col-md-3 control-label">Company</label>
-    <div class="col-md-8">
-      <input type="text" class="form-control" id="company" placeholder="Company"  ng-model="show.company">
-    </div>
+  <div class="input-group">
+    <span class="input-group-addon">Company</span>
+    <input type="text" class="form-control" ng-model="show.company">
   </div>
-  <div class="form-group">
-    <label for="synopsis" class="col-md-3 control-label">Synopsis</label>
-    <div class="col-md-8">
-      <textarea class="form-control" id="synopsis" placeholder="Synopsis"  ng-model="show.synopsis"></textarea>
-    </div>
+  <div class="input-group">
+    <span class="input-group-addon">Synopsis</span>
+    <input type="text" class="form-control" ng-model="show.synopsis">
   </div>
-  <div class="form-group">
-    <label for="author" class="col-md-3 control-label">Author</label>
-    <div class="col-md-8">
-      <input type="text" class="form-control" id="author" placeholder="Author" ng-model="show.author">
-    </div>
+  <div class="input-group">
+    <span class="input-group-addon">Author</span>
+    <input type="text" class="form-control" ng-model="show.author">
   </div>
-  <div class="form-group">
-    <label for="director" class="col-md-3 control-label">Director</label>
-    <div class="col-md-8">
-      <input type="text" class="form-control" id="director" placeholder="Director" ng-model="show.director">
-    </div>
+  <div class="input-group">
+    <span class="input-group-addon">Director</span>
+    <input type="text" class="form-control" ng-model="show.director">
   </div>
-  <div class="form-group">
-    <label for="choreographer" class="col-md-3 control-label">Choreographer</label>
-    <div class="col-md-8">
-      <input type="text" class="form-control" id="choreographer" placeholder="Choreographer" ng-model="show.choreographer">
-    </div>
+  <div class="input-group">
+    <span class="input-group-addon">Choreographer</span>
+    <input type="text" class="form-control" ng-model="show.choreographer">
   </div>
-  <div class="form-group">
-    <label for="music" class="col-md-3 control-label">Music</label>
-    <div class="col-md-8">
-      <input type="text" class="form-control" id="music" placeholder="Music" ng-model="show.music">
-    </div>
+  <div class="input-group">
+    <span class="input-group-addon">Music</span>
+    <input type="text" class="form-control" ng-model="show.music">
   </div>
-  <div class="form-group">
-    <label for="showDate" class="col-md-3 control-label">Show date</label>
+  <div class="input-group">
+    <span class="input-group-addon">Ticket date</span>
     <div class="col-md-8 calendar-date left-addon">
       <i class="glyphicon glyphicon-calendar"></i>
       <input type="text" placeholder="Show date" class="form-control" datepicker-popup="{{'mediumDate'}}" ng-model="show.showDate" is-open="opened" show-weeks="false" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
     </div>
   </div>
-  <div class="form-group">
-    <label for="image" class="col-md-3 control-label">Image<br /><span class="note-text">250p x 300p</span></label>
-    <div class="col-md-8">
-      <input type="file" class="form-control btn" id="image" onchange="angular.element(this).scope().s3Upload(this)">
-      <p id="status"></p>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-md-8">
-      <button ng-if="!editing" type="submit" class="btn btn-primary" ng-click="addPlaybill(show)">Save show</button>
-      <button ng-if="editing" type="submit" class="btn btn-primary" ng-click="editPlaybill(show)">Save changes</button>
-    </div>
+  <div class="input-group">
+    <span class="input-group-addon">Image<br /><span class="note-text">250p x 300p</span></span>
+    <input type="file" class="form-control btn" id="image" onchange="angular.element(this).scope().s3Upload(this)">
+    <p id="status"></p>
   </div>
 </fieldset>
-
-<castform></castform>
-
-</form>
-<!-- <div> <pre>form = {{show | json}}</pre> </div> -->

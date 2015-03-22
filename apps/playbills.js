@@ -1,5 +1,21 @@
 var app = angular.module("playbillApp");
 
+app.directive("postdetails", function() {
+  return {
+    restrict: "E",
+    templateUrl: "/views/post_details.html",
+    controller: "PostController"
+  };
+});
+
+app.directive("postunit", function() {
+  return {
+    restrict: "E",
+    templateUrl: "/views/post_unit.html",
+    controller: "PostController"
+  };
+});
+
 app.controller('AllPlaybillsController', ['$scope', '$http', '$location',
   function($scope, $http, $location) {
     $http.get('/playbills').success(function(data) {

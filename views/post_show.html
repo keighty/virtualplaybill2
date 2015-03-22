@@ -1,21 +1,4 @@
-<div class='row'>
-  <div class='col-md-7'>
-    <legend>Show Details</legend>
-    <p ng-show="show.synopsis" class="synopsis">{{show.synopsis}}</p>
-    <p ng-show="show.company">Company: {{show.company}}</p>
-    <p ng-show="show.author">Author: {{show.author}}</p>
-    <p ng-show="show.director">Director: {{show.director}}</p>
-    <p ng-show="show.music">Music: {{show.music}}</p>
-    <p ng-show="show.choreographer">Choreographer: {{show.choreographer}}</p>
-    <div>
-      <div ng-if="user.admin">
-        <button class="btn btn-primary" ng-click="editShow()">Edit</button>
-        <button class="btn btn-danger" ng-click="deleteShow(show)">Delete</button>
-      </div>
-    </div>
-  </div>
-
-  <castshow></castshow>
-</div>
-
+<postunit></postunit>
+<postdetails></postdetails>
+<castshow></castshow>
 <comments></comments>

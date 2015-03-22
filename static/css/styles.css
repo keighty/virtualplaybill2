@@ -19,6 +19,10 @@ span.nav-overlay {
   background-image: url('empty.gif');
 }
 
+.search {
+  width: 250px;
+}
+
 .playbill-count{
   font-size: 1.25em;
 }

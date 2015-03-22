@@ -7,6 +7,8 @@
 
 .playbill-unit {
   position: relative;
+  max-width: 400px;
+  margin: auto;
 }
 
 span.nav-overlay {
@@ -122,3 +124,15 @@ p.comment-by {
 form.comments-form {
   padding-top: 30px;
 }
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1500px;
+  }
+}
+
+/*@media (min-width: 1000px)
+.container {
+  width: 900px;
+}
+*/

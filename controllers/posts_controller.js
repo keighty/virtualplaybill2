@@ -33,7 +33,7 @@ exports.post = function(req, res) {
 
 exports.renderPost = function(req, res) {
   if(req.session.user) {
-    res.render('post');
+    res.render('post_show');
   } else {
     req.session.msg = 'Access denied';
     res.redirect('signin');

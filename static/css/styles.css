@@ -130,6 +130,10 @@ p.comment-by {
   float: right;
 }
 
+.edit-buttons {
+  width: 50px
+}
+
 form.comments-form {
   padding-top: 30px;
 }

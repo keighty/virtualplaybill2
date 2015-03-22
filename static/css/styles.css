@@ -121,6 +121,10 @@ p.comment-by {
   font-weight: bold;
 }
 
+.edit-control {
+  float: right;
+}
+
 form.comments-form {
   padding-top: 30px;
 }

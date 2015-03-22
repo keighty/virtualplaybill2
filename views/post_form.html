@@ -1,4 +1,3 @@
-<form role="form">
 
 <fieldset class='col-md-7 form-horizontal'>
   <legend>Show Details</legend>
@@ -60,13 +59,10 @@
   </div>
   <div class="form-group">
     <div class="col-md-8">
-      <button ng-if="!editing" type="submit" class="btn btn-primary" ng-click="addPlaybill(show)">Save show</button>
-      <button ng-if="editing" type="submit" class="btn btn-primary" ng-click="editPlaybill(show)">Save changes</button>
+      <button ng-click="toggleEditing()">Custom</button>
+      <button ng-hide="editing" type="submit" class="btn btn-primary" ng-click="addPlaybill(show)">Save show</button>
+      <button ng-show="editing" type="submit" class="btn btn-primary" ng-click="editPlaybill(show)">Save changes</button>
     </div>
   </div>
 </fieldset>
-
-<castform></castform>
-
-</form>
 <!-- <div> <pre>form = {{show | json}}</pre> </div> -->

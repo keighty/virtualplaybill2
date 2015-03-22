@@ -1,7 +1,16 @@
 <div class="row">
   <postunit></postunit>
-  <postdetails class="col-md-5"></postdetails>
-  <castshow class="col-md-3"></castshow>
+  <div ng-hide="editing">
+    <postdetails class="col-md-5"></postdetails>
+    <castshow class="col-md-3"></castshow>
+  </div>
+
+  <div ng-show="editing">
+    <form role="form">
+      <postform></postform>
+      <castform></castform>
+    </form>
+  </div>
 </div>
 
-<comments></comments>
+<comments ng-hide="editing"></comments>

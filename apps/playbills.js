@@ -16,6 +16,14 @@ app.directive("postunit", function() {
   };
 });
 
+app.directive("postform", function() {
+  return {
+    restrict: "E",
+    templateUrl: "/views/post_form.html",
+    controller: "PostController"
+  };
+});
+
 app.controller('AllPlaybillsController', ['$scope', '$http', '$location',
   function($scope, $http, $location) {
     $http.get('/playbills').success(function(data) {
@@ -29,24 +37,18 @@ app.controller('AllPlaybillsController', ['$scope', '$http', '$location',
 
 app.controller('PostController', ['$rootScope', '$scope', '$routeParams', '$http', '$location',
   function($rootScope, $scope, $routeParams, $http, $location) {
-    $scope.templates =
-      [ { name: 'post_show.html', url: '/views/post_show.html' },
-        { name: 'post_edit.html', url: '/views/post_form.html' } ];
-
     // retrieve the post
     $http.get('playbill/' + $routeParams.postId).
       success(function(data) {
         $rootScope.show = data[0];
-        $scope.template = $scope.templates[0];
       }).
       error(function(data, status, headers, config) {
         $scope.show = { cast: [] };
       });
 
     // edit the post
-    $scope.editShow = function() {
-      $scope.editing = true;
-      $scope.template = $scope.templates[1];
+    $scope.toggleEditing = function() {
+      $scope.editing = !$scope.editing;
     };
 
     $scope.s3Upload = function(stuff){
@@ -93,7 +95,6 @@ app.controller('PostController', ['$rootScope', '$scope', '$routeParams', '$http
       $http.post(editUrl, show)
         .success(function(err, res) {
           $scope.editing = false;
-          $scope.template = { name: 'post_show.html', url: '/views/post_show.html' };
         });
     };
 

@@ -117,6 +117,11 @@ div.comment-side {
   text-align: right;
 }
 
+.input-group-addon {
+  min-width: 120px;
+  text-align:left;
+}
+
 p.comment-by {
   font-weight: bold;
 }

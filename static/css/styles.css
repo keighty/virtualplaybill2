@@ -7,6 +7,8 @@
 
 .playbill-unit {
   position: relative;
+  max-width: 400px;
+  margin: auto;
 }
 
 span.nav-overlay {

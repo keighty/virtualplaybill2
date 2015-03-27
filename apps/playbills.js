@@ -38,13 +38,17 @@ app.controller('AllPlaybillsController', ['$scope', '$http', '$location',
 app.controller('PostController', ['$rootScope', '$scope', '$routeParams', '$http', '$location',
   function($rootScope, $scope, $routeParams, $http, $location) {
     // retrieve the post
-    $http.get('playbill/' + $routeParams.postId).
-      success(function(data) {
-        $rootScope.show = data[0];
-      }).
-      error(function(data, status, headers, config) {
-        $scope.show = { cast: [] };
-      });
+    if($routeParams.postId) {
+      $http.get('playbill/' + $routeParams.postId).
+        success(function(data) {
+          $rootScope.show = data[0];
+        }).
+        error(function(data, status, headers, config) {
+          $scope.show = { cast: [] };
+        });
+    } else {
+      $scope.show = { cast: [] };
+    }
 
     // edit the post
     $scope.toggleEditing = function() {

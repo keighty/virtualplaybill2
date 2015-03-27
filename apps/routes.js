@@ -12,7 +12,7 @@ app.config(['$routeProvider', '$locationProvider',
         controller: 'PostController'
       }).
       when('/add_post', {
-        templateUrl: '/views/post_form.html',
+        templateUrl: '/views/post_new.html',
         controller: 'PostController'
       }).
       when('/signin', {

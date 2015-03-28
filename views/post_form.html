@@ -41,9 +41,7 @@
       <input type="text" placeholder="Show date" class="form-control" datepicker-popup="{{'mediumDate'}}" ng-model="show.showDate" is-open="opened" show-weeks="false" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
     </div>
   </div>
-  <div class="input-group">
-    <span class="input-group-addon">Image<br /><span class="note-text">250p x 300p</span></span>
-    <input type="file" class="form-control btn" id="image" onchange="angular.element(this).scope().s3Upload(this)">
-    <p id="status"></p>
-  </div>
+
+  <imageupload></imageupload>
+
 </fieldset>

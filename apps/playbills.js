@@ -24,6 +24,14 @@ app.directive("postform", function() {
   };
 });
 
+app.directive("imageupload", function() {
+  return {
+    restrict: "E",
+    templateUrl: "/views/image_upload_form.html",
+    controller: "PostController"
+  };
+});
+
 app.controller('AllPlaybillsController', ['$scope', '$http', '$location',
   function($scope, $http, $location) {
     $http.get('/playbills').success(function(data) {

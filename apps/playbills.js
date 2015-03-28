@@ -41,7 +41,7 @@ app.directive("imageupload", function() {
             },
             onFinishS3Put: function(public_url) {
               $scope.show.imageUrl = public_url;
-              status_elem.innerHTML = 'Upload completed. Uploaded to: '+ public_url;
+              status_elem.innerHTML = 'Upload completed.';
               preview_elem.innerHTML = '<img class="playbill-image" src="'+ public_url +'" />';
             },
             onError: function(status) {

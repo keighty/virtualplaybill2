@@ -4,7 +4,11 @@ app.directive("castshow", function() {
   return {
     restrict: "E",
     templateUrl: "/views/cast_show.html",
-    controller: "CastController"
+    link: function($scope, element, attrs) {
+      $scope.emptyCast = function() {
+        return $scope.show.cast && $scope.show.cast.length === 0;
+      };
+    }
   };
 });
 
@@ -25,10 +29,6 @@ app.controller('CastController', ['$scope',
 
     $scope.removeActor = function(index) {
       $scope.show.cast.splice(index, 1);
-    };
-
-    $scope.emptyCast = function() {
-      return $scope.show.cast && $scope.show.cast.length === 0;
     };
   }
 ]);

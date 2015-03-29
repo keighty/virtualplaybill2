@@ -42,6 +42,7 @@ app.controller('PostController', ['$rootScope', '$scope', '$routeParams', '$http
       $http.get('playbill/' + $routeParams.postId).
         success(function(data) {
           $rootScope.show = data[0];
+          if (!$rootScope.show.cast) { $rootScope.show.cast = []; }
         }).
         error(function(data, status, headers, config) {
           $scope.show = { cast: [] };

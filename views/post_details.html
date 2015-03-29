@@ -6,7 +6,7 @@
 </div>
 </legend>
 
-<div>Rating: <star-rating rating-value="show.rating" show="show"></star-rating></div>
+<div>Rating: <star-rating rating-value="show.rating" show="show"></star-rating> ({{show.ratings.size || 0}})</div>
 
 <p ng-show="show.synopsis" class="synopsis">{{show.synopsis}}</p>
 <p ng-show="show.company">Company: {{show.company}}</p>

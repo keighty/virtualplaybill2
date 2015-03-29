@@ -42,13 +42,14 @@ app.controller('PostController', ['$rootScope', '$scope', '$routeParams', '$http
       $http.get('playbill/' + $routeParams.postId).
         success(function(data) {
           $rootScope.show = data[0];
-          if (!$rootScope.show.cast) { $rootScope.show.cast = []; }
+          if (!$rootScope.show.cast   ) { $rootScope.show.cast    = []; }
+          if (!$rootScope.show.ratings) { $rootScope.show.ratings = {}; }
         }).
         error(function(data, status, headers, config) {
-          $scope.show = { cast: [], rating: 0 };
+          $scope.show = { cast: [], rating: 0, ratings: {} };
         });
     } else {
-      $scope.show = { cast: [], rating: 0 };
+      $scope.show = { cast: [], rating: 0, ratings: {} };
     }
 
     // edit the post

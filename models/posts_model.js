@@ -14,7 +14,9 @@ var postSchema = mongoose.Schema({
   postAuthor : String,
   submitted : Number,
   commentsCount : Number,
-  cast : { type : Object , "default" : {} }
+  cast : { type : Object , "default" : {} },
+  rating: Number,
+  ratings: {type : Object, "default" : {} }
 });
 
 var Post = mongoose.model('Post', postSchema, 'posts');

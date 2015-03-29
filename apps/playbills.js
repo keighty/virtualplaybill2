@@ -45,10 +45,10 @@ app.controller('PostController', ['$rootScope', '$scope', '$routeParams', '$http
           if (!$rootScope.show.cast) { $rootScope.show.cast = []; }
         }).
         error(function(data, status, headers, config) {
-          $scope.show = { cast: [] };
+          $scope.show = { cast: [], rating: 1 };
         });
     } else {
-      $scope.show = { cast: [] };
+      $scope.show = { cast: [], rating: 1 };
     }
 
     // edit the post

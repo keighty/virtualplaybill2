@@ -6,6 +6,9 @@
       <button ng-show="editing" type="submit" class="btn btn-primary" ng-click="editPlaybill(show)">Save changes</button>
     </div>
   </legend>
+
+  <div>Rating: <star-rating rating-value="show.rating" show="show"></star-rating></div>
+
   <div class="input-group">
     <span class="input-group-addon">Title</span>
     <input type="text" class="form-control" ng-model="show.title">

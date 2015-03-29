@@ -46,10 +46,10 @@ app.controller('PostController', ['$rootScope', '$scope', '$routeParams', '$http
           if (!$rootScope.show.ratings) { $rootScope.show.ratings = {}; }
         }).
         error(function(data, status, headers, config) {
-          $scope.show = { cast: [], rating: 0, ratings: {} };
+          $rootScope.show = { cast: [], rating: 0, ratings: {} };
         });
     } else {
-      $scope.show = { cast: [], rating: 0, ratings: {} };
+      $rootScope.show = { cast: [], rating: 0, ratings: {} };
     }
 
     // edit the post
@@ -67,11 +67,24 @@ app.controller('PostController', ['$rootScope', '$scope', '$routeParams', '$http
     };
 
     $scope.editPlaybill = function(show) {
+      show.rating = averageRating(show.ratings);
       var editUrl = '/edit_post';
       $http.post(editUrl, show)
         .success(function(err, res) {
           $scope.editing = false;
         });
+    };
+
+    var averageRating = function(allRatings) {
+      var userCount = 0,
+          userRating = 0;
+
+      for (var k in allRatings){
+        userCount += 1;
+        userRating += allRatings[k];
+      }
+
+      return Math.ceil(userRating / userCount);
     };
 
     // delete the post
@@ -82,6 +95,10 @@ app.controller('PostController', ['$rootScope', '$scope', '$routeParams', '$http
           $scope.editing = false;
           $location.path('/');
         });
+    };
+
+    $scope.ratingsCount = function() {
+      return $rootScope.show.ratings ? Object.keys($rootScope.show.ratings).length : 0;
     };
   }
 ]);

@@ -24,6 +24,11 @@ app.directive('starRating', function () {
           }
         };
 
+        var updateRatings = function() {
+          var username = scope.$root.user.username;
+          scope.show.ratings[username] = scope.ratingValue;
+        };
+
         scope.toggle = function(index) {
           if (scope.readonly && scope.readonly === 'true') {
             return;
@@ -32,11 +37,18 @@ app.directive('starRating', function () {
           scope.onRatingSelected({rating: index + 1});
         };
 
-        scope.$watch('[show,ratingValue]', function(oldVal, newVal) {
+        scope.$watch('show', function(newVal, oldVal) {
           if (newVal) {
             updateStars();
           }
-        }, true);
+        });
+
+        scope.$watch('ratingValue', function(newVal, oldVal) {
+          if (newVal) {
+            updateStars();
+            updateRatings();
+          }
+        });
       }
     };
   });

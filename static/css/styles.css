@@ -152,6 +152,7 @@ form.comments-form {
 
 ul.rating {
   display: inline-block;
+  font-size: x-large;
 }
 
 .rating li {
@@ -163,6 +164,7 @@ ul.rating {
   cursor: pointer;
 }
 
-.rating .filled {
-  color: #21568b;
+.rating .yellow {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
 }

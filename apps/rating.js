@@ -20,7 +20,7 @@ app.directive('starRating', function () {
         var updateStars = function() {
           scope.stars = [];
           for (var  i = 0; i < numberOfStars; i++) {
-            scope.stars.push({filled: i < scope.ratingValue});
+            scope.stars.push({yellow: i < scope.ratingValue});
           }
         };
 

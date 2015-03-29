@@ -32,17 +32,11 @@ app.directive('starRating', function () {
           scope.onRatingSelected({rating: index + 1});
         };
 
-        scope.$watch('show', function(oldVal, newVal) {
+        scope.$watch('[show,ratingValue]', function(oldVal, newVal) {
           if (newVal) {
             updateStars();
           }
-        });
-
-        scope.$watch('ratingValue', function(oldVal, newVal) {
-          if (newVal) {
-            updateStars();
-          }
-        });
+        }, true);
       }
     };
   });

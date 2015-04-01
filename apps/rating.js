@@ -20,8 +20,13 @@ app.directive('starRating', function () {
         var updateStars = function() {
           scope.stars = [];
           for (var  i = 0; i < numberOfStars; i++) {
-            scope.stars.push({filled: i < scope.ratingValue});
+            scope.stars.push({yellow: i < scope.ratingValue});
           }
+        };
+
+        var updateRatings = function() {
+          var username = scope.$root.user.username;
+          scope.show.ratings[username] = scope.ratingValue;
         };
 
         scope.toggle = function(index) {
@@ -32,15 +37,16 @@ app.directive('starRating', function () {
           scope.onRatingSelected({rating: index + 1});
         };
 
-        scope.$watch('show', function(oldVal, newVal) {
+        scope.$watch('show', function(newVal, oldVal) {
           if (newVal) {
             updateStars();
           }
         });
 
-        scope.$watch('ratingValue', function(oldVal, newVal) {
+        scope.$watch('ratingValue', function(newVal, oldVal) {
           if (newVal) {
             updateStars();
+            updateRatings();
           }
         });
       }

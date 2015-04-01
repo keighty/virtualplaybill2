@@ -1,12 +1,11 @@
 <legend>Show Details
 <div class="btn-group btn-group-xs edit-control" role="group" ng-if="user.admin">
-<!-- <div class="edit-control" ng-if="user.admin"> -->
   <button class="btn btn-small btn-primary edit-buttons" ng-click="toggleEditing()">Edit</button>
   <button class="btn btn-small btn-danger edit-buttons" ng-click="deleteShow(show)">Delete</button>
 </div>
 </legend>
 
-<div>Rating: <star-rating rating-value="show.rating" show="show"></star-rating> ({{ratingsCount()}})</div>
+<div>Rating: <star-rating rating-value="show.rating" show="show" readonly="true"></star-rating> ({{ratingsCount()}})</div>
 
 <p ng-show="show.synopsis" class="synopsis">{{show.synopsis}}</p>
 <p ng-show="show.company">Company: {{show.company}}</p>

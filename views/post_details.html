@@ -5,7 +5,7 @@
 </div>
 </legend>
 
-<div>Rating: <star-rating rating-value="show.rating" show="show" readonly="true"></star-rating> ({{ratingsCount()}})</div>
+<div>Rating: <star-rating rating-value="show.rating" show="show" readonly="true"></star-rating> <span class="ratings-tooltip" title="{{show.ratings | json}}">({{ratingsCount()}})</span></div>
 
 <p ng-show="show.synopsis" class="synopsis">{{show.synopsis}}</p>
 <p ng-show="show.company">Company: {{show.company}}</p>

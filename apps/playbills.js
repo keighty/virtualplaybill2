@@ -32,35 +32,28 @@ app.controller('AllPlaybillsController', ['$scope', 'PlaybillsService',
   }
 ]);
 
-app.controller('PostController', ['$rootScope', '$scope', '$routeParams', '$http', '$location',
-  function($rootScope, $scope, $routeParams, $http, $location) {
-    // retrieve the post
-    if($routeParams.postId) {
-      $http.get('playbill/' + $routeParams.postId).
-        success(function(data) {
-          $rootScope.show = data[0];
-          if (!$rootScope.show.cast   ) { $rootScope.show.cast    = []; }
-          if (!$rootScope.show.ratings) { $rootScope.show.ratings = {}; }
-        }).
-        error(function(data, status, headers, config) {
-          $rootScope.show = { cast: [], rating: 0, ratings: {} };
-        });
+app.controller('PostController', ['$rootScope', '$scope', '$routeParams', '$http', '$location', 'PlaybillsService',
+  function($rootScope, $scope, $routeParams, $http, $location, PlaybillsService) {
+
+    var showId = $routeParams.postId;
+    if(showId) {
+      PlaybillsService.show(showId).then(function(data) {
+        $rootScope.show = data[0];
+        if (!$rootScope.show.cast   ) { $rootScope.show.cast    = []; }
+        if (!$rootScope.show.ratings) { $rootScope.show.ratings = {}; }
+      });
     } else {
       $rootScope.show = { cast: [], rating: 0, ratings: {} };
     }
 
-    // edit the post
-    $scope.toggleEditing = function() {
-      $scope.editing = !$scope.editing;
+    $scope.addPlaybill = function(show) {
+      PlaybillsService.newShow(show).then(function(data) {
+        $location.path('/');
+      });
     };
 
-    $scope.addPlaybill = function(show) {
-      $http.post('/new_post', show)
-        .success(function(err, res) {
-          $location.path('/');
-          // TODO always redirect to index
-          // TODO handle errors
-        });
+    $scope.toggleEditing = function() {
+      $scope.editing = !$scope.editing;
     };
 
     $scope.editPlaybill = function(show) {

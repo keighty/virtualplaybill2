@@ -24,14 +24,11 @@ app.directive("postform", function() {
   };
 });
 
-app.controller('AllPlaybillsController', ['$scope', '$http', '$location',
-  function($scope, $http, $location) {
-    $http.get('/playbills').success(function(data) {
+app.controller('AllPlaybillsController', ['$scope', 'PlaybillsService',
+  function($scope, PlaybillsService) {
+    PlaybillsService.list().then(function(data) {
       $scope.playbills = data;
-    }).error(function(res) {
-      console.log(res);
     });
-
   }
 ]);
 

@@ -1,12 +1,11 @@
 var app = angular.module("playbillApp");
 
-app.controller('UserController', ['$rootScope', '$scope', '$http',
-  function($rootScope, $scope, $http) {
-    $http.get('/user/profile').success(function(data) {
+app.controller('UserController', ['$rootScope', '$scope', '$http', 'UserService',
+  function($rootScope, $scope, $http, UserService) {
+    UserService.current_user().then(function(data) {
       $rootScope.user = data;
-      $scope.error = "";
-    }).error(function(data) {
-      $scope.error = data;
+    }).catch(function(err) {
+      $scope.error = err;
     });
   }
 ]);

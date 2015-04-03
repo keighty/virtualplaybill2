@@ -58,11 +58,9 @@ app.controller('PostController', ['$rootScope', '$scope', '$routeParams', '$http
 
     $scope.editPlaybill = function(show) {
       show.rating = averageRating(show.ratings);
-      var editUrl = '/edit_post';
-      $http.post(editUrl, show)
-        .success(function(err, res) {
-          $scope.editing = false;
-        });
+      PlaybillsService.editShow(show).then(function(data) {
+        $scope.toggleEditing();
+      });
     };
 
     var averageRating = function(allRatings) {

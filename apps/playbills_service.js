@@ -16,6 +16,11 @@ app.factory("PlaybillsService", function($http) {
       return $http.post('/new_post', show).then(function(result) {
         return result.data;
       });
+    },
+    editShow: function(show) {
+      return $http.post('/edit_post', show).then(function(result) {
+        return result.data;
+      });
     }
   };
 });

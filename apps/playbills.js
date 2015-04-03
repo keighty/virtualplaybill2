@@ -24,55 +24,43 @@ app.directive("postform", function() {
   };
 });
 
-app.controller('AllPlaybillsController', ['$scope', '$http', '$location',
-  function($scope, $http, $location) {
-    $http.get('/playbills').success(function(data) {
+app.controller('AllPlaybillsController', ['$scope', 'PlaybillsService',
+  function($scope, PlaybillsService) {
+    PlaybillsService.list().then(function(data) {
       $scope.playbills = data;
-    }).error(function(res) {
-      console.log(res);
     });
-
   }
 ]);
 
-app.controller('PostController', ['$rootScope', '$scope', '$routeParams', '$http', '$location',
-  function($rootScope, $scope, $routeParams, $http, $location) {
-    // retrieve the post
-    if($routeParams.postId) {
-      $http.get('playbill/' + $routeParams.postId).
-        success(function(data) {
-          $rootScope.show = data[0];
-          if (!$rootScope.show.cast   ) { $rootScope.show.cast    = []; }
-          if (!$rootScope.show.ratings) { $rootScope.show.ratings = {}; }
-        }).
-        error(function(data, status, headers, config) {
-          $rootScope.show = { cast: [], rating: 0, ratings: {} };
-        });
+app.controller('PostController', ['$rootScope', '$scope', '$routeParams', '$http', '$location', 'PlaybillsService',
+  function($rootScope, $scope, $routeParams, $http, $location, PlaybillsService) {
+
+    var showId = $routeParams.postId;
+    if(showId) {
+      PlaybillsService.show(showId).then(function(data) {
+        $rootScope.show = data[0];
+        if (!$rootScope.show.cast   ) { $rootScope.show.cast    = []; }
+        if (!$rootScope.show.ratings) { $rootScope.show.ratings = {}; }
+      });
     } else {
       $rootScope.show = { cast: [], rating: 0, ratings: {} };
     }
 
-    // edit the post
+    $scope.addPlaybill = function(show) {
+      PlaybillsService.newShow(show).then(function(data) {
+        $location.path('/');
+      });
+    };
+
     $scope.toggleEditing = function() {
       $scope.editing = !$scope.editing;
     };
 
-    $scope.addPlaybill = function(show) {
-      $http.post('/new_post', show)
-        .success(function(err, res) {
-          $location.path('/');
-          // TODO always redirect to index
-          // TODO handle errors
-        });
-    };
-
     $scope.editPlaybill = function(show) {
       show.rating = averageRating(show.ratings);
-      var editUrl = '/edit_post';
-      $http.post(editUrl, show)
-        .success(function(err, res) {
-          $scope.editing = false;
-        });
+      PlaybillsService.editShow(show).then(function(data) {
+        $scope.toggleEditing();
+      });
     };
 
     var averageRating = function(allRatings) {
@@ -87,14 +75,10 @@ app.controller('PostController', ['$rootScope', '$scope', '$routeParams', '$http
       return Math.ceil(userRating / userCount);
     };
 
-    // delete the post
     $scope.deleteShow = function(show) {
-      var deleteUrl = '/delete_post';
-      $http.post(deleteUrl, show)
-        .success(function(err, res) {
-          $scope.editing = false;
-          $location.path('/');
-        });
+      PlaybillsService.deleteShow(show).then(function(data) {
+        $location.path('/');
+      });
     };
 
     $scope.ratingsCount = function() {

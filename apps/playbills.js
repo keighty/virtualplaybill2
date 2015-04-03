@@ -75,14 +75,10 @@ app.controller('PostController', ['$rootScope', '$scope', '$routeParams', '$http
       return Math.ceil(userRating / userCount);
     };
 
-    // delete the post
     $scope.deleteShow = function(show) {
-      var deleteUrl = '/delete_post';
-      $http.post(deleteUrl, show)
-        .success(function(err, res) {
-          $scope.editing = false;
-          $location.path('/');
-        });
+      PlaybillsService.deleteShow(show).then(function(data) {
+        $location.path('/');
+      });
     };
 
     $scope.ratingsCount = function() {

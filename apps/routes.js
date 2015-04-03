@@ -16,12 +16,10 @@ app.config(['$routeProvider', '$locationProvider',
         controller: 'PostController'
       }).
       when('/signin', {
-        templateUrl: '/views/signin.html',
-        controller: 'UserController'
+        templateUrl: '/views/signin.html'
       }).
       when('/signup', {
-        templateUrl: '/views/signup.html',
-        controller: 'UserController'
+        templateUrl: '/views/signup.html'
       }).
       when('/logout', {
         templateUrl: '/views/signin.html',

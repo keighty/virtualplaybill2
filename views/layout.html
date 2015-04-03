@@ -22,10 +22,9 @@
     <div class="collapse navbar-collapse" id="navbar-collapse-1">
       <div>
         <form class="navbar-form navbar-left" role="search">
-          <div class="form-group">
+          <div class="form-group" ng-if="user">
             <input type="text" class="form-control search" placeholder="Search shows, company, cast, etc" ng-model="search">
           </div>
-          <span class="label label-info playbill-count" ng-controller='AllPlaybillsController'>{{playbills.length}} shows</span>
         </form>
       </div>
       <div>
@@ -33,6 +32,7 @@
           <li><a href="/add_post">Add post</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+          <li><a href=""><span class="label label-info playbill-count" ng-controller='AllPlaybillsController'>{{playbills.length}} shows</span></a></li>
           <li><a href="http://kristagarver.wordpress.com/">Blog</a></li>
           <li class="dropdown">
             <a ng-if="user.username" class="dropdown-toggle" data-toggle="dropdown" href="#">

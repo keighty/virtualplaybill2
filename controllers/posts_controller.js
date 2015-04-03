@@ -16,6 +16,12 @@ exports.index = function(req, res) {
   }
 };
 
+exports.count = function(req, res) {
+  Post.count({}, function(err, count){
+    res.json(count);
+  });
+};
+
 exports.posts = function(req, res) {
   Post.find()
       .sort("-showDate")

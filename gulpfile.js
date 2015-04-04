@@ -4,15 +4,13 @@ var size = require('gulp-size');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 
-var apps_glob = "./apps/**/*.js";
-var apps_dist_dir = "./lib/";
+var apps_glob = "./apps/*.js";
 
 var external_libs = {
-  angular: "./node_modules/angular/angular.min.js",
-  angular_route: "./node_modules/angular-route/angular-route.min.js",
   jquery: "./node_modules/jquery/dist/jquery.min.js",
   bootstrap: "./node_modules/bootstrap/dist/js/bootstrap.min.js",
-  datepicker: "./lib/ui-bootstrap-datepicker-0.10.0.min.js"
+  angular: "./node_modules/angular/angular.min.js",
+  angular_route: "./node_modules/angular-route/angular-route.min.js"
 };
 
 var browserify_transforms = ["brfs"];
@@ -30,7 +28,7 @@ var lint_opts = {
   jquery: true
 };
 
-var dest_dir = './build';
+var dest_dir = './lib';
 
 gulp.task("build-common-lib", function() {
   var paths = [];
@@ -44,6 +42,14 @@ gulp.task("build-common-lib", function() {
     .pipe(size(size_opts))
     .pipe(concat("common.min.js"))
     .pipe(uglify())
+    .pipe(size(size_opts))
+    .pipe(gulp.dest(dest_dir));
+});
+
+gulp.task("default", function() {
+  return gulp.src(apps_glob)
+    .pipe(size(size_opts))
+    .pipe(concat("app.min.js"))
     .pipe(size(size_opts))
     .pipe(gulp.dest(dest_dir));
 });

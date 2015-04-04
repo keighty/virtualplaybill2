@@ -3,8 +3,7 @@ var _ = require('lodash');
 var size = require('gulp-size');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
-
-var apps_glob = "./apps/*.js";
+var rename = require('gulp-rename');
 
 var external_libs = {
   jquery: "./node_modules/jquery/dist/jquery.min.js",
@@ -13,24 +12,15 @@ var external_libs = {
   angular_route: "./node_modules/angular-route/angular-route.min.js"
 };
 
-var browserify_transforms = ["brfs"];
-
-var auto_build_flag_file = ".autobuild";
-
 var size_opts = {
   showFiles: true,
   gzip: true
 };
 
-var lint_opts = {
-  unused: true,
-  eqnull: true,
-  jquery: true
-};
-
+var apps_glob = "./apps/*.js";
 var dest_dir = './lib';
 
-gulp.task("build-common-lib", function() {
+gulp.task("common", function() {
   var paths = [];
 
   // Get the path to each externalizable lib.
@@ -46,10 +36,20 @@ gulp.task("build-common-lib", function() {
     .pipe(gulp.dest(dest_dir));
 });
 
-gulp.task("default", function() {
+gulp.task("s3", function() {
+  return gulp.src('./lib/s3upload.js')
+    .pipe(size(size_opts))
+    .pipe(uglify())
+    .pipe(rename('s3upload.min.js'))
+    .pipe(gulp.dest(dest_dir));
+});
+
+gulp.task("app", function() {
   return gulp.src(apps_glob)
     .pipe(size(size_opts))
     .pipe(concat("app.min.js"))
     .pipe(size(size_opts))
     .pipe(gulp.dest(dest_dir));
 });
+
+gulp.task('default', ['s3', 'app', 'common']);

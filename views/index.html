@@ -1,4 +1,5 @@
-  <div ng-repeat="playbill in playbills | filter:search">
+<dir-pagination-controls></dir-pagination-controls>
+  <div dir-paginate="playbill in playbills | itemsPerPage:20 |filter:search">
     <div ng-if="$index % 4 == 0" class="clearfix"></div>
     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 playbill-unit">
       <h4 class="playbill-header">Virtual Playbill</h4>
@@ -11,3 +12,5 @@
     </div>
   </div>
 </div>
+
+<dir-pagination-controls></dir-pagination-controls>

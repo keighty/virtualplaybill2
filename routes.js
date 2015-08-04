@@ -46,4 +46,8 @@ module.exports = function(app) {
   app.post('/post/:postId/new_comment', Comment.newComment);
   app.post('/post/:postId/comment/:comment_id/reply', Comment.replyComment);
 
+  app.use('/*', function(req, res){
+    res.sendFile(__dirname + '/views/layout.html');
+  });
+
 };

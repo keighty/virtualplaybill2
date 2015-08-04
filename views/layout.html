@@ -28,8 +28,9 @@
         </form>
       </div>
       <div>
-        <ul ng-show="user.admin" class="nav navbar-nav">
-          <li><a href="/add_post">Add post</a></li>
+        <ul class="nav navbar-nav">
+          <li ng-show="user.admin"><a href="/add_post">Add post</a></li>
+          <li><a href="/directory">Directory</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href=""><span class="label label-info playbill-count" ng-show="user">{{count}} shows</span></a></li>
@@ -61,10 +62,12 @@
 <script src="/lib/ui-bootstrap-datepicker-tpls-0.10.0.min.js"></script>
 <script src="/lib/s3upload.js"></script>
 <script src="/lib/dirPagination.js"></script>
+
 <script src="/apps/app.js"></script>
 <script src="/apps/playbills.js"></script>
 <script src="/apps/routes.js"></script>
 <script src="/apps/comments.js"></script>
+<script src="/apps/directory.js"></script>
 <script src="/apps/cast.js"></script>
 <script src="/apps/image_upload.js"></script>
 <script src="/apps/rating.js"></script>

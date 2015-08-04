@@ -35,7 +35,7 @@ app.controller('DirectoryController', ['$scope', '$filter','PlaybillsService',
         } else {
           collection[char] = [item];
         }
-      };
+      }
 
       return collection;
     };

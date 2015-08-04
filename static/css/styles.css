@@ -172,3 +172,7 @@ ul.rating {
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: black;
 }
+
+.directory-title {
+  padding-bottom: 5px;
+}

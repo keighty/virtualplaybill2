@@ -1,8 +1,8 @@
   <div ng-repeat="(category, shows) in glossary">
-    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+    <div class="col-lg-2 col-md-3 col-sm-5 col-xs-12">
       <div ng-if="$index % 4 == 0" class="clearfix"></div>
       <h2>{{category}}</h2>
-      <div ng-repeat="show in shows track by $index">
+      <div ng-repeat="show in shows track by $index" class="directory-title">
         <div><a href="/post/{{show._id}}">{{show.title}}</a></div>
       </div>
     </div>

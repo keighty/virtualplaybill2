@@ -15,6 +15,10 @@ app.config(['$routeProvider', '$locationProvider',
         templateUrl: '/views/post_new.html',
         controller: 'PostController'
       }).
+      when('/directory', {
+        templateUrl: '/views/directory.html',
+        controller: 'AllPlaybillsController'
+      }).
       when('/signin', {
         templateUrl: '/views/signin.html'
       }).

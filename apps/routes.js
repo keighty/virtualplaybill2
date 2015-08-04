@@ -17,7 +17,7 @@ app.config(['$routeProvider', '$locationProvider',
       }).
       when('/directory', {
         templateUrl: '/views/directory.html',
-        controller: 'AllPlaybillsController'
+        controller: 'DirectoryController'
       }).
       when('/signin', {
         templateUrl: '/views/signin.html'

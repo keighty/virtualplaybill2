@@ -16,24 +16,26 @@ app.controller('DirectoryController', ['$scope', '$filter','PlaybillsService',
     });
 
     var glossary = function glossary(data) {
-      var collection = {};
+      var collection = {'#': []};
 
       data.forEach(function (item) {
         var firstChar = item.title.charAt(0).toUpperCase();
-        if(collection[firstChar]) {
-          collection[firstChar].push(item.title);
+
+        if(firstChar.match(/\d/)) {
+          collection['#'].push(item);
         } else {
-          collection[firstChar] = [item.title];
+          stringTitle(firstChar, item);
         }
+
       });
 
-      collection["#"] = [];
-      for (var key in collection) {
-        if (key.match(/\d/)) {
-          collection["#"] = collection['#'].concat(collection[key]);
-          delete collection[key];
+      function stringTitle(char, item) {
+        if(collection[char]) {
+          collection[char].push(item);
+        } else {
+          collection[char] = [item];
         }
-      }
+      };
 
       return collection;
     };

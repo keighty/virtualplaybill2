@@ -1,8 +1,8 @@
-  <div ng-repeat="(category, titles) in glossary">
+  <div ng-repeat="(category, shows) in glossary">
     <div class="">
       <h2>{{category}}</h2>
-      <div ng-repeat="title in titles track by $index">
-        <p>{{title}}</p>
+      <div ng-repeat="show in shows track by $index">
+        <p><a href="/post/{{show._id}}">{{show.title}}</a></p>
       </div>
     </div>
   </div>

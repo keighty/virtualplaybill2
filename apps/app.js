@@ -1,4 +1,4 @@
-var app = angular.module("playbillApp", ['ngRoute', 'ui.bootstrap', 'angularUtils.directives.dirPagination']);
+var app = angular.module("playbillApp", ['ngRoute', 'ui.bootstrap', 'angularUtils.directives.dirPagination', 'angularUtils.directives.dirDisqus']);
 
 app.run(function($rootScope, UserService, PlaybillsService) {
   UserService.current_user().then(function(data) {

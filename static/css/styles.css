@@ -99,6 +99,10 @@ p.empty-cast {
   font-weight: 200;
 }
 
+.cast-list {
+  max-height: 100px;
+}
+
 legend.new-post-image {
   padding-top: 15px;
 }

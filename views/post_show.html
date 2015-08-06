@@ -3,7 +3,7 @@
 
   <div ng-hide="editing">
     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"> <postdetails></postdetails> </div>
-    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"> <castshow></castshow> </div>
+    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 cast-list"> <castshow></castshow> </div>
   </div>
 
   <div ng-show="editing">
@@ -12,4 +12,10 @@
   </div>
 </div>
 
-<comments ng-hide="editing"></comments>
+<dir-disqus disqus-shortname="virtualplaybill"
+   disqus-identifier="{{ show._id }}"
+   disqus-url="{{ show.location }}"
+   post="{{show}}"
+   ng-hide="editing"
+   class="col-sm-7">
+</dir-disqus>

@@ -20,6 +20,10 @@ app.config(['$routeProvider', '$locationProvider',
         templateUrl: '/views/directory.html',
         controller: 'DirectoryController'
       }).
+      when('/about', {
+        templateUrl: '/views/about.html',
+        controller: 'DirectoryController'
+      }).
       when('/signin', {
         templateUrl: '/views/signin.html'
       }).

@@ -41,6 +41,7 @@ app.controller('PostController', ['$rootScope', '$scope', '$routeParams', '$http
         $rootScope.show = data[0];
         if (!$rootScope.show.cast   ) { $rootScope.show.cast    = []; }
         if (!$rootScope.show.ratings) { $rootScope.show.ratings = {}; }
+        $rootScope.show.location = $location.absUrl();
       });
     } else {
       $rootScope.show = { cast: [], rating: 0, ratings: {} };

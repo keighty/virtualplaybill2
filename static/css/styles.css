@@ -1,3 +1,6 @@
+/*
+  Colours
+*/
 .yellow { color: #ffea00}
 .black { color: #010100}
 .khaki { color: #857a00}
@@ -5,13 +8,16 @@
 .brownblack { color: #272300}
 .yellow-green { color: #c0b000}
 
+/*
+  Playbill
+*/
 .playbill-unit {
   position: relative;
   max-width: 400px;
   margin: auto;
 }
 
-span.nav-overlay {
+span.link-overlay {
   position:absolute;
   width:100%;
   height:100%;
@@ -19,14 +25,6 @@ span.nav-overlay {
   left: 0;
   z-index: 1;
   background-image: url('empty.gif');
-}
-
-.search {
-  width: 250px;
-}
-
-.playbill-count{
-  font-size: 1.25em;
 }
 
 .playbill-header {
@@ -61,32 +59,18 @@ span.nav-overlay {
   padding-bottom: 15px;
 }
 
-.ratings-tooltip {
-  cursor: help;
-}
+/*
+  Nav bar
+*/
+.search { width: 250px; }
+.playbill-count{ font-size: 1.25em; }
 
-.playbill-date {
-  text-align: center;
-}
-
-.calendar-date {
-  position: relative;
-}
-
-/* style icon */
-.calendar-date .glyphicon-calendar {
-  position: absolute;
-  padding: 10px;
-  pointer-events: none;
-}
-
-/* align icon */
-.left-addon .glyphicon-calendar  { left:  0px; margin-left: 15px;}
-.right-addon .glyphicon-calendar { right: 0px;}
-
-/* add padding  */
-.left-addon input  { padding-left:  30px; }
-.right-addon input { padding-right: 30px; }
+/*
+  Edit form
+*/
+.ratings-tooltip { cursor: help; }
+.playbill-date { text-align: center; }
+legend.new-post-image { padding-top: 15px; }
 
 span.note-text {
   font-style: italic;
@@ -94,7 +78,40 @@ span.note-text {
   font-weight: 200;
 }
 
-p.empty-cast {
+p.synopsis {
+  border: 2px solid grey;
+  padding: 8px;
+}
+
+.input-group-addon {
+  min-width: 120px;
+  text-align:left;
+}
+
+.edit-control { float: right; }
+.edit-buttons { width: 50px }
+
+/*
+  Calendar dropdown
+*/
+.calendar-date { position: relative; }
+
+.calendar-date .glyphicon-calendar {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+.left-addon .glyphicon-calendar  { left:  0; margin-left: 15px;}
+.right-addon .glyphicon-calendar { right: 0;}
+
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
+
+/*
+  Cast list
+*/
+.empty-cast {
   font-style: italic;
   font-weight: 200;
 }
@@ -103,55 +120,9 @@ p.empty-cast {
   max-height: 100px;
 }
 
-legend.new-post-image {
-  padding-top: 15px;
-}
-
-p.synopsis {
-  border: 2px solid grey;
-  padding: 8px;
-}
-
-div.comment {
-  border: solid 2px grey;
-  background: lightgray;
-  padding-top: 0.5em;
-  margin-bottom: 10px;
-  border-radius: 10px;
-}
-
-div.comment-side {
-  font-size: 0.75em;
-  text-align: right;
-}
-
-.input-group-addon {
-  min-width: 120px;
-  text-align:left;
-}
-
-p.comment-by {
-  font-weight: bold;
-}
-
-.edit-control {
-  float: right;
-}
-
-.edit-buttons {
-  width: 50px
-}
-
-form.comments-form {
-  padding-top: 30px;
-}
-
-@media (min-width: 1200px) {
-  .container {
-    width: 1500px;
-  }
-}
-
+/*
+  Rating
+*/
 .rating{
   color: #a9a9a9;
   margin: 0;
@@ -177,6 +148,18 @@ ul.rating {
   -webkit-text-stroke-color: black;
 }
 
+/*
+  Directory
+*/
 .directory-title {
   padding-bottom: 5px;
+}
+
+/*
+  Media Queries
+*/
+@media (min-width: 1200px) {
+  .container {
+    width: 1500px;
+  }
 }

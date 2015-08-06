@@ -6,7 +6,6 @@ var bodyParser = require('body-parser');
 module.exports = function(app) {
   var Post = require('./controllers/posts_controller.js');
   var User = require('./controllers/users_controller.js');
-  var Comment = require('./controllers/comments_controller.js');
 
   app.use(partials());
   app.use(bodyParser.json());
@@ -38,13 +37,6 @@ module.exports = function(app) {
   app.post('/delete_post',  Post.deletePost);
 
   app.get('/sign_s3', Post.signS3);
-
-  /***************
-    Comment Routes
-  ****************/
-  app.get('/post_comments/:postId', Comment.postComments);
-  app.post('/post/:postId/new_comment', Comment.newComment);
-  app.post('/post/:postId/comment/:comment_id/reply', Comment.replyComment);
 
   app.use('/*', function(req, res){
     res.sendFile(__dirname + '/views/layout.html');

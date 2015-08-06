@@ -34,7 +34,7 @@ app.controller('AllPlaybillsController', ['$scope', 'PlaybillsService',
 
 app.controller('PostController', ['$rootScope', '$scope', '$routeParams', '$http', '$location', 'PlaybillsService',
   function($rootScope, $scope, $routeParams, $http, $location, PlaybillsService) {
-
+    $scope.contentLoaded = false;
     var showId = $routeParams.postId;
     if(showId) {
       PlaybillsService.show(showId).then(function(data) {
@@ -42,6 +42,7 @@ app.controller('PostController', ['$rootScope', '$scope', '$routeParams', '$http
         if (!$rootScope.show.cast   ) { $rootScope.show.cast    = []; }
         if (!$rootScope.show.ratings) { $rootScope.show.ratings = {}; }
         $rootScope.show.location = $location.absUrl();
+        $scope.contentLoaded = true;
       });
     } else {
       $rootScope.show = { cast: [], rating: 0, ratings: {} };

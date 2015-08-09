@@ -26,7 +26,7 @@ module.exports = function(app) {
     Playbill Routes
   *****************/
   app.get('/', Show.index);
-  app.get('/shows', Show.posts);
+  app.get('/shows', Show.all);
   app.get('/show_count', Show.count);
   app.get('/show/:id', Show.post);
   app.get('/post/:postId', Show.renderPost);

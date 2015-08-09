@@ -22,7 +22,7 @@ exports.count = function(req, res) {
   });
 };
 
-exports.posts = function(req, res) {
+exports.all = function(req, res) {
   Post.find()
       .sort("-showDate")
       .exec(function(err, doc) {

@@ -28,7 +28,7 @@ module.exports = function(app) {
   app.get('/', Show.index);
   app.get('/shows', Show.posts);
   app.get('/show_count', Show.count);
-  app.get('/post/playbill/:id', Show.post);
+  app.get('/show/:id', Show.post);
   app.get('/post/:postId', Show.renderPost);
   app.get('/add_post', Show.postForm);
 

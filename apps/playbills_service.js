@@ -8,7 +8,7 @@ app.factory("PlaybillsService", function($http) {
       });
     },
     count: function() {
-      return $http.get('/playbill_count').then(function(result) {
+      return $http.get('/show_count').then(function(result) {
         return result.data;
       });
     },

@@ -25,7 +25,7 @@ exports.all = function(req, res) {
       });
 };
 
-exports.post = function(req, res) {
+exports.showData = function(req, res) {
   Post.find({_id: req.params.id})
       .exec(function(err, doc){
         res.json(doc);

@@ -13,7 +13,7 @@ app.factory("PlaybillsService", function($http) {
       });
     },
     show: function(showId) {
-      return $http.get('/show/' + showId).then(function(result) {
+      return $http.get('/showData/' + showId).then(function(result) {
         return result.data;
       });
     },

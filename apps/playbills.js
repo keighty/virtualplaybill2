@@ -35,7 +35,7 @@ app.controller('AllPlaybillsController', ['$scope', 'PlaybillsService',
 app.controller('PostController', ['$rootScope', '$scope', '$routeParams', '$http', '$location', 'PlaybillsService',
   function($rootScope, $scope, $routeParams, $http, $location, PlaybillsService) {
     $scope.contentLoaded = false;
-    var showId = $routeParams.postId;
+    var showId = $routeParams.id;
     if(showId) {
       PlaybillsService.show(showId).then(function(data) {
         $rootScope.show = data[0];

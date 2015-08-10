@@ -30,8 +30,8 @@ module.exports = function(app) {
   app.get('/', Show.index);
   app.get('/shows', Show.all);
   app.get('/show_count', Show.count);
-  app.get('/show/:id', Show.post);
-  app.get('/post/:postId', Show.renderPost);
+  app.get('/showData/:id', Show.showData);
+  app.get('/show/:id', Show.renderShow);
   app.get('/add_post', Show.postForm);
 
   app.post('/new_post',  Show.newPost);

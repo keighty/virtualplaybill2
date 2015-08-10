@@ -7,7 +7,7 @@ app.config(['$routeProvider', '$locationProvider',
       requireBase: false
     });
     $routeProvider.
-      when('/post/:postId', {
+      when('/show/:id', {
         templateUrl: '/views/post_show.html',
         controller: 'PostController'
       }).

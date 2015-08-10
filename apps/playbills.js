@@ -4,7 +4,7 @@ app.directive("showdetails", function() {
   return {
     restrict: "E",
     templateUrl: "/views/show_details.html",
-    controller: "PostController"
+    controller: "ShowController"
   };
 });
 
@@ -12,7 +12,7 @@ app.directive("showunit", function() {
   return {
     restrict: "E",
     templateUrl: "/views/show_unit.html",
-    controller: "PostController"
+    controller: "ShowController"
   };
 });
 
@@ -20,7 +20,7 @@ app.directive("showform", function() {
   return {
     restrict: "E",
     templateUrl: "/views/show_form.html",
-    controller: "PostController"
+    controller: "ShowController"
   };
 });
 
@@ -32,7 +32,7 @@ app.controller('AllPlaybillsController', ['$scope', 'PlaybillsService',
   }
 ]);
 
-app.controller('PostController', ['$rootScope', '$scope', '$routeParams', '$http', '$location', 'PlaybillsService',
+app.controller('ShowController', ['$rootScope', '$scope', '$routeParams', '$http', '$location', 'PlaybillsService',
   function($rootScope, $scope, $routeParams, $http, $location, PlaybillsService) {
     $scope.contentLoaded = false;
     var showId = $routeParams.id;

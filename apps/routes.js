@@ -9,11 +9,11 @@ app.config(['$routeProvider', '$locationProvider',
     $routeProvider.
       when('/show/:id', {
         templateUrl: '/views/show.html',
-        controller: 'PostController'
+        controller: 'ShowController'
       }).
       when('/add_show', {
         templateUrl: '/views/show_new.html',
-        controller: 'PostController'
+        controller: 'ShowController'
       }).
       when('/directory', {
         templateUrl: '/views/directory.html',

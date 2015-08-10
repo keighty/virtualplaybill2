@@ -6,6 +6,15 @@ function encryptPw(pw) {
   return crypto.createHash('sha256').update(pw).digest('base64').toString();
 }
 
+exports.authenticated = function(req, res, next) {
+  if(req.session.user) {
+    return next();
+  } else {
+    req.session.msg = 'Access denied';
+    return res.redirect('signin');
+  }
+};
+
 exports.getUser = function(req, res) {
   if(req.session.user) {
     res.render('user', {msg: req.session.msg});

@@ -8,12 +8,7 @@ var AWS_SECRET_KEY = process.env.AWS_SECRET_KEY;
 var S3_BUCKET = process.env.S3_BUCKET;
 
 exports.index = function(req, res) {
-  if(req.session.user) {
-    res.render('index', {username: req.session.user});
-  } else {
-    req.session.msg = 'Access denied';
-    res.redirect('signin');
-  }
+  res.render('index', {username: req.session.user});
 };
 
 exports.count = function(req, res) {

@@ -8,7 +8,7 @@ var AWS_SECRET_KEY = process.env.AWS_SECRET_KEY;
 var S3_BUCKET = process.env.S3_BUCKET;
 
 exports.index = function(req, res) {
-  res.render('index', {username: req.session.user});
+  res.render('index');
 };
 
 exports.count = function(req, res) {

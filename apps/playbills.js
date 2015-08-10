@@ -1,9 +1,9 @@
 var app = angular.module("playbillApp");
 
-app.directive("postdetails", function() {
+app.directive("showdetails", function() {
   return {
     restrict: "E",
-    templateUrl: "/views/post_details.html",
+    templateUrl: "/views/show_details.html",
     controller: "PostController"
   };
 });

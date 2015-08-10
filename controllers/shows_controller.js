@@ -32,7 +32,7 @@ exports.showData = function(req, res) {
       });
 };
 
-exports.newPost = function(req, res, next) {
+exports.newShow = function(req, res, next) {
   var postAttributes = req.body;
   var post = _.extend(_.pick(postAttributes, 'url', 'title', 'company', 'author', 'synopsis', 'director', 'music', 'choreographer','showDate', 'imageUrl', 'cast', 'rating', 'ratings'), {
       submitted: new Date().getTime(),

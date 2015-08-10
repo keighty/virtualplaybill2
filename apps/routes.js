@@ -11,8 +11,8 @@ app.config(['$routeProvider', '$locationProvider',
         templateUrl: '/views/post_show.html',
         controller: 'PostController'
       }).
-      when('/add_post', {
-        templateUrl: '/views/post_new.html',
+      when('/add_show', {
+        templateUrl: '/views/show_new.html',
         controller: 'PostController'
       }).
       when('/directory', {

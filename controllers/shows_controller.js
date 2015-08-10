@@ -32,10 +32,6 @@ exports.showData = function(req, res) {
       });
 };
 
-exports.renderShow = function(req, res) {
-  res.render('post_show');
-};
-
 exports.newPost = function(req, res, next) {
   var postAttributes = req.body;
   var post = _.extend(_.pick(postAttributes, 'url', 'title', 'company', 'author', 'synopsis', 'director', 'music', 'choreographer','showDate', 'imageUrl', 'cast', 'rating', 'ratings'), {

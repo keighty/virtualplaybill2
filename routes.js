@@ -31,7 +31,6 @@ module.exports = function(app) {
   app.get('/shows', Show.all);
   app.get('/show_count', Show.count);
   app.get('/showData/:id', Show.showData);
-  app.get('/show/:id', Show.renderShow);
 
   app.post('/new_post',  Show.newPost);
   app.post('/edit_post',  Show.editPost);

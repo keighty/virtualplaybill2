@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var _ = require('underscore');
-var Post = require('../models/posts_model.js');
+var Show = require('../models/shows_model.js');
 
 var aws = require('aws-sdk');
 var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;
@@ -12,13 +12,13 @@ exports.index = function(req, res) {
 };
 
 exports.count = function(req, res) {
-  Post.count({}, function(err, count){
+  Show.count({}, function(err, count){
     res.json(count);
   });
 };
 
 exports.all = function(req, res) {
-  Post.find()
+  Show.find()
       .sort("-showDate")
       .exec(function(err, doc) {
         res.json(doc);
@@ -26,42 +26,42 @@ exports.all = function(req, res) {
 };
 
 exports.showData = function(req, res) {
-  Post.find({_id: req.params.id})
+  Show.find({_id: req.params.id})
       .exec(function(err, doc){
         res.json(doc);
       });
 };
 
 exports.newShow = function(req, res, next) {
-  var postAttributes = req.body;
-  var post = _.extend(_.pick(postAttributes, 'url', 'title', 'company', 'author', 'synopsis', 'director', 'music', 'choreographer','showDate', 'imageUrl', 'cast', 'rating', 'ratings'), {
+  var showAttributes = req.body;
+  var show = _.extend(_.pick(showAttributes, 'url', 'title', 'company', 'author', 'synopsis', 'director', 'music', 'choreographer','showDate', 'imageUrl', 'cast', 'rating', 'ratings'), {
       submitted: new Date().getTime(),
       commentsCount: 0
     });
 
-  var newPost = new Post(post);
-  newPost.save(function(err, doc){
+  var newShow = new Show(show);
+  newShow.save(function(err, doc){
     if(err) { res.send(err); }
     else { res.json(doc); }
   });
 };
 
 exports.editShow = function(req, res) {
-  var postAttributes = req.body,
-      conditions = { _id: postAttributes._id };
+  var showAttributes = req.body,
+      conditions = { _id: showAttributes._id };
 
-  delete postAttributes._id;
-  postAttributes.submitted = new Date().getTime();
+  delete showAttributes._id;
+  showAttributes.submitted = new Date().getTime();
 
-  Post.update(conditions, postAttributes, function(err, numAffected) {
+  Show.update(conditions, showAttributes, function(err, numAffected) {
     if(err) { res.send(err); }
     else { res.json(numAffected); }
   });
 };
 
 exports.deleteShow = function(req, res) {
-  var post = req.body;
-  Post.find({ _id: post._id }).remove( function(err, numAffected) {
+  var show = req.body;
+  Show.find({ _id: show._id }).remove( function(err, numAffected) {
     if(err) { res.send(err); }
     else { res.json(numAffected); }
   });

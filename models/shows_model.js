@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var postSchema = mongoose.Schema({
+var showSchema = mongoose.Schema({
   title : String,
   company : String,
   author : String,
@@ -13,11 +13,10 @@ var postSchema = mongoose.Schema({
   userId : String,
   postAuthor : String,
   submitted : Number,
-  commentsCount : Number,
   cast : { type : Object , "default" : {} },
   rating: Number,
   ratings: {type : Object, "default" : {} }
 });
 
-var Post = mongoose.model('Post', postSchema, 'posts');
-module.exports = Post;
+var Show = mongoose.model('Show', showSchema, 'shows');
+module.exports = Show;

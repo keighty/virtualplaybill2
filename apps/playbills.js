@@ -8,15 +8,15 @@ app.directive("showdetails", function() {
   };
 });
 
-app.directive("postunit", function() {
+app.directive("showunit", function() {
   return {
     restrict: "E",
-    templateUrl: "/views/post_unit.html",
+    templateUrl: "/views/show_unit.html",
     controller: "PostController"
   };
 });
 
-app.directive("postform", function() {
+app.directive("showform", function() {
   return {
     restrict: "E",
     templateUrl: "/views/show_form.html",

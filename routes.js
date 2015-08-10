@@ -33,8 +33,8 @@ module.exports = function(app) {
   app.get('/showData/:id', Show.showData);
 
   app.post('/new_show',  Show.newShow);
-  app.post('/edit_post',  Show.editPost);
-  app.post('/delete_post',  Show.deletePost);
+  app.post('/edit_show',  Show.editShow);
+  app.post('/delete_show',  Show.deleteShow);
 
   app.get('/sign_s3', Show.signS3);
 

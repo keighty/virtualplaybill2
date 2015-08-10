@@ -46,7 +46,7 @@ exports.newShow = function(req, res, next) {
   });
 };
 
-exports.editPost = function(req, res) {
+exports.editShow = function(req, res) {
   var postAttributes = req.body,
       conditions = { _id: postAttributes._id };
 
@@ -59,7 +59,7 @@ exports.editPost = function(req, res) {
   });
 };
 
-exports.deletePost = function(req, res) {
+exports.deleteShow = function(req, res) {
   var post = req.body;
   Post.find({ _id: post._id }).remove( function(err, numAffected) {
     if(err) { res.send(err); }

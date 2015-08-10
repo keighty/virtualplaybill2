@@ -19,7 +19,7 @@ app.directive("postunit", function() {
 app.directive("postform", function() {
   return {
     restrict: "E",
-    templateUrl: "/views/post_form.html",
+    templateUrl: "/views/show_form.html",
     controller: "PostController"
   };
 });

@@ -23,12 +23,12 @@ app.factory("PlaybillsService", function($http) {
       });
     },
     editShow: function(show) {
-      return $http.post('/edit_post', show).then(function(result) {
+      return $http.post('/edit_show', show).then(function(result) {
         return result.data;
       });
     },
     deleteShow: function(show) {
-      return $http.post('/delete_post', show).then(function(result) {
+      return $http.post('/delete_show', show).then(function(result) {
         return result.data;
       });
     }

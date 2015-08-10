@@ -71,10 +71,6 @@ exports.deletePost = function(req, res) {
   });
 };
 
-exports.postForm = function(req, res) {
-  res.render('post_form', {username: req.session.user});
-};
-
 exports.signS3 = function(req, res) {
   aws.config.update({accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_KEY});
   var s3 = new aws.S3();

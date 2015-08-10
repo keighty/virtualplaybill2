@@ -32,13 +32,8 @@ exports.post = function(req, res) {
       });
 };
 
-exports.renderPost = function(req, res) {
-  if(req.session.user) {
-    res.render('post_show');
-  } else {
-    req.session.msg = 'Access denied';
-    res.redirect('signin');
-  }
+exports.renderShow = function(req, res) {
+  res.render('post_show');
 };
 
 exports.newPost = function(req, res, next) {

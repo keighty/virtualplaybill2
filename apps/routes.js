@@ -4,17 +4,16 @@ app.config(['$routeProvider', '$locationProvider',
   function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
     $locationProvider.html5Mode({
-      // enabled: true,
       requireBase: false
     });
     $routeProvider.
-      when('/post/:postId', {
-        templateUrl: '/views/post_show.html',
-        controller: 'PostController'
+      when('/show/:id', {
+        templateUrl: '/views/show.html',
+        controller: 'ShowController'
       }).
-      when('/add_post', {
-        templateUrl: '/views/post_new.html',
-        controller: 'PostController'
+      when('/add_show', {
+        templateUrl: '/views/show_new.html',
+        controller: 'ShowController'
       }).
       when('/directory', {
         templateUrl: '/views/directory.html',

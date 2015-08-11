@@ -1,26 +1,26 @@
 var app = angular.module("playbillApp");
 
-app.directive("postdetails", function() {
+app.directive("showdetails", function() {
   return {
     restrict: "E",
-    templateUrl: "/views/post_details.html",
-    controller: "PostController"
+    templateUrl: "/views/show_details.html",
+    controller: "ShowController"
   };
 });
 
-app.directive("postunit", function() {
+app.directive("showunit", function() {
   return {
     restrict: "E",
-    templateUrl: "/views/post_unit.html",
-    controller: "PostController"
+    templateUrl: "/views/show_unit.html",
+    controller: "ShowController"
   };
 });
 
-app.directive("postform", function() {
+app.directive("showform", function() {
   return {
     restrict: "E",
-    templateUrl: "/views/post_form.html",
-    controller: "PostController"
+    templateUrl: "/views/show_form.html",
+    controller: "ShowController"
   };
 });
 
@@ -32,10 +32,10 @@ app.controller('AllPlaybillsController', ['$scope', 'PlaybillsService',
   }
 ]);
 
-app.controller('PostController', ['$rootScope', '$scope', '$routeParams', '$http', '$location', 'PlaybillsService',
+app.controller('ShowController', ['$rootScope', '$scope', '$routeParams', '$http', '$location', 'PlaybillsService',
   function($rootScope, $scope, $routeParams, $http, $location, PlaybillsService) {
     $scope.contentLoaded = false;
-    var showId = $routeParams.postId;
+    var showId = $routeParams.id;
     if(showId) {
       PlaybillsService.show(showId).then(function(data) {
         $rootScope.show = data[0];

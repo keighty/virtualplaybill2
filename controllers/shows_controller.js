@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var _ = require('underscore');
-var Post = require('../models/posts_model.js');
+var Show = require('../models/shows_model.js');
 
 var aws = require('aws-sdk');
 var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;
@@ -8,81 +8,63 @@ var AWS_SECRET_KEY = process.env.AWS_SECRET_KEY;
 var S3_BUCKET = process.env.S3_BUCKET;
 
 exports.index = function(req, res) {
-  if(req.session.user) {
-    res.render('index', {username: req.session.user});
-  } else {
-    req.session.msg = 'Access denied';
-    res.redirect('signin');
-  }
+  res.render('index');
 };
 
 exports.count = function(req, res) {
-  Post.count({}, function(err, count){
+  Show.count({}, function(err, count){
     res.json(count);
   });
 };
 
-exports.posts = function(req, res) {
-  Post.find()
+exports.all = function(req, res) {
+  Show.find()
       .sort("-showDate")
       .exec(function(err, doc) {
         res.json(doc);
       });
 };
 
-exports.post = function(req, res) {
-  Post.find({_id: req.params.id})
+exports.showData = function(req, res) {
+  Show.find({_id: req.params.id})
       .exec(function(err, doc){
         res.json(doc);
       });
 };
 
-exports.renderPost = function(req, res) {
-  if(req.session.user) {
-    res.render('post_show');
-  } else {
-    req.session.msg = 'Access denied';
-    res.redirect('signin');
-  }
-};
-
-exports.newPost = function(req, res, next) {
-  var postAttributes = req.body;
-  var post = _.extend(_.pick(postAttributes, 'url', 'title', 'company', 'author', 'synopsis', 'director', 'music', 'choreographer','showDate', 'imageUrl', 'cast', 'rating', 'ratings'), {
+exports.newShow = function(req, res, next) {
+  var showAttributes = req.body;
+  var show = _.extend(_.pick(showAttributes, 'url', 'title', 'company', 'author', 'synopsis', 'director', 'music', 'choreographer','showDate', 'imageUrl', 'cast', 'rating', 'ratings'), {
       submitted: new Date().getTime(),
       commentsCount: 0
     });
 
-  var newPost = new Post(post);
-  newPost.save(function(err, doc){
+  var newShow = new Show(show);
+  newShow.save(function(err, doc){
     if(err) { res.send(err); }
     else { res.json(doc); }
   });
 };
 
-exports.editPost = function(req, res) {
-  var postAttributes = req.body,
-      conditions = { _id: postAttributes._id };
+exports.editShow = function(req, res) {
+  var showAttributes = req.body,
+      conditions = { _id: showAttributes._id };
 
-  delete postAttributes._id;
-  postAttributes.submitted = new Date().getTime();
+  delete showAttributes._id;
+  showAttributes.submitted = new Date().getTime();
 
-  Post.update(conditions, postAttributes, function(err, numAffected) {
+  Show.update(conditions, showAttributes, function(err, numAffected) {
     if(err) { res.send(err); }
     else { res.json(numAffected); }
   });
 };
 
-exports.deletePost = function(req, res) {
-  var post = req.body;
-  Post.find({ _id: post._id }).remove( function(err, numAffected) {
+exports.deleteShow = function(req, res) {
+  var show = req.body;
+  Show.find({ _id: show._id }).remove( function(err, numAffected) {
     if(err) { res.send(err); }
     else { res.json(numAffected); }
   });
-};
-
-exports.postForm = function(req, res) {
-  res.render('post_form', {username: req.session.user});
 };
 
 exports.signS3 = function(req, res) {

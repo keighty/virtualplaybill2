@@ -4,7 +4,7 @@ var partials = require('express-partials');
 var bodyParser = require('body-parser');
 
 module.exports = function(app) {
-  var Post = require('./controllers/posts_controller.js');
+  var Show = require('./controllers/shows_controller.js');
   var User = require('./controllers/users_controller.js');
 
   app.use(partials());
@@ -25,18 +25,18 @@ module.exports = function(app) {
   /****************
     Playbill Routes
   *****************/
-  app.get('/', Post.index);
-  app.get('/playbills', Post.posts);
-  app.get('/playbill_count', Post.count);
-  app.get('/post/playbill/:id', Post.post);
-  app.get('/post/:postId', Post.renderPost);
-  app.get('/add_post', Post.postForm);
+  app.all('*', User.authenticated);
 
-  app.post('/new_post',  Post.newPost);
-  app.post('/edit_post',  Post.editPost);
-  app.post('/delete_post',  Post.deletePost);
+  app.get('/', Show.index);
+  app.get('/shows', Show.all);
+  app.get('/show_count', Show.count);
+  app.get('/showData/:id', Show.showData);
 
-  app.get('/sign_s3', Post.signS3);
+  app.post('/new_show',  Show.newShow);
+  app.post('/edit_show',  Show.editShow);
+  app.post('/delete_show',  Show.deleteShow);
+
+  app.get('/sign_s3', Show.signS3);
 
   app.use('/*', function(req, res){
     res.sendFile(__dirname + '/views/layout.html');

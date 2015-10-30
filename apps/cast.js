@@ -1,6 +1,7 @@
 var app = angular.module("playbillApp");
 
 app.directive("castshow", function() {
+  
   return {
     restrict: "E",
     templateUrl: "/views/cast_show.html",

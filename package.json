@@ -16,7 +16,13 @@
   },
   "browser": {
     "angular": "./lib/angular-index.js",
-    "angular-route": "./lib/angular-route.min.js"
+    "angular-route": "./lib/angular-route.min.js",
+    "datepicker": "./lib/ui-bootstrap-datepicker-0.10.0.min.js",
+    "datepicker-tpls": "./lib/ui-bootstrap-datepicker-tpls-0.10.0.min.js",
+    "pagination": "./lib/pagination-index.js",
+    "disqus": "./lib/dirDisqus.js",
+    "jquery": "./lib/jquery-1.11.1.min.js",
+    "s3upload": "./lib/s3upload.js"
   },
   "dependencies": {
     "angular-route": "1.3.8",
@@ -37,6 +43,15 @@
     "underscore": "1.7.0"
   },
   "devDependencies": {
-    "gulp": "3.9.0"
+    "browserify": "12.0.1",
+    "globby": "4.0.0",
+    "gulp": "3.9.0",
+    "gulp-sourcemaps": "1.6.0",
+    "gulp-uglify": "1.5.1",
+    "gulp-util": "3.0.7",
+    "reactify": "1.1.1",
+    "through2": "2.0.0",
+    "vinyl-buffer": "1.0.0",
+    "vinyl-source-stream": "1.1.0"
   }
 }

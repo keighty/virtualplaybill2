@@ -14,6 +14,10 @@
   "engines": {
     "node": "latest"
   },
+  "browser": {
+    "angular": "./lib/angular-index.js",
+    "angular-route": "./lib/angular-route.min.js"
+  },
   "dependencies": {
     "angular-route": "1.3.8",
     "angular-utils-pagination": "^0.8.2",

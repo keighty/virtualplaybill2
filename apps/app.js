@@ -3,6 +3,7 @@ require('angular-route')
 require('s3upload')
 require('pagination')
 require('datepicker')
+require('datepicker-tpls')
 require('disqus')
 
 var app = angular.module("playbillApp", ['ngRoute', 'ui.bootstrap', 'angularUtils.directives.dirPagination', 'angularUtils.directives.dirDisqus']);

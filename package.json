@@ -19,7 +19,7 @@
     "angular-route": "./lib/angular-route.min.js",
     "datepicker": "./lib/ui-bootstrap-datepicker-0.10.0.min.js",
     "datepicker-tpls": "./lib/ui-bootstrap-datepicker-tpls-0.10.0.min.js",
-    "pagination": "./lib/pagination-index.js",
+    "pagination": "./lib/dirPagination.js",
     "disqus": "./lib/dirDisqus.js",
     "jquery": "./lib/jquery-1.11.1.min.js",
     "s3upload": "./lib/s3upload.js"

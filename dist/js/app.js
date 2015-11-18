@@ -72,6 +72,7 @@ module.exports = function($routeProvider, $locationProvider) {
       controller: 'AllPlaybillsController'
     });
 }
+
 },{}],4:[function(require,module,exports){
 module.exports = function($scope, $filter, PlaybillsService){
   PlaybillsService.list().then(function(data) {
@@ -103,7 +104,6 @@ module.exports = function($scope, $filter, PlaybillsService){
 
     return collection;
   };
-
 }
 
 },{}],5:[function(require,module,exports){
@@ -175,6 +175,7 @@ module.exports = function($rootScope, $scope, $routeParams, $http, $location, Pl
     return $rootScope.show.ratings ? Object.keys($rootScope.show.ratings).length : 0;
   };
 }
+
 },{}],8:[function(require,module,exports){
 module.exports = function() {
   return {
@@ -192,6 +193,7 @@ module.exports = function() {
     }
   };
 }
+
 },{}],9:[function(require,module,exports){
 module.exports = function() {
   return {
@@ -213,6 +215,7 @@ module.exports = function() {
     controller: "DirectoryController"
   };
 }
+
 },{}],11:[function(require,module,exports){
 module.exports = function() {
   return {
@@ -251,6 +254,7 @@ module.exports = function() {
     }
   };
 }
+
 },{}],12:[function(require,module,exports){
 var app = angular.module("playbillApp");
 
@@ -316,6 +320,7 @@ module.exports = function () {
     }
   };
 }
+
 },{}],14:[function(require,module,exports){
 module.exports = function() {
   return {
@@ -323,7 +328,7 @@ module.exports = function() {
     templateUrl: "/views/show_details.html",
     controller: "ShowController"
   };
-};
+}
 
 },{}],15:[function(require,module,exports){
 module.exports = function() {
@@ -332,7 +337,8 @@ module.exports = function() {
     templateUrl: "/views/show_form.html",
     controller: "ShowController"
   };
-};
+}
+
 },{}],16:[function(require,module,exports){
 module.exports = function() {
   return {
@@ -340,7 +346,8 @@ module.exports = function() {
     templateUrl: "/views/show_unit.html",
     controller: "ShowController"
   };
-};
+}
+
 },{}],17:[function(require,module,exports){
 var app = angular.module("playbillApp");
 

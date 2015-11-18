@@ -4,4 +4,4 @@ module.exports = function() {
     templateUrl: "/views/show_form.html",
     controller: "ShowController"
   };
-};
+}

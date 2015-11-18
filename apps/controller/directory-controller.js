@@ -28,5 +28,4 @@ module.exports = function($scope, $filter, PlaybillsService){
 
     return collection;
   };
-
 }

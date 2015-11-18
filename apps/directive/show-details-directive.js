@@ -4,4 +4,4 @@ module.exports = function() {
     templateUrl: "/views/show_details.html",
     controller: "ShowController"
   };
-};
+}

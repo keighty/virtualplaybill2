@@ -3,3 +3,4 @@ node_modules/*
 newrelic_agent.log
 plans/*
 *.DS_Store
+npm-debug.log

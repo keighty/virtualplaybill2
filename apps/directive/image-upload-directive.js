@@ -1,6 +1,4 @@
-var app = angular.module("playbillApp");
-
-app.directive("imageupload", function() {
+module.exports = function() {
   return {
     restrict: "E",
     templateUrl: "/views/image_upload_form.html",
@@ -36,4 +34,4 @@ app.directive("imageupload", function() {
       }
     }
   };
-});
+}

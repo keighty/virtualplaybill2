@@ -1,8 +1,7 @@
-var app = angular.module("playbillApp");
-app.directive("directory", function() {
+module.exports = function() {
   return {
     restrict: "E",
     templateUrl: "/views/directory.html",
     controller: "DirectoryController"
   };
-});
+}

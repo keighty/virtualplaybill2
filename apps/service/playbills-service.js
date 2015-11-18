@@ -1,6 +1,4 @@
-var app = angular.module("playbillApp");
-
-app.factory("PlaybillsService", function($http) {
+module.exports = function($http) {
   return {
     list: function() {
       return $http.get('/shows').then(function(result) {
@@ -33,5 +31,4 @@ app.factory("PlaybillsService", function($http) {
       });
     }
   };
-});
-
+}

@@ -1,19 +1,4 @@
-var app = angular.module("playbillApp");
-
-app.directive("castshow", function() {
-  
-  return {
-    restrict: "E",
-    templateUrl: "/views/cast_show.html",
-    link: function($scope, element, attrs) {
-      $scope.emptyCast = function() {
-        return $scope.show.cast && $scope.show.cast.length === 0;
-      };
-    }
-  };
-});
-
-app.directive("castform", function() {
+module.exports = function() {
   return {
     restrict: "E",
     templateUrl: "/views/cast_form.html",
@@ -28,4 +13,4 @@ app.directive("castform", function() {
       };
     }
   };
-});
+}

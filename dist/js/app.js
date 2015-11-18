@@ -342,13 +342,13 @@ module.exports = function() {
   };
 };
 },{}],17:[function(require,module,exports){
-require('./playbills-service.js')
-require('./user-service.js')
-
-},{"./playbills-service.js":18,"./user-service.js":19}],18:[function(require,module,exports){
 var app = angular.module("playbillApp");
 
-app.factory("PlaybillsService", function($http) {
+app.factory("PlaybillsService", require('./playbills-service.js'))
+app.factory('UserService', require('./user-service.js'))
+
+},{"./playbills-service.js":18,"./user-service.js":19}],18:[function(require,module,exports){
+module.exports = function($http) {
   return {
     list: function() {
       return $http.get('/shows').then(function(result) {
@@ -381,13 +381,10 @@ app.factory("PlaybillsService", function($http) {
       });
     }
   };
-});
-
+}
 
 },{}],19:[function(require,module,exports){
-var app = angular.module("playbillApp");
-
-app.factory('UserService', function($http) {
+module.exports = function($http) {
   return {
     current_user: function() {
       return $http.get('/user/profile').then(function(result) {
@@ -395,7 +392,7 @@ app.factory('UserService', function($http) {
       });
     }
   };
-});
+}
 
 },{}],20:[function(require,module,exports){
 require('./angular.min.js')

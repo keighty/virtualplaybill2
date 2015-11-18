@@ -1,6 +1,4 @@
-var app = angular.module("playbillApp");
-
-app.factory('UserService', function($http) {
+module.exports = function($http) {
   return {
     current_user: function() {
       return $http.get('/user/profile').then(function(result) {
@@ -8,4 +6,4 @@ app.factory('UserService', function($http) {
       });
     }
   };
-});
+}

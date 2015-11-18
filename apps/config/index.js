@@ -1,2 +1,2 @@
-var app = require('angular').module("playbillApp");
+var app = angular.module("playbillApp");
 app.config(['$routeProvider', '$locationProvider', require('./routes.js')])

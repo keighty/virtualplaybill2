@@ -1,4 +1,4 @@
-var app = require('angular').module("playbillApp");
+var app = angular.module("playbillApp");
 
 app.controller('DirectoryController', ['$scope', '$filter','PlaybillsService', require('./directory-controller.js')])
 app.controller('AllPlaybillsController', ['$scope', 'PlaybillsService', require('./playbills-controller.js')])

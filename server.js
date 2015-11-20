@@ -56,11 +56,10 @@ var expressSession = expressSession({
 })
 
 app.use(expressSession);
-app.use('/apps', express.static('./apps'));
-app.use('/views', express.static('./views'));
-app.use('/static', express.static('./static'));
-app.use('/images', express.static('./static/images'));
-app.use('/lib', express.static('./lib'));
+app.use('/views', express.static('./views', {maxAge: '30 days'}));
+app.use('/static', express.static('./static', {maxAge: '30 days'}));
+app.use('/images', express.static('./static/images',{maxAge: '30 days'}));
+app.use('/lib', express.static('./lib', {maxAge: '30 days'}));
 app.use('/dist', express.static('./dist'));
 
 /*************

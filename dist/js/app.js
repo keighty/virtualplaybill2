@@ -1415,6 +1415,7 @@ console.log("WARNING: Tried to load angular more than once."):(Id(),Kd(ta),D(X).
       }
       xhr.setRequestHeader('Content-Type', file.type);
       xhr.setRequestHeader('x-amz-acl', 'public-read');
+      xhr.setRequestHeader('Cache-Control', 'max-age=2592000');
       return xhr.send(file);
     };
 

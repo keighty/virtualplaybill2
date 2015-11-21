@@ -11,6 +11,7 @@ var cookieParser = require('cookie-parser');
 var cors = require('cors');
 var uriUtil = require('mongodb-uri');
 var uuid = require('node-uuid');
+var favicon = require('serve-favicon')
 
 /*********************
 ** Database connection
@@ -61,6 +62,7 @@ app.use('/static', express.static('./static', {maxAge: '30 days'}));
 app.use('/images', express.static('./static/images',{maxAge: '30 days'}));
 app.use('/lib', express.static('./lib', {maxAge: '30 days'}));
 app.use('/dist', express.static('./dist'));
+app.use(favicon('./static/images/favicon.ico'))
 
 /*************
 ** Routes Init

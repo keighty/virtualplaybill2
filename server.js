@@ -11,6 +11,7 @@ var cookieParser = require('cookie-parser');
 var cors = require('cors');
 var uriUtil = require('mongodb-uri');
 var uuid = require('node-uuid');
+var compression = require('compression')
 var favicon = require('serve-favicon')
 
 /*********************
@@ -46,6 +47,14 @@ app.set('view engine', 'html');
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(compression())
+
+app.use('/views', express.static('./views', {maxAge: '30 days'}));
+app.use('/static', express.static('./static', {maxAge: '30 days'}));
+app.use('/images', express.static('./static/images',{maxAge: '30 days'}));
+app.use('/lib', express.static('./lib', {maxAge: '30 days'}));
+app.use('/dist', express.static('./dist'));
+app.use(favicon('./static/images/favicon.ico'))
 
 var expressSession = expressSession({
   genid: function(req) {
@@ -57,12 +66,6 @@ var expressSession = expressSession({
 })
 
 app.use(expressSession);
-app.use('/views', express.static('./views', {maxAge: '30 days'}));
-app.use('/static', express.static('./static', {maxAge: '30 days'}));
-app.use('/images', express.static('./static/images',{maxAge: '30 days'}));
-app.use('/lib', express.static('./lib', {maxAge: '30 days'}));
-app.use('/dist', express.static('./dist'));
-app.use(favicon('./static/images/favicon.ico'))
 
 /*************
 ** Routes Init

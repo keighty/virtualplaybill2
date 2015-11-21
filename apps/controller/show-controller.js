@@ -1,4 +1,4 @@
-module.exports = function($rootScope, $scope, $routeParams, $http, $location, PlaybillsService) {
+var ShowController = function($rootScope, $scope, $routeParams, $http, $location, PlaybillsService) {
   $scope.contentLoaded = false;
   var showId = $routeParams.id;
   if(showId) {
@@ -52,3 +52,7 @@ module.exports = function($rootScope, $scope, $routeParams, $http, $location, Pl
     return $rootScope.show.ratings ? Object.keys($rootScope.show.ratings).length : 0;
   };
 }
+
+ShowController.$inject = ['$rootScope', '$scope', '$routeParams', '$http', '$location', 'PlaybillsService']
+
+module.exports = ShowController

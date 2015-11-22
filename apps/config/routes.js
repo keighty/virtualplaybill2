@@ -1,4 +1,4 @@
-module.exports = function($routeProvider, $locationProvider) {
+var RouteConfig = function($routeProvider, $locationProvider) {
   $locationProvider.html5Mode(true);
   $locationProvider.html5Mode({
     requireBase: false
@@ -37,3 +37,7 @@ module.exports = function($routeProvider, $locationProvider) {
       controller: 'AllPlaybillsController'
     });
 }
+
+RouteConfig.$inject = ['$routeProvider', '$locationProvider']
+
+module.exports = RouteConfig

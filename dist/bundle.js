@@ -59,7 +59,7 @@
 	__webpack_require__(14)
 	__webpack_require__(18)
 
-	app.run(function($rootScope, UserService, PlaybillsService) {
+	app.run(['$rootScope', 'UserService', 'PlaybillsService', function($rootScope, UserService, PlaybillsService) {
 	  UserService.current_user().then(function(data) {
 	    $rootScope.user = data;
 	  }).catch(function(err) {
@@ -71,7 +71,7 @@
 	  });
 
 	  $rootScope.show = {};
-	});
+	}])
 
 
 /***/ },
@@ -1160,14 +1160,14 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var app = angular.module("playbillApp");
-	app.config(['$routeProvider', '$locationProvider', __webpack_require__(10)])
+	app.config(__webpack_require__(10))
 
 
 /***/ },
 /* 10 */
 /***/ function(module, exports) {
 
-	module.exports = function($routeProvider, $locationProvider) {
+	var RouteConfig = function($routeProvider, $locationProvider) {
 	  $locationProvider.html5Mode(true);
 	  $locationProvider.html5Mode({
 	    requireBase: false
@@ -1207,6 +1207,10 @@
 	    });
 	}
 
+	RouteConfig.$inject = ['$routeProvider', '$locationProvider']
+
+	module.exports = RouteConfig
+
 
 /***/ },
 /* 11 */
@@ -1214,15 +1218,34 @@
 
 	var app = angular.module("playbillApp");
 
-	app.factory("PlaybillsService", __webpack_require__(12))
-	app.factory('UserService', __webpack_require__(13))
+	app.factory('UserService', __webpack_require__(12))
+	app.factory("PlaybillsService", __webpack_require__(13))
 
 
 /***/ },
 /* 12 */
 /***/ function(module, exports) {
 
-	module.exports = function($http) {
+	var UserService = function($http) {
+	  return {
+	    current_user: function() {
+	      return $http.get('/user/profile').then(function(result) {
+	        return result.data;
+	      });
+	    }
+	  };
+	}
+
+	UserService.$inject = ['$http']
+
+	module.exports = UserService
+
+
+/***/ },
+/* 13 */
+/***/ function(module, exports) {
+
+	var PlaybillsService = function($http) {
 	  return {
 	    list: function() {
 	      return $http.get('/shows').then(function(result) {
@@ -1257,20 +1280,9 @@
 	  };
 	}
 
+	PlaybillsService.$inject = ['$http']
 
-/***/ },
-/* 13 */
-/***/ function(module, exports) {
-
-	module.exports = function($http) {
-	  return {
-	    current_user: function() {
-	      return $http.get('/user/profile').then(function(result) {
-	        return result.data;
-	      });
-	    }
-	  };
-	}
+	module.exports = PlaybillsService
 
 
 /***/ },
@@ -1279,16 +1291,16 @@
 
 	var app = angular.module("playbillApp");
 
-	app.controller('DirectoryController', ['$scope', '$filter','PlaybillsService', __webpack_require__(15)])
-	app.controller('AllPlaybillsController', ['$scope', 'PlaybillsService', __webpack_require__(16)])
-	app.controller('ShowController', ['$rootScope', '$scope', '$routeParams', '$http', '$location', 'PlaybillsService', __webpack_require__(17)])
+	app.controller('DirectoryController', __webpack_require__(15))
+	app.controller('AllPlaybillsController', __webpack_require__(16))
+	app.controller('ShowController', __webpack_require__(17))
 
 
 /***/ },
 /* 15 */
 /***/ function(module, exports) {
 
-	module.exports = function($scope, $filter, PlaybillsService){
+	var DirectoryController = function($scope, $filter, PlaybillsService){
 	  PlaybillsService.list().then(function(data) {
 	    var sortedPlaybills = $filter('orderBy')(data, "title");
 	    $scope.glossary = glossary(sortedPlaybills);
@@ -1320,23 +1332,31 @@
 	  };
 	}
 
+	DirectoryController.$inject = ['$scope', '$filter','PlaybillsService']
+
+	module.exports = DirectoryController
+
 
 /***/ },
 /* 16 */
 /***/ function(module, exports) {
 
-	module.exports = function($scope, PlaybillsService) {
+	var PlaybillsController = function($scope, PlaybillsService) {
 	  PlaybillsService.list().then(function(data) {
 	    $scope.playbills = data;
 	  });
 	}
+
+	PlaybillsController.$inject = ['$scope', 'PlaybillsService']
+
+	module.exports = PlaybillsController
 
 
 /***/ },
 /* 17 */
 /***/ function(module, exports) {
 
-	module.exports = function($rootScope, $scope, $routeParams, $http, $location, PlaybillsService) {
+	var ShowController = function($rootScope, $scope, $routeParams, $http, $location, PlaybillsService) {
 	  $scope.contentLoaded = false;
 	  var showId = $routeParams.id;
 	  if(showId) {
@@ -1390,6 +1410,10 @@
 	    return $rootScope.show.ratings ? Object.keys($rootScope.show.ratings).length : 0;
 	  };
 	}
+
+	ShowController.$inject = ['$rootScope', '$scope', '$routeParams', '$http', '$location', 'PlaybillsService']
+
+	module.exports = ShowController
 
 
 /***/ },

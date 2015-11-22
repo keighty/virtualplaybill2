@@ -1,4 +1,4 @@
-module.exports = function($scope, $filter, PlaybillsService){
+var DirectoryController = function($scope, $filter, PlaybillsService){
   PlaybillsService.list().then(function(data) {
     var sortedPlaybills = $filter('orderBy')(data, "title");
     $scope.glossary = glossary(sortedPlaybills);
@@ -29,3 +29,7 @@ module.exports = function($scope, $filter, PlaybillsService){
     return collection;
   };
 }
+
+DirectoryController.$inject = ['$scope', '$filter','PlaybillsService']
+
+module.exports = DirectoryController

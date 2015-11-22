@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "build": "webpack apps/app.js dist/bundle.js"
+    "build": "webpack && webpack --config webpack.config.min.js",
+    "serve-assets": "webpack-dev-server --progress --colors",
+    "webpack-watch": "webpack --progress --colors --watch"
   },
   "repository": {
     "type": "git",

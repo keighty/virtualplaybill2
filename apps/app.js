@@ -13,7 +13,7 @@ require('./service')
 require('./controller')
 require('./directive')
 
-app.run(function($rootScope, UserService, PlaybillsService) {
+app.run(['$rootScope', 'UserService', 'PlaybillsService', function($rootScope, UserService, PlaybillsService) {
   UserService.current_user().then(function(data) {
     $rootScope.user = data;
   }).catch(function(err) {
@@ -25,4 +25,4 @@ app.run(function($rootScope, UserService, PlaybillsService) {
   });
 
   $rootScope.show = {};
-});
+}])

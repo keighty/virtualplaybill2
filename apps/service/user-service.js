@@ -1,4 +1,4 @@
-module.exports = function($http) {
+var UserService = function($http) {
   return {
     current_user: function() {
       return $http.get('/user/profile').then(function(result) {
@@ -7,3 +7,7 @@ module.exports = function($http) {
     }
   };
 }
+
+UserService.$inject = ['$http']
+
+module.exports = UserService

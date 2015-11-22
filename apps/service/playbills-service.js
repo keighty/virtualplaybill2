@@ -1,4 +1,4 @@
-module.exports = function($http) {
+var PlaybillsService = function($http) {
   return {
     list: function() {
       return $http.get('/shows').then(function(result) {
@@ -32,3 +32,7 @@ module.exports = function($http) {
     }
   };
 }
+
+PlaybillsService.$inject = ['$http']
+
+module.exports = PlaybillsService

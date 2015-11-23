@@ -13,8 +13,6 @@ var ShowController = function ($rootScope, $scope, $routeParams, $http, $locatio
     $rootScope.show = { cast: [], rating: 0, ratings: {} }
   }
 
-  
-
   $scope.addPlaybill = function (show) {
     PlaybillsService.newShow(show).then(function(data) {
       $location.path('/')

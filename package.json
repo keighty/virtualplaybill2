@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "postinstall": "webpack --config webpack.config.min.js",
-    "build": "webpack && webpack --config webpack.config.min.js",
+    "build": "rm dist/*; webpack && webpack --config webpack.config.min.js",
     "serve-assets": "webpack-dev-server --progress --colors",
     "webpack-watch": "webpack --progress --colors --watch"
   },

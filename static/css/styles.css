@@ -163,3 +163,22 @@ ul.rating {
     width: 1500px;
   }
 }
+
+@media (max-width: 1200px) {
+  .cast-list {
+    clear: both;
+    padding-top: 1.5em;
+  }
+  .cast-container {
+    max-height: 300px;
+    overflow: scroll;
+    border-right: solid lightgrey;
+    padding-right: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  legend {
+    padding-top: 1em;
+  }
+}

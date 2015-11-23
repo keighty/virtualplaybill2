@@ -3,7 +3,10 @@
   <legend>Show Details
     <div class="btn-group-xs edit-control">
       <button ng-hide="editing" type="submit" class="btn btn-primary" ng-click="addPlaybill(show)">Save show</button>
-      <button ng-show="editing" type="submit" class="btn btn-primary" ng-click="editPlaybill(show)">Save changes</button>
+      <div class="btn-group btn-group-xs" role="group" ng-show="editing" >
+        <button class="btn btn-small btn-warning edit-buttons" ng-click="cancelEdit()">Cancel</button>
+        <button class="btn btn-small btn-success edit-buttons" ng-click="editPlaybill(show)">Save changes</button>
+      </div>
     </div>
   </legend>
 

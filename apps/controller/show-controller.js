@@ -22,6 +22,7 @@ var ShowController = function($rootScope, $scope, $routeParams, $http, $location
   $scope.toggleEditing = function() {
     $scope.editing = !$scope.editing;
   };
+  $scope.cancelEdit = $scope.toggleEditing
 
   $scope.editPlaybill = function(show) {
     show.rating = averageRating(show.ratings);

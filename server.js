@@ -1,6 +1,7 @@
 /************
 ** Libraries
 *************/
+var nr = require('newrelic')
 var express = require('express');
 var expressSession = require('express-session');
 var http = require('http');

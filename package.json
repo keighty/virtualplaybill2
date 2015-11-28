@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "postinstall": "webpack --config webpack.config.min.js",
-    "build": "webpack && webpack --config webpack.config.min.js",
+    "postinstall": "rm dist/*; webpack --config webpack.config.min.js; node scripts/replace-script-tag.js",
+    "build": "rm dist/*; webpack --config webpack.config.min.js; node scripts/replace-script-tag.js",
     "serve-assets": "webpack-dev-server --progress --colors",
     "webpack-watch": "webpack --progress --colors --watch"
   },
@@ -46,9 +46,9 @@
     "mongoose": "^4.2.3",
     "node-uuid": "^1.4.3",
     "serve-favicon": "2.3.0",
+    "shelljs": "0.5.3",
     "underscore": "1.7.0",
     "webpack": "1.12.8"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }

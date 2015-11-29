@@ -41,6 +41,7 @@ var User = require('./models/users_model.js');
 ** App options
 **************/
 var app = express();
+app.locals.nr = nr;
 app.engine('.html', require('ejs').__express);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'html');

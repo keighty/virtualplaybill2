@@ -32,14 +32,13 @@ module.exports = function(app) {
   app.get('/show_count', Show.count);
   app.get('/showData/:id', Show.showData);
 
-  app.post('/new_show',  Show.newShow);
-  app.post('/edit_show',  Show.editShow);
-  app.post('/delete_show',  Show.deleteShow);
+  app.post('/new_show', Show.newShow);
+  app.post('/edit_show', Show.editShow);
+  app.post('/delete_show', Show.deleteShow);
 
   app.get('/sign_s3', Show.signS3);
 
   app.use('/*', function(req, res){
     res.sendFile(__dirname + '/views/layout.html');
   });
-
 };

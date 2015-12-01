@@ -58,6 +58,9 @@ app.use('/lib', express.static('./lib', {maxAge: '30 days'}));
 app.use('/dist', express.static('./dist'));
 app.use(favicon('./static/images/favicon.ico'))
 
+/*********
+** Session
+**********/
 var expressSession = expressSession({
   genid: function(req) {
     return uuid.v1()
@@ -77,7 +80,6 @@ require('./routes.js')(app);
 /************
 ** App server
 *************/
-
 conn.once('open', function() {
   var port = process.env.PORT || 3030;
   app.listen(port);

@@ -1,35 +1,56 @@
-var DirectoryController = function($scope, $filter, PlaybillsService){
-  PlaybillsService.list().then(function(data) {
-    var sortedPlaybills = $filter('orderBy')(data, "title");
-    $scope.glossary = glossary(sortedPlaybills);
-  });
+var DirectoryController = function ($scope, $route, $filter, PlaybillsService){
+  var sortedPlaybills
+  $scope.ordering = 'title'
 
-  var glossary = function glossary(data) {
-    var collection = {'#': []};
-
-    data.forEach(function (item) {
-      var firstChar = item.title.charAt(0).toUpperCase();
-
-      if(firstChar.match(/\d/)) {
-        collection['#'].push(item);
-      } else {
-        stringTitle(firstChar, item);
-      }
-
-    });
-
-    function stringTitle(char, item) {
-      if(collection[char]) {
-        collection[char].push(item);
-      } else {
-        collection[char] = [item];
-      }
+  $scope.$watch('ordering', function(newVal, oldVal) {
+    if (newVal !== oldVal) {
+      $scope.glossary = glossary(sortedPlaybills, newVal)
     }
+  })
 
-    return collection;
-  };
+  PlaybillsService.list().then(function (data) {
+    sortedPlaybills = $filter('orderBy')(data, $scope.ordering)
+    $scope.glossary = glossary(sortedPlaybills, $scope.ordering)
+  })
 }
 
-DirectoryController.$inject = ['$scope', '$filter','PlaybillsService']
+function glossary (data, sortBy) {
+  CollectionBuilder.initializeCollection(sortBy)
+  data.forEach(function (item) { CollectionBuilder.add(item) })
+  return CollectionBuilder.collection
+}
+
+CollectionBuilder = {
+  initializeCollection: function (sortBy) {
+    this.collection = {}
+    this.sortBy = sortBy
+  },
+  add: function (item) {
+    if (this.isDigit(item)) { this.handleDigit(item) }
+    else { this.handleString(item) }
+  },
+  isDigit: function (item) {
+    return this.firstChar(item).match(/\d/)
+  },
+  firstChar: function (item) {
+    return item[this.sortBy] && item[this.sortBy].charAt(0).toUpperCase() || 'unknown'
+  },
+  handleDigit: function (item) {
+    if (this.collection['#']) this.collection['#'].push(item)
+    else this.collection['#'] = [item]
+  },
+  handleString: function (item) {
+    var temp
+    if (this.sortBy === 'title') {
+      temp = this.firstChar(item)
+    } else {
+      temp = item[this.sortBy]
+    }
+    if (this.collection[temp]) { this.collection[temp].push(item) }
+    else { this.collection[temp] = [item] }
+  }
+}
+
+DirectoryController.$inject = ['$scope', '$route', '$filter','PlaybillsService']
 
 module.exports = DirectoryController

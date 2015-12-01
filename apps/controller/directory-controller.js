@@ -6,21 +6,30 @@ var DirectoryController = function ($scope, $filter, PlaybillsService){
 }
 
 function glossary (data) {
-  var collection = {'#': []}
+  data.forEach(function (item) { CollectionBuilder.add(item) })
+  return CollectionBuilder.collection
+}
 
-  data.forEach(function (item) {
-    var firstChar = item.title.charAt(0).toUpperCase()
-
-    if (firstChar.match(/\d/)) { collection['#'].push(item) }
-    else { stringTitle(firstChar, item) }
-  })
-
-  function stringTitle (char, item) {
-    if (collection[char]) { collection[char].push(item) }
-    else { collection[char] = [item] }
+CollectionBuilder = {
+  collection: {'#': []},
+  add: function (item) {
+    if (this.isDigit(item)) { this.handleDigit(item) }
+    else { this.handleString(item) }
+  },
+  isDigit: function (item) {
+    return this.firstChar(item).match(/\d/)
+  },
+  firstChar: function (item) {
+    return item.title && item.title.charAt(0).toUpperCase() || 'unknown'
+  },
+  handleDigit: function (item) {
+    this.collection['#'].push(item)
+  },
+  handleString: function (item) {
+    var temp = this.firstChar(item)
+    if (this.collection[temp]) { this.collection[temp].push(item) }
+    else { this.collection[temp] = [item] }
   }
-
-  return collection
 }
 
 DirectoryController.$inject = ['$scope', '$filter','PlaybillsService']

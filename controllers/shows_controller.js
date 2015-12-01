@@ -34,7 +34,14 @@ exports.showData = function(req, res) {
 
 exports.newShow = function(req, res, next) {
   var showAttributes = req.body;
-  var show = _.extend(_.pick(showAttributes, 'url', 'title', 'company', 'author', 'synopsis', 'director', 'music', 'choreographer','showDate', 'imageUrl', 'cast', 'rating', 'ratings'), {
+  var show = _.extend(_.pick(
+        showAttributes,
+        'url', 'title', 'company', 'author',
+        'synopsis', 'director', 'music',
+        'choreographer','showDate', 'imageUrl',
+        'cast', 'rating', 'ratings', 'venue'
+      ),
+    {
       submitted: new Date().getTime(),
       commentsCount: 0
     });

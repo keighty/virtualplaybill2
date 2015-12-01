@@ -15,7 +15,8 @@ var showSchema = mongoose.Schema({
   submitted : Number,
   cast : { type : Object , "default" : {} },
   rating: Number,
-  ratings: {type : Object, "default" : {} }
+  ratings: {type : Object, "default" : {} },
+  venue: String
 });
 
 var Show = mongoose.model('Show', showSchema, 'shows');

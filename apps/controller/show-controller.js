@@ -42,9 +42,12 @@ var ShowController = function ($rootScope, $scope, $routeParams, $http, $locatio
   }
 
   $scope.deleteShow = function (show) {
-    PlaybillsService.deleteShow(show).then(function(data) {
-      $location.path('/')
-    })
+    var confirmed = window.confirm("Are you sure you want to delete this show?")
+    if(confirmed) {
+      PlaybillsService.deleteShow(show).then(function(data) {
+        $location.path('/')
+      })
+    }
   }
 
   $scope.ratingsCount = function () {

@@ -1,10 +1,9 @@
 <button data-ng-click="ordering='title'">Title</button>
 <button data-ng-click="ordering='company'">Company</button>
 
-
   <div ng-repeat="(category, shows) in glossary">
-    <div class="col-lg-2 col-md-3 col-sm-5 col-xs-12">
-      <div ng-if="$index % 4 == 0" class="clearfix"></div>
+    <div ng-if="$index % 6 === 0" class="clearfix"></div>
+    <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 directory">
       <h2>{{category}}</h2>
       <div ng-repeat="show in shows track by $index" class="directory-title">
         <div><a href="/show/{{show._id}}">{{show.title}}</a></div>

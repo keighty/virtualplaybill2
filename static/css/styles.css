@@ -155,6 +155,11 @@ ul.rating {
   padding-bottom: 5px;
 }
 
+.directory {
+  min-height: 250px;
+  overflow: scroll;
+}
+
 /*
   Media Queries
 */
@@ -174,6 +179,14 @@ ul.rating {
     overflow: scroll;
     border-right: solid lightgrey;
     padding-right: 10px;
+  }
+}
+
+@media (max-width: 800px) {
+  .directory {
+    max-height: 200px;
+    overflow: scroll;
+    border-bottom: solid lightgrey;
   }
 }
 

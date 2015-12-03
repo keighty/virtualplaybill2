@@ -26,7 +26,8 @@
     "pagination": "./lib/dirPagination.js",
     "disqus": "./lib/dirDisqus.js",
     "jquery": "./lib/jquery-1.11.1.min.js",
-    "s3upload": "./lib/s3upload.js"
+    "s3upload": "./lib/s3upload.js",
+    "ejs": "./node_modules/ejs/ejs.min.js"
   },
   "dependencies": {
     "angular-route": "1.3.8",

@@ -5,7 +5,7 @@ var DirectoryController = function ($scope, $route, $filter, PlaybillsService){
   $scope.$watch('ordering', function(newVal, oldVal) {
     if (newVal !== oldVal) {
       $scope.glossary = glossary(sortedPlaybills, newVal)
-      newrelic.addPageAction("directory", {ordering: $scope.ordering})
+      if (newrelic) newrelic.addPageAction("directory", {ordering: $scope.ordering})
     }
   })
 

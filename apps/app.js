@@ -1,4 +1,5 @@
 var angular = require('angular')
+require('ejs')
 require('angular-route')
 require('s3upload')
 require('pagination')

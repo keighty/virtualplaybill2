@@ -21,6 +21,7 @@ function glossary (data, sortBy) {
   return newCollection.collection
 }
 
+// You Don't Know JS: this and Object Prototypes (Ch5)
 function Collection (sortBy) {
   this.collection = {}
   this.sortBy = sortBy

@@ -16,40 +16,43 @@ var DirectoryController = function ($scope, $route, $filter, PlaybillsService){
 }
 
 function glossary (data, sortBy) {
-  CollectionBuilder.initializeCollection(sortBy)
-  data.forEach(function (item) { CollectionBuilder.add(item) })
-  return CollectionBuilder.collection
+  var newCollection = new Collection(sortBy)
+  data.forEach(function (item) { newCollection.add(item) })
+  return newCollection.collection
 }
 
-CollectionBuilder = {
-  initializeCollection: function (sortBy) {
-    this.collection = {}
-    this.sortBy = sortBy
-  },
-  add: function (item) {
-    if (this.isDigit(item)) { this.handleDigit(item) }
-    else { this.handleString(item) }
-  },
-  isDigit: function (item) {
-    return this.firstChar(item).match(/\d/)
-  },
-  firstChar: function (item) {
-    return item[this.sortBy] && item[this.sortBy].charAt(0).toUpperCase() || 'unknown'
-  },
-  handleDigit: function (item) {
-    if (this.collection['#']) this.collection['#'].push(item)
-    else this.collection['#'] = [item]
-  },
-  handleString: function (item) {
-    var temp
-    if (this.sortBy === 'title') {
-      temp = this.firstChar(item)
-    } else {
-      temp = item[this.sortBy]
-    }
-    if (this.collection[temp]) { this.collection[temp].push(item) }
-    else { this.collection[temp] = [item] }
+function Collection (sortBy) {
+  this.collection = {}
+  this.sortBy = sortBy
+}
+
+Collection.prototype.add = function (item) {
+  if (this.isDigit(item)) { this.handleDigit(item) }
+  else { this.handleString(item) }
+}
+
+Collection.prototype.isDigit = function (item) {
+  return this.firstChar(item).match(/\d/)
+}
+
+Collection.prototype.firstChar = function (item) {
+  return item[this.sortBy] && item[this.sortBy].charAt(0).toUpperCase() || 'unknown'
+}
+
+Collection.prototype.handleDigit = function (item) {
+  if (this.collection['#']) this.collection['#'].push(item)
+  else this.collection['#'] = [item]
+}
+
+Collection.prototype.handleString = function (item) {
+  var temp
+  if (this.sortBy === 'title') {
+    temp = this.firstChar(item)
+  } else {
+    temp = item[this.sortBy]
   }
+  if (this.collection[temp]) { this.collection[temp].push(item) }
+  else { this.collection[temp] = [item] }
 }
 
 DirectoryController.$inject = ['$scope', '$route', '$filter','PlaybillsService']

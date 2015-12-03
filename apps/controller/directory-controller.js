@@ -1,11 +1,12 @@
-var DirectoryController = function ($scope, $route, $filter, PlaybillsService){
+var DirectoryController = function ($scope, $route, $location, $filter, PlaybillsService){
   var sortedPlaybills
-  $scope.ordering = 'title'
+  $scope.ordering = $location.hash() || 'title'
 
   $scope.$watch('ordering', function(newVal, oldVal) {
     if (newVal !== oldVal) {
       $scope.glossary = glossary(sortedPlaybills, newVal)
-      newrelic.addPageAction("directory", {ordering: $scope.ordering})
+      if (newrelic) newrelic.addPageAction("directory", {ordering: $scope.ordering})
+      $location.hash($scope.ordering)
     }
   })
 
@@ -56,6 +57,6 @@ Collection.prototype.handleString = function (item) {
   else { this.collection[temp] = [item] }
 }
 
-DirectoryController.$inject = ['$scope', '$route', '$filter','PlaybillsService']
+DirectoryController.$inject = ['$scope', '$route', '$location', '$filter','PlaybillsService']
 
 module.exports = DirectoryController

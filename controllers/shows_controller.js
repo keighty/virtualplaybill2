@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var nr = require('newrelic')
 var _ = require('underscore');
 var Show = require('../models/shows_model.js');
 
@@ -45,6 +46,7 @@ exports.newShow = function(req, res, next) {
       submitted: new Date().getTime(),
       commentsCount: 0
     });
+  nr.recordCustomEvent('NewShow', show)
 
   var newShow = new Show(show);
   newShow.save(function(err, doc){

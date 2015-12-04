@@ -1,5 +1,5 @@
-<button data-ng-click="ordering='title'">Title</button>
-<button data-ng-click="ordering='company'">Company</button>
+<button ng-class="{ active : ordering == 'title' }" type="button" class="btn btn-default" data-ng-click="ordering='title'">Title</button>
+<button ng-class="{ active : ordering == 'company' }" type="button" class="btn btn-default" data-ng-click="ordering='company'">Company</button>
 
   <div ng-repeat="(category, shows) in glossary">
     <div ng-if="$index % 6 === 0" class="clearfix"></div>

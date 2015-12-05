@@ -43,7 +43,12 @@ var CalendarDirective = function($filter, PlaybillsService) {
           },
           weekStartOnMonday: false,
           highlight: 'now',
-          legend: [1, 2, 3]
+          legend: [1, 2, 3],
+          itemName: ["show", "shows"],
+          subDomainTitleFormat: {
+            empty: "No shows on {date}",
+            filled: "We saw {count} {name} on {date}"
+          },
         })
       })
     }

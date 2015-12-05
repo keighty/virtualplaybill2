@@ -10,9 +10,23 @@ var DirectoryController = function ($scope, $route, $location, $filter, Playbill
     }
   })
 
+  var startTime = Date.now()
+
   PlaybillsService.list().then(function (data) {
     sortedPlaybills = $filter('orderBy')(data, $scope.ordering)
     $scope.glossary = glossary(sortedPlaybills, $scope.ordering)
+
+    // add some nr instrumentation
+    if (typeof(newrelic) !== "undefined") {
+      var obj = {
+        name: 'new Glossary',
+        start: startTime,
+        end: Date.now(),
+        origin: 'Fetch full list',
+        type: 'PlaybillsService.list()'
+      }
+      newrelic.addToTrace(obj)
+    }
   })
 }
 

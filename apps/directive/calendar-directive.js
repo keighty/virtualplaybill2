@@ -2,7 +2,33 @@ var CalendarDirective = function($filter, PlaybillsService) {
   return {
     restrict: "E",
     templateUrl: "/views/calendar-heatmap.html",
+    scope: {
+      year: '=year'
+    },
     link: function($scope, element, attrs) {
+      var calendarOptions = {
+        itemSelector: element[0],
+        start: new Date($scope.year, 0),
+        end: new Date($scope.year, 11),
+        cellSize: 15,
+        cellRadius: 2,
+        domain: "month",
+        subDomain: "x_day",
+        displayLegend: false,
+        verticalOrientation: true,
+        label: {
+          position: 'top'
+        },
+        weekStartOnMonday: false,
+        highlight: 'now',
+        legend: [1, 2, 3],
+        itemName: ["show", "shows"],
+        subDomainTitleFormat: {
+          empty: "No shows on {date}",
+          filled: "We saw {count} {name} on {date}"
+        },
+      }
+
       PlaybillsService.list().then(function (shows) {
         return $filter('orderBy')(shows, 'showDate')
       })
@@ -25,31 +51,12 @@ var CalendarDirective = function($filter, PlaybillsService) {
         return dates
       })
       .then(function (dates) {
-        var oneYearOnly = dates[2015]
+        console.log($scope.year)
+        var oneYearOnly = dates[$scope.year]
+        console.log(oneYearOnly)
         var cal = new CalHeatMap()
-        cal.init({
-          itemSelector: element[0],
-          data: oneYearOnly,
-          start: new Date(2015, 0),
-          end: new Date(2015, 11),
-          cellSize: 15,
-          cellRadius: 2,
-          domain: "month",
-          subDomain: "x_day",
-          displayLegend: false,
-          verticalOrientation: true,
-          label: {
-            position: 'top'
-          },
-          weekStartOnMonday: false,
-          highlight: 'now',
-          legend: [1, 2, 3],
-          itemName: ["show", "shows"],
-          subDomainTitleFormat: {
-            empty: "No shows on {date}",
-            filled: "We saw {count} {name} on {date}"
-          },
-        })
+        calendarOptions.data = oneYearOnly
+        cal.init(calendarOptions)
       })
     }
   };

@@ -4,6 +4,7 @@
   <link rel="stylesheet" href="/static/css/bootstrap.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="stylesheet" href="/static/css/cal-heatmap.css">
   <%- nr.getBrowserTimingHeader() %>
 </head>
 <body ng-app="playbillApp">
@@ -32,6 +33,7 @@
         <ul class="nav navbar-nav">
           <li ng-show="user.admin"><a href="/add_show">Add show</a></li>
           <li><a href="/directory">Directory</a></li>
+          <li><a href="/calendar">Calendar</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href=""><span class="label label-info playbill-count" ng-show="user">{{count}} shows</span></a></li>
@@ -62,7 +64,7 @@
 
 <script src="/lib/jquery-1.11.1.min.js"></script>
 <script src="/lib/bootstrap.min.js"></script>
-<script src="/dist/bundle736d62b58f21a7f4ccc2.min.js"></script>
+<script src="/dist/bundle1c2633c482161852c1c9.min.js"></script>
 </body>
 </html>
 

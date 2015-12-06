@@ -12,6 +12,9 @@ var RouteConfig = function($routeProvider, $locationProvider) {
       templateUrl: '/views/show_new.html',
       controller: 'ShowController'
     }).
+    when('/calendar', {
+      templateUrl: '/views/calendar.html',
+    }).
     when('/directory', {
       templateUrl: '/views/directory.html',
       controller: 'DirectoryController'

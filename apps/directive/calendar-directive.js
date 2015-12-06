@@ -8,8 +8,6 @@ var CalendarDirective = function($filter, PlaybillsService) {
     link: function($scope, element, attrs) {
       var calendarOptions = {
         itemSelector: element[0],
-        start: new Date($scope.year, 0),
-        end: new Date($scope.year, 11),
         cellSize: 15,
         cellRadius: 2,
         domain: "month",
@@ -25,7 +23,7 @@ var CalendarDirective = function($filter, PlaybillsService) {
         itemName: ["show", "shows"],
         subDomainTitleFormat: {
           empty: "No shows on {date}",
-          filled: "We saw {count} {name} on {date}"
+          filled: "{count} {name} on {date}"
         },
       }
 
@@ -51,11 +49,11 @@ var CalendarDirective = function($filter, PlaybillsService) {
         return dates
       })
       .then(function (dates) {
-        console.log($scope.year)
-        var oneYearOnly = dates[$scope.year]
-        console.log(oneYearOnly)
+        calendarOptions.data = dates[$scope.year]
+        calendarOptions.start = new Date($scope.year, 0)
+        calendarOptions.end = new Date($scope.year, 11)
+
         var cal = new CalHeatMap()
-        calendarOptions.data = oneYearOnly
         cal.init(calendarOptions)
       })
     }

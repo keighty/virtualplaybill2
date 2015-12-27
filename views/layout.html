@@ -23,7 +23,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-collapse-1">
       <div>
-        <ul class="nav navbar-nav">
+        <ul ng-show="user" class="nav navbar-nav">
           <li ng-show="user.admin"><a href="/add_show">Add show</a></li>
           <li><a href="/directory">Directory</a></li>
         </ul>

@@ -1,3 +1,11 @@
+<div>
+  <form role="search">
+    <div class="form-group" ng-show="user">
+      <input type="text" class="form-control search" placeholder="Search shows, company, cast, etc" ng-model="search">
+    </div>
+  </form>
+</div>
+
 <dir-pagination-controls></dir-pagination-controls>
   <div dir-paginate="playbill in playbills | itemsPerPage:20 |filter:search">
     <div ng-if="$index % 4 == 0" class="clearfix"></div>

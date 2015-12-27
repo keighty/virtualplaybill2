@@ -6,6 +6,8 @@ var CalendarDirective = function($filter, PlaybillsService) {
       year: '=year'
     },
     link: function($scope, element, attrs) {
+      angular.element('.loading-gif').removeClass('hidden')
+
       var calendarOptions = {
         itemSelector: element[0],
         cellSize: 15,
@@ -55,6 +57,7 @@ var CalendarDirective = function($filter, PlaybillsService) {
 
         var cal = new CalHeatMap()
         cal.init(calendarOptions)
+        angular.element('.loading-gif').addClass('hidden')
       })
     }
   };

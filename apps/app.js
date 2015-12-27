@@ -14,6 +14,7 @@ require('./controller')
 require('./directive')
 
 app.run(['$rootScope', 'UserService', 'PlaybillsService', function($rootScope, UserService, PlaybillsService) {
+  angular.element('.loading-gif').addClass('hidden')
   UserService.current_user().then(function(data) {
     $rootScope.user = data;
   }).catch(function(err) {

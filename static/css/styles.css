@@ -9,6 +9,14 @@
 .yellow-green { color: #c0b000}
 
 /*
+  Spinner
+*/
+img.loading-gif {
+  display: block;
+  margin: auto;
+}
+
+/*
   Playbill
 */
 .playbill-unit {

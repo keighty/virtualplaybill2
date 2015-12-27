@@ -23,17 +23,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-collapse-1">
       <div>
-        <form class="navbar-form navbar-left" role="search">
-          <div class="form-group" ng-show="user">
-            <input type="text" class="form-control search" placeholder="Search shows, company, cast, etc" ng-model="search">
-          </div>
-        </form>
-      </div>
-      <div>
-        <ul class="nav navbar-nav">
+        <ul ng-show="user" class="nav navbar-nav">
           <li ng-show="user.admin"><a href="/add_show">Add show</a></li>
           <li><a href="/directory">Directory</a></li>
-          <li><a href="/calendar">Calendar</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href=""><span class="label label-info playbill-count" ng-show="user">{{count}} shows</span></a></li>
@@ -46,6 +38,7 @@
             <ul class="dropdown-menu" role="menu">
               <li><a href="/logout">Logout</a></li>
               <li><a href="/user">Profile</a></li>
+              <li><a href="/calendar">Calendar</a></li>
             </ul>
           </li>
         </ul>
@@ -59,7 +52,7 @@
   <div ng-view></div>
 
   <footer class="pull-right">
-    <p>© 2015 Katie Leonard · <a href="mailto:keighty.leonard@gmail.com?Subject=Hello%20from%20Virtual%20Playbill">Contact</a></p>
+    <p>© 2016 Katie Leonard · <a href="mailto:keighty.leonard@gmail.com?Subject=Hello%20from%20Virtual%20Playbill">Contact</a></p>
   </footer>
 </div>
 

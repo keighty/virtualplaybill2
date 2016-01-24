@@ -44,7 +44,7 @@
     "express-session": "1.12.1",
     "mongodb-uri": "0.9.7",
     "mongoose": "^4.2.3",
-    "newrelic": "1.24.0",
+    "newrelic": "1.25.0",
     "node-uuid": "^1.4.3",
     "serve-favicon": "2.3.0",
     "shelljs": "0.5.3",

@@ -13,7 +13,13 @@ require('./service')
 require('./controller')
 require('./directive')
 
+
 app.run(['$rootScope', 'UserService', 'PlaybillsService', function($rootScope, UserService, PlaybillsService) {
+
+  $rootScope.$on('$routeChangeStart', function (evt, nextRoute) {
+    newrelic.setInteractionName(nextRoute.$$route.originalPath)
+  })
+
   angular.element('.loading-gif').addClass('hidden')
   UserService.current_user().then(function(data) {
     $rootScope.user = data;

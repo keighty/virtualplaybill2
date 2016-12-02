@@ -17,7 +17,7 @@ require('./directive')
 app.run(['$rootScope', 'UserService', 'PlaybillsService', function($rootScope, UserService, PlaybillsService) {
 
   $rootScope.$on('$routeChangeStart', function (evt, nextRoute) {
-    newrelic.setInteractionName(nextRoute.$$route.originalPath)
+    newrelic && newrelic.interaction().setName(nextRoute.$$route.originalPath)
   })
 
   angular.element('.loading-gif').addClass('hidden')

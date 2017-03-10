@@ -45,7 +45,7 @@ exports.newShow = function(req, res, next) {
       submitted: new Date().getTime(),
       commentsCount: 0
     });
-  nr.recordCustomEvent('NewShow', show)
+  // nr.recordCustomEvent('NewShow', show)
 
   var newShow = new Show(show);
   newShow.save(function(err, doc){

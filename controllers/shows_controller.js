@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var nr = require('newrelic')
 var _ = require('underscore');
 var Show = require('../models/shows_model.js');
 

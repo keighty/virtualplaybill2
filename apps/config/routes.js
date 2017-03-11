@@ -14,6 +14,7 @@ var RouteConfig = function($routeProvider, $locationProvider) {
     }).
     when('/calendar', {
       templateUrl: '/views/calendar.html',
+      controller: 'CalendarController'
     }).
     when('/directory', {
       templateUrl: '/views/directory.html',

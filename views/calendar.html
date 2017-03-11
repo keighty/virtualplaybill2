@@ -1,23 +1,15 @@
 <script type="text/javascript" src='/lib/d3.js'></script>
 <script type="text/javascript" src='/lib/cal-heatmap.js'></script>
 
-<div class='row'>
-  <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
-    <h2>2014</h2>
-    <calendar year='2014'></calendar>
-  </div>
-  <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
-    <h2>2015</h2>
-    <calendar year='2015'></calendar>
-  </div>
-  <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
-    <h2>2016</h2>
-    <calendar year='2016'></calendar>
-  </div>
-  <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
-    <h2>2017</h2>
-    <calendar year='2017'></calendar>
-  </div>
-</div>
+<p>{{ $scope }}</p>
 
+<div class='row'>
+  <div data-ng-repeat="year in dates track by $index">
+    <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+      <h2>{{year}}</h2>
+      <calendar
+        year="year" >
+      </calendar>
+    </div>
+  </div>
 </div>

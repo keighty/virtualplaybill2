@@ -39,13 +39,12 @@ exports.newShow = function(req, res, next) {
         'url', 'title', 'company', 'author',
         'synopsis', 'director', 'music',
         'choreographer','showDate', 'imageUrl',
-        'cast', 'rating', 'ratings', 'venue'
+        'cast', 'rating', 'ratings', 'venue', 'lyrics', 'scenery'
       ),
     {
       submitted: new Date().getTime(),
       commentsCount: 0
     });
-  // nr.recordCustomEvent('NewShow', show)
 
   var newShow = new Show(show);
   newShow.save(function(err, doc){

@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+
 var _ = require('underscore');
 var Show = require('../models/shows_model.js');
 

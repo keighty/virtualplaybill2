@@ -18,6 +18,8 @@ var favicon = require('serve-favicon')
 ** Database connection
 *********************/
 var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+
 var mongoUri = process.env.MONGOLAB_URI ||
   process.env.MONGOHQ_URL ||
   'mongodb://localhost/virtual_playbill';

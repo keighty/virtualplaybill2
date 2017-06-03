@@ -1,6 +1,7 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 
-var showSchema = mongoose.Schema({
+const showSchema = mongoose.Schema({
   title: String,
   company: String,
   author: String,
@@ -18,8 +19,9 @@ var showSchema = mongoose.Schema({
   rating: Number,
   ratings: {type: Object, "default": {} },
   venue: String,
-  scenery: String
+  scenery: String,
+  review: String,
 });
 
-var Show = mongoose.model('Show', showSchema, 'shows');
+const Show = mongoose.model('Show', showSchema, 'shows');
 module.exports = Show;

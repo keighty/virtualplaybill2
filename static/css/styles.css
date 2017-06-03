@@ -99,6 +99,14 @@ p.synopsis {
 .edit-control { float: right; }
 .edit-buttons { width: 100px }
 
+.existing-file {
+  font-size: x-small;
+  padding-top: 1em;
+  padding-left: 1em;
+  max-width: 30em;
+  word-wrap: break-word;
+}
+
 /*
   Calendar dropdown
 */

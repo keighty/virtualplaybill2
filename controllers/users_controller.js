@@ -1,5 +1,7 @@
 var crypto = require('crypto');
 var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+
 var User = mongoose.model('User');
 
 function encryptPw(pw) {

@@ -1,5 +1,6 @@
 <div class="input-group">
   <span class="input-group-addon">Image<br /><span class="note-text">250p x 300p</span></span>
+  <p class="existing-file" ng-show="show.imageUrl">{{show.imageUrl}}</p>
   <input type="file" class="form-control btn" id="image" onchange="angular.element(this).scope().s3Upload(this)">
   <p id="status"></p>
 </div>

@@ -3,6 +3,7 @@ mongoose.Promise = global.Promise;
 
 var _ = require('underscore');
 var Show = require('../models/shows_model.js');
+var { keys } = require('../models/show_attributes.js');
 
 var aws = require('aws-sdk');
 var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;
@@ -35,13 +36,10 @@ exports.showData = function(req, res) {
 };
 
 exports.newShow = function(req, res, next) {
-  var showAttributes = req.body;
+  var newShowAttributes = req.body;
   var show = _.extend(_.pick(
-        showAttributes,
-        'url', 'title', 'company', 'author',
-        'synopsis', 'director', 'music',
-        'choreographer','showDate', 'imageUrl',
-        'cast', 'rating', 'ratings', 'venue', 'lyrics', 'scenery'
+        newShowAttributes,
+        keys
       ),
     {
       submitted: new Date().getTime(),

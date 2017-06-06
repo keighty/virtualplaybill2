@@ -3,48 +3,38 @@ var CollectionService = function () {
 
   return {
     group: function (collection) {
-      this.collection = collection
+      this.collection = new Collection(collection)
       return this
     },
     by: function (category) {
       switch (category) {
         case 'title':
-          return orderByTitle(this.collection)
+          return this.collection.orderByTitle()
         case 'company':
-          return orderByCompany(this.collection)
+          return this.collection.orderByCompany()
         default:
-          return orderByTitle(this.collection)
+          return this.collection.orderByTitle()
       }
     }
   }
+}
 
-  function orderByTitle (collection) {
-    var newCollection =  collection.reduce(function (acc, item) {
-      var first = firstChar(item.title)
-      if (typeof(acc[first]) === 'undefined') {
-        acc[first] = []
-      }
-      acc[first].push(item)
-      return acc
-    }, {})
+var Collection = function (data) {
+  this.collection = data || {}
+}
 
-    delete newCollection.undefined
-    return newCollection
-  }
+Collection.prototype.orderByTitle = function () {
+  var newCollection =  this.collection.reduce(function (acc, item) {
+    var first = firstChar(item.title)
+    if (typeof(acc[first]) === 'undefined') {
+      acc[first] = []
+    }
+    acc[first].push(item)
+    return acc
+  }, {})
 
-  function orderByCompany (collection) {
-    var newCollection =  collection.reduce(function (acc, item) {
-      var first = item.company
-      if (typeof(acc[first]) === 'undefined') {
-        acc[first] = []
-      }
-      acc[first].push(item)
-      return acc
-    }, {})
-
-    delete newCollection.undefined
-    return newCollection
-  }
+  delete newCollection.undefined
+  return newCollection
 
   function firstChar (str) {
     if (!str) { return }
@@ -59,6 +49,20 @@ var CollectionService = function () {
         return firstChar(str.substring(1))
     }
   }
+}
+
+Collection.prototype.orderByCompany = function () {
+  var newCollection =  this.collection.reduce(function (acc, item) {
+    var first = item.company
+    if (typeof(acc[first]) === 'undefined') {
+      acc[first] = []
+    }
+    acc[first].push(item)
+    return acc
+  }, {})
+
+  delete newCollection.undefined
+  return newCollection
 }
 
 module.exports = CollectionService

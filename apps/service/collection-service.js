@@ -7,13 +7,34 @@ var CollectionService = function () {
       return this
     },
     by: function (category) {
-      return orderByTitle(this.collection)
+      switch (category) {
+        case 'title':
+          return orderByTitle(this.collection)
+        case 'company':
+          return orderByCompany(this.collection)
+        default:
+          return orderByTitle(this.collection)
+      }
     }
   }
 
   function orderByTitle (collection) {
     var newCollection =  collection.reduce(function (acc, item) {
       var first = firstChar(item.title)
+      if (typeof(acc[first]) === 'undefined') {
+        acc[first] = []
+      }
+      acc[first].push(item)
+      return acc
+    }, {})
+
+    delete newCollection.undefined
+    return newCollection
+  }
+
+  function orderByCompany (collection) {
+    var newCollection =  collection.reduce(function (acc, item) {
+      var first = item.company
       if (typeof(acc[first]) === 'undefined') {
         acc[first] = []
       }

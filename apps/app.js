@@ -13,8 +13,7 @@ require('./service')
 require('./controller')
 require('./directive')
 
-
-app.run(['$rootScope', 'UserService', 'PlaybillsService', function($rootScope, UserService, PlaybillsService) {
+app.run(['$rootScope', 'UserService', 'PlaybillsService', 'CollectionService', function($rootScope, UserService, PlaybillsService, CollectionService) {
 
   $rootScope.$on('$routeChangeStart', function (evt, nextRoute) {
     newrelic && newrelic.interaction().setName(nextRoute.$$route.originalPath)

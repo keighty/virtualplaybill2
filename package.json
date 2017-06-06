@@ -8,7 +8,9 @@
     "postinstall": "rm dist/*; webpack --config webpack.config.min.js; node scripts/replace-script-tag.js",
     "build": "rm dist/*; webpack --config webpack.config.min.js; node scripts/replace-script-tag.js",
     "serve-assets": "webpack-dev-server --progress --colors",
-    "webpack-watch": "webpack --progress --colors --watch"
+    "webpack-watch": "webpack --progress --colors --watch",
+    "test": "./node_modules/mocha/bin/mocha --recursive",
+    "test-watch": "multi='mocha-osx-reporter=- dot=-' mocha --reporter mocha-multi --watch --recursive"
   },
   "repository": {
     "type": "git",
@@ -50,5 +52,9 @@
     "underscore": "1.7.0",
     "webpack": "1.12.8"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "mocha": "3.4.2",
+    "mocha-multi": "0.11.0",
+    "mocha-osx-reporter": "0.1.2"
+  }
 }

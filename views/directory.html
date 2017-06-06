@@ -1,7 +1,8 @@
 <button ng-class="{ active : ordering == 'title' }" type="button" class="btn btn-default" data-ng-click="ordering='title'">Title</button>
 <button ng-class="{ active : ordering == 'company' }" type="button" class="btn btn-default" data-ng-click="ordering='company'">Company</button>
+<button ng-class="{ active : ordering == 'actor' }" type="button" class="btn btn-default" data-ng-click="ordering='actor'">Actor</button>
 
-  <div ng-repeat="(category, shows) in glossary">
+  <div ng-if="['title', 'company'].includes(ordering)" ng-repeat="(category, shows) in glossary">
     <div ng-if="$index % 6 === 0" class="clearfix"></div>
     <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 directory">
       <h2>{{category}}</h2>
@@ -9,6 +10,21 @@
         <div><a href="/show/{{show._id}}">{{show.title}}</a></div>
       </div>
     </div>
+  </div>
+
+  <div ng-if="['actor'].includes(ordering)" ng-repeat="(category, actors) in glossary">
+    <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 directory">
+      <h2>{{category}}</h2>
+      <div class="directory-tooltip" ng-repeat="(actor, shows) in actors">
+        <h5 class="">{{actor}}</h5>
+        <div class="directory-tooltiptext">
+          <p ng-repeat="show in shows">
+            <a href="/show/{{show.id}}">{{show.title}}</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
   </div>
 
 </div>

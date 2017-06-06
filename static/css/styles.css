@@ -177,6 +177,31 @@ ul.rating {
 }
 
 /*
+  Tooltips
+*/
+.directory-tooltip {
+  position: relative;
+  border-bottom: 0.5px dotted black;
+}
+
+.directory-tooltip .directory-tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  border-radius: 6px;
+  padding: 5px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.directory-tooltip:hover .directory-tooltiptext {
+  visibility: visible;
+}
+
+/*
   Media Queries
 */
 @media (min-width: 1200px) {

@@ -35,6 +35,8 @@ Collection.prototype.orderByCompany = function () {
   }, {})
 
   delete newCollection.undefined
+
+  console.log(newCollection)
   return newCollection
 }
 

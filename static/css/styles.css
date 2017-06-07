@@ -173,6 +173,7 @@ ul.rating {
 
 .directory {
   min-height: 250px;
+  max-height: 1000px;
   overflow: scroll;
 }
 
@@ -181,24 +182,36 @@ ul.rating {
 */
 .directory-tooltip {
   position: relative;
-  border-bottom: 0.5px dotted black;
 }
 
 .directory-tooltip .directory-tooltiptext {
   visibility: hidden;
-  width: 120px;
+  min-width: 150px;
   background-color: black;
-  color: #fff;
   border-radius: 6px;
-  padding: 5px;
-
-  /* Position the tooltip */
+  padding: 5px 10px;
   position: absolute;
+  left: 40%;
+  top: -80%;
   z-index: 1;
+  opacity: 0;
+  transition: opacity 1s;
 }
 
 .directory-tooltip:hover .directory-tooltiptext {
   visibility: visible;
+  opacity: 1;
+}
+
+.directory-tooltip .directory-tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  margin-left: -10px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent #555 transparent transparent;
 }
 
 /*

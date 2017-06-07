@@ -35,6 +35,8 @@ Collection.prototype.orderByCompany = function () {
   }, {})
 
   delete newCollection.undefined
+
+  console.log(newCollection)
   return newCollection
 }
 
@@ -44,7 +46,7 @@ Collection.prototype.orderByActor = function () {
     if (cast && cast.length) {
       cast.forEach(function (actor) {
         if (! actor.name) { return }
-        var name = extractName(actor.name)
+        var name = extractName(actor.name.trim())
         var firstChar = name.toUpperCase().match(/[a-zA-z]{1}/)
         var show = {id: item._id, title: item.title}
         if (acc[firstChar]) {
@@ -57,7 +59,6 @@ Collection.prototype.orderByActor = function () {
           acc[firstChar] = {}
           acc[firstChar][name] = [show]
         }
-        // acc[name] ? acc[name].push(show) : acc[name] = [show]
       })
     }
     return acc
@@ -71,8 +72,8 @@ Collection.prototype.orderByActor = function () {
       last = [arr.pop(), last].join(' ')
     }
 
-    if (/der/.test(arr.slice(-1).pop())) {
-      last = [last, arr.pop(), arr.pop()].reverse().join(' ')
+    if (/^der/.test(arr.slice(-1).pop())) {
+      last = [last, arr.pop(), arr.pop()].reverse().join(' ').trim()
     }
     return last + ', ' + arr.join(' ')
   }

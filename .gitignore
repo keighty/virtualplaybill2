@@ -5,3 +5,4 @@ plans/*
 *.DS_Store
 npm-debug.log
 dist
+env.json

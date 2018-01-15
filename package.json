@@ -10,7 +10,8 @@
     "serve-assets": "webpack-dev-server --progress --colors",
     "webpack-watch": "webpack --progress --colors --watch",
     "test": "./node_modules/mocha/bin/mocha --recursive",
-    "test-watch": "multi='mocha-osx-reporter=- dot=-' mocha --reporter mocha-multi --watch --recursive"
+    "test-watch": "multi='mocha-osx-reporter=- dot=-' mocha --reporter mocha-multi --watch --recursive",
+    "backup": "node scripts/backup.js"
   },
   "repository": {
     "type": "git",
